@@ -10,11 +10,7 @@ public class PlaySteps : MonoBehaviour
 
     private PlayableDirector director;
 
-    public GameManager gamemanager;
-
     public List<Step> steps;
-
-    
 
     // Start is called before the first frame update
     void Start()
@@ -41,9 +37,6 @@ public class PlaySteps : MonoBehaviour
             director.Stop();
             director.time = step.time;
             director.Play();
-
-            gamemanager.IncrementUniversalScore();
-            Debug.Log(gamemanager.GetUniversalScore());
         }
     }
 }

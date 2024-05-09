@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Playables;
 
 public class triggerZoneGloves : MonoBehaviour
 {
@@ -24,16 +23,6 @@ public class triggerZoneGloves : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        var otherScript = timeline.GetComponent<PlaySteps>();
-
-        if (otherScript != null)
-        {
-            stepZeroPlayed = otherScript.steps[0].hasPlayed;
-            stepOnePlayed = otherScript.steps[1].hasPlayed;
-        }
-
-        Debug.Log(other.gameObject.tag);
-
         if (other.gameObject.CompareTag(targetTag) && !done)
         {
             OnEnterEvent.Invoke(other.gameObject);
@@ -60,7 +49,7 @@ public class triggerZoneGloves : MonoBehaviour
                 {
                     AudioSource.PlayClipAtPoint(audioClip3, transform.position);
                 }
-            }
+            }     
         }
     }
 
