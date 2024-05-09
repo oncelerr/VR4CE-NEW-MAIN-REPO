@@ -18,8 +18,8 @@ public class triggerZoneGloves : MonoBehaviour
     bool stepZeroPlayed = true;
     bool stepOnePlayed = true;
     public GameObject origSub;
-    public GameObject newSub;
     public GameObject origSub1;
+    public GameObject newSub;
     public GameObject newSub1;
 
     private void OnTriggerEnter(Collider other)
@@ -48,22 +48,10 @@ public class triggerZoneGloves : MonoBehaviour
                 if (other.gameObject.CompareTag("labcoat"))
                 {
                     AudioSource.PlayClipAtPoint(audioClip, transform.position);
-                    origSub.SetActive(false);
-                    newSub.SetActive(true);
-                    StartCoroutine(WaitForAudio());
                 }
                 if (other.gameObject.CompareTag("goggles"))
                 {
                     AudioSource.PlayClipAtPoint(audioClip, transform.position);
-                    origSub.SetActive(false);
-                    newSub.SetActive(true);
-                    StartCoroutine(WaitForAudio());
-                }
-                IEnumerator WaitForAudio()
-                {
-                    yield return new WaitForSeconds(audioClip.length);
-                    origSub.SetActive(true);
-                    newSub.SetActive(false);
                 }
             }
             if (!stepOnePlayed)
@@ -71,15 +59,6 @@ public class triggerZoneGloves : MonoBehaviour
                 if (other.gameObject.CompareTag("goggles"))
                 {
                     AudioSource.PlayClipAtPoint(audioClip3, transform.position);
-                    origSub1.SetActive(false);
-                    newSub1.SetActive(true);
-                    StartCoroutine(WaitForAudio1());
-                }
-                IEnumerator WaitForAudio1()
-                {
-                    yield return new WaitForSeconds(audioClip3.length);
-                    origSub1.SetActive(true);
-                    newSub1.SetActive(false);
                 }
             }
         }

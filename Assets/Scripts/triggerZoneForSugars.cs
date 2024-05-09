@@ -64,23 +64,7 @@ public class triggerZoneForSugars : MonoBehaviour
                             gamemanager.IncrementUniversalScore();
                         }
 
-                        if (sugarCount == 261)
-                        {
-                            gamemanager.MinusUniversalScore();
-                        }
-                        if (sugarCount == 271)
-                        {
-                            gamemanager.MinusUniversalScore();
-                        }
-                        if (sugarCount == 281)
-                        {
-                            gamemanager.MinusUniversalScore();
-                        }
-                        if (sugarCount == 291)
-                        {
-                            gamemanager.MinusUniversalScore();
-                        }
-                        if (sugarCount == 301)
+                        if (sugarCount > 251)
                         {
                             gamemanager.MinusUniversalScore();
                         }
@@ -130,23 +114,21 @@ public class triggerZoneForSugars : MonoBehaviour
                                 gamemanager.IncrementUniversalScore();
                             }
                         }
-                        if (coffeeCount == 61)
+                        if (coffeeCount < 51)
                         {
                             gamemanager.MinusUniversalScore();
                         }
 
-                        if (coffeeCount == 150)
+                            if (coffeeCount >= 150)
                         {
                             fillUpObject4.SetActive(true);
                             Debug.Log("2nd layer");
-                            gamemanager.MinusUniversalScore();
                         }
 
                         if (coffeeCount == 250)
                         {
                             fillUpObject5.SetActive(true);
                             Debug.Log("3rd layer");
-                            gamemanager.MinusUniversalScore();
                         }
 
                         IncreaseLoadingFrontScale1();
@@ -216,10 +198,6 @@ public class triggerZoneForSugars : MonoBehaviour
                         Debug.Log("2nd layer");
                         gamemanager.IncrementUniversalScore();
                         playStepsScript.PlayStepIndex(8);
-                    }
-                    if (waterCount == 450)
-                    {
-                        gamemanager.MinusUniversalScore();
                     }
 
                     IncreaseLoadingFrontScale2();
