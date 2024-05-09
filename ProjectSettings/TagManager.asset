@@ -1,0 +1,155 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Left Hand
+  - Right Hand
+  - Human
+  - Anchor
+  - cube1
+  - ReactantsAndProducts
+  - MiddleFinger
+  - gloveLeft
+  - gloveRight
+  - A
+  - B
+  - C
+  - D
+  - Correct
+  - labcoat
+  - goggles
+  - flask
+  - sugar
+  - coffee
+  - flask1
+  - lighter
+  - matchstick
+  - matchbox
+  - table
+  - vrRobot
+  - grab
+  - burner
+  - gas
+  - hoseEnd1
+  - hoseEnd2
+  - mixingBeaker
+  - waterL
+  - iodineL
+  - aluminumL
+  - hoseNozzle
+  - fireinLhand
+  - fireinRhand
+  - RightHandBubble
+  - LeftHandBubble
+  - lighterFire
+  - iodineBeaker
+  - aluminumBeaker
+  - mixingBeakerPourArea
+  - StirrRod
+  - mixingArea
+  - Pipette
+  - testtube
+  - O2_molecule
+  - H2O_molecule
+  - N2_molecule
+  - water
+  - CO2_molecule
+  - fillUp4
+  - NH3_molecule
+  - NO_molecule
+  - fillUp2
+  - CH4_molecule
+  - C2H4_molecule
+  - fillUp1
+  - NO2_molecule
+  - SO2_molecule
+  - moleculeParent2
+  - O2_molecule1
+  - fillUp8
+  - fillUp6
+  - fillUp3
+  - H2_molecule
+  - sugarParent
+  - fillUp5
+  - C_molecule
+  - moleculeParent3
+  - CO_molecule
+  - mug
+  - moleculeParent1
+  - fillUp7
+  - CS2_molecule
+  - fillUp
+  - fillUp9
+  - sphere1
+  - sphere2
+  - coffeeParent
+  - C2H5OH_molecule
+  - C2H2_molecule
+  - CO2_molecule1
+  - O2_molecule2
+  - CO2_molecule2
+  - O2_molecule3
+  - CO2_molecule3
+  - H2O_molecule1
+  - O2_molecule4
+  - NO_molecule1
+  - H2O_molecule2
+  - NH3_molecule1
+  - O2_molecule5
+  - CO2_molecule4
+  - H2O_molecule3
+  - O2_molecule6
+  - CO2_molecule5
+  - H2O_molecule4
+  - O2_molecule7
+  - NH3_molecule2
+  - H2O_molecule5
+  - NO_molecule2
+  - dupedWater
+  - O2_molecule8
+  - H2O_molecule6
+  - CO2_molecule6
+  - N2_molecule1
+  - H2O_molecule7
+  - NO_molecule3
+  - NH3_molecule3
+  - O2_molecule9
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Post Processing
+  - Hands
+  - Interactor
+  - subtitle
+  - Grab
+  - Burner
+  - Gas
+  - Hose
+  - HoseValve1
+  - HoseValve2
+  - TestTube
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
