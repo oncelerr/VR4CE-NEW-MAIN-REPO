@@ -18,6 +18,10 @@ public class GameManager : MonoBehaviour
 
     private float startTime;
 
+    private bool isGameFinished = false;
+
+    public float totalTime;
+
     void Start()
     {
         // Record the start time when the scene starts
@@ -26,8 +30,18 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        // Calculate the time elapsed since the scene started
         float elapsedTime = Time.time - startTime;
+
+        if (!isGameFinished)
+        {
+            totalTime = elapsedTime;
+            Debug.Log(totalTime);
+        } 
+        else
+        {
+
+        }
+        
     }
 
     private void Awake()
@@ -44,7 +58,7 @@ public class GameManager : MonoBehaviour
 
     public void IncrementUniversalScore()
     {
-        universalScore = 10 + universalScore;
+        universalScore = 100 + universalScore;
         scoreText1.SetText(universalScore.ToString());
         UpdateScoreText(); // Update the UI text
     }
@@ -99,6 +113,11 @@ public class GameManager : MonoBehaviour
     {
         IncrementUniversalScore(); // Increment the score when the button is clicked
         Debug.Log(universalScore);
+    }
+
+    public void gameFinished()
+    {
+        isGameFinished = true;
     }
 
     public void MultiplyScore(float timeElapsed)

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Playables;
 
 public class triggerZoneGloves : MonoBehaviour
 {
@@ -17,12 +18,22 @@ public class triggerZoneGloves : MonoBehaviour
     bool stepZeroPlayed = true;
     bool stepOnePlayed = true;
     public GameObject origSub;
-    public GameObject origSub1;
     public GameObject newSub;
+    public GameObject origSub1;
     public GameObject newSub1;
 
     private void OnTriggerEnter(Collider other)
     {
+        var otherScript = timeline.GetComponent<PlaySteps>();
+
+        if (otherScript != null)
+        {
+            stepZeroPlayed = otherScript.steps[0].hasPlayed;
+            stepOnePlayed = otherScript.steps[1].hasPlayed;
+        }
+
+        Debug.Log(other.gameObject.tag);
+
         if (other.gameObject.CompareTag(targetTag) && !done)
         {
             OnEnterEvent.Invoke(other.gameObject);
@@ -37,10 +48,22 @@ public class triggerZoneGloves : MonoBehaviour
                 if (other.gameObject.CompareTag("labcoat"))
                 {
                     AudioSource.PlayClipAtPoint(audioClip, transform.position);
+                    origSub.SetActive(false);
+                    newSub.SetActive(true);
+                    StartCoroutine(WaitForAudio());
                 }
                 if (other.gameObject.CompareTag("goggles"))
                 {
                     AudioSource.PlayClipAtPoint(audioClip, transform.position);
+                    origSub.SetActive(false);
+                    newSub.SetActive(true);
+                    StartCoroutine(WaitForAudio());
+                }
+                IEnumerator WaitForAudio()
+                {
+                    yield return new WaitForSeconds(audioClip.length);
+                    origSub.SetActive(true);
+                    newSub.SetActive(false);
                 }
             }
             if (!stepOnePlayed)
@@ -48,8 +71,17 @@ public class triggerZoneGloves : MonoBehaviour
                 if (other.gameObject.CompareTag("goggles"))
                 {
                     AudioSource.PlayClipAtPoint(audioClip3, transform.position);
+                    origSub1.SetActive(false);
+                    newSub1.SetActive(true);
+                    StartCoroutine(WaitForAudio1());
                 }
-            }     
+                IEnumerator WaitForAudio1()
+                {
+                    yield return new WaitForSeconds(audioClip3.length);
+                    origSub1.SetActive(true);
+                    newSub1.SetActive(false);
+                }
+            }
         }
     }
 

@@ -6,12 +6,12 @@ public class buttonClickTut : MonoBehaviour
 {
     [Header("Main Menu Buttons")]
     public Button backToMenu;
-    public Button proccedGame;
+    public Button proceedGame;
 
     void Start()
     {
         backToMenu.onClick.AddListener(BackToMenu);
-        proccedGame.onClick.AddListener(ProceedGame);
+        proceedGame.onClick.AddListener(ProceedGame);
     }
 
     public void BackToMenu()
@@ -20,6 +20,6 @@ public class buttonClickTut : MonoBehaviour
     }
     public void ProceedGame()
     {
-        SceneManager.LoadScene(2); // Load the scene with build index 0 (Menu scene)
+        SceneManager.LoadScene(2); // Load the scene with build index 2 (Game scene)
     }
 }
