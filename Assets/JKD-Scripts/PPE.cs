@@ -26,6 +26,8 @@ public class PPE : MonoBehaviour
         rightGReady = false;
         leftGReady = false;
         coatReady = false;
+        nextstationReady = false;
+        GameMngr.ppe_ready = false;
         rendererRG = Right_hand.GetComponent<Renderer>();
         rendererLG = Left_hand.GetComponent<Renderer>();
     }
