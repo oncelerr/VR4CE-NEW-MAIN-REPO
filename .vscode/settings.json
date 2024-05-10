@@ -51,5 +51,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "VR4CE-GIT.sln"
+    "dotnet.defaultSolution": "VR4CE-NEW-MAIN-REPO.sln"
 }

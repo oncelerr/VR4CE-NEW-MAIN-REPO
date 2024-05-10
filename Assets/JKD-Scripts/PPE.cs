@@ -4,23 +4,30 @@ using UnityEngine;
 
 public class PPE : MonoBehaviour
 {
-    [SerializeField] GameObject Labcoat;
-    [SerializeField] GameObject Right_hand;
-    [SerializeField] GameObject Right_glove;
-    [SerializeField] GameObject Left_hand;
-    [SerializeField] GameObject Left_glove;
-    [SerializeField] GameObject Goggles;
+    public GameObject Labcoat;
+    public GameObject Right_hand;
+    public GameObject Right_glove;
+    public GameObject Left_hand;
+    public GameObject Left_glove;
+    public GameObject Goggles;
     public Material glovesMat;
     private Renderer rendererRG; 
     private Renderer rendererLG; 
     private bool nextstationReady = false;
-    private bool gogglesReady = false;
+    public static bool gogglesReady = false;
     private bool rightGReady = false;
     private bool leftGReady = false;
-    private bool coatReady = false;
+    public static bool coatReady = false;
+    
 
     private void Start() 
     {
+        gogglesReady = false;
+        rightGReady = false;
+        leftGReady = false;
+        coatReady = false;
+        nextstationReady = false;
+        GameMngr.ppe_ready = false;
         rendererRG = Right_hand.GetComponent<Renderer>();
         rendererLG = Left_hand.GetComponent<Renderer>();
     }
@@ -29,15 +36,10 @@ public class PPE : MonoBehaviour
     {
         if(gogglesReady && rightGReady && leftGReady && coatReady && !nextstationReady)
         {
+            // Debug.Log("PEE READY");
             nextstationReady = true;
             GameMngr.ppe_ready = true;
         }
-    }
-
-    public void WearLabcoat()
-    {
-        coatReady = true;
-        Labcoat.SetActive(false);
     }
 
     public void WearRightGlove()
@@ -52,11 +54,5 @@ public class PPE : MonoBehaviour
         leftGReady = true;
         rendererLG.material = glovesMat;
         Left_glove.SetActive(false);
-    }
-
-    public void WearGoggles()
-    {
-        gogglesReady = true;
-        Goggles.SetActive(false);
     }
 }

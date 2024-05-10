@@ -45,8 +45,12 @@ public class GameManager : MonoBehaviour
 
         if (!isGameFinished)
         {
+<<<<<<< HEAD
             totalTime = (int)elapsedTime;
             Debug.Log(totalTime);
+=======
+            totalTime = elapsedTime;
+>>>>>>> 9dd242f229d18eaf7d3d260c2942ba2d3e0e7693
         } 
         else
         {

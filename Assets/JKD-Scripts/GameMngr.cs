@@ -5,6 +5,14 @@ using DG.Tweening;
 
 public class GameMngr : MonoBehaviour
 {
+    [Header("Checkmarks")]
+    public GameObject[] s1StepChecks;
+    public GameObject[] s2StepChecks;
+    public GameObject[] s3StepChecks; 
+    public GameObject[] s4StepChecks;
+    public GameObject[] s5StepChecks;
+
+
     [Header("Scripts")]
     [SerializeField] Checkpoint _Checkpoint;
     [SerializeField] SceneLoader _SceneLoader;
@@ -145,6 +153,13 @@ public class GameMngr : MonoBehaviour
 
     private void Update() 
     {
+        // Update steps checklist
+        s1StepChecks[Mathf.CeilToInt(S1currentsteps)].SetActive(true);
+        s2StepChecks[Mathf.CeilToInt(S2currentsteps)].SetActive(true);
+        s3StepChecks[Mathf.CeilToInt(S3currentsteps)].SetActive(true);
+        s4StepChecks[Mathf.CeilToInt(S4currentsteps)].SetActive(true);
+        s5StepChecks[Mathf.CeilToInt(S5currentsteps)].SetActive(true);
+
         //PPE check all sublevels
         if(ppe_ready && !ppeRoomDone) 
         {

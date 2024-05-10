@@ -116,8 +116,21 @@ TagManager:
   - NO_molecule3
   - NH3_molecule3
   - O2_molecule9
+<<<<<<< HEAD
   - socket
   - huwaw
+=======
+  - tube6
+  - tube4
+  - Zinc
+  - Magnesium
+  - tube3
+  - Copper
+  - tube1
+  - tube2
+  - tube5
+  - PlayerBody
+>>>>>>> 9dd242f229d18eaf7d3d260c2942ba2d3e0e7693
   layers:
   - Default
   - TransparentFX

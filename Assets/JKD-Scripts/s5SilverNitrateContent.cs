@@ -12,7 +12,7 @@ public class s5SilverNitrateContent : MonoBehaviour
     public static float _SilverNitrateAmount = 0.30f;
     public float MyAngle1;
     public float MyAngle2;
-    // private bool success = false;
+    // private bool success = false; 
     // private bool wasted = false;
     private Material material;
     private bool isHoldingSilverNjar = false;
