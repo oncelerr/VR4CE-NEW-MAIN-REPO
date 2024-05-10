@@ -4,6 +4,8 @@ using TMPro;
 using TMPro.Examples;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
+using UnityEngine.Playables;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,7 +13,7 @@ public class GameManager : MonoBehaviour
     public int scoring;
     public List<Image> img;
 
-    private float universalScore = 0;
+    public float universalScore = 100;
     public TextMeshProUGUI scoreText; // Reference to the UI text to display the score
     public TextMeshProUGUI scoreText1;
     public TextMeshProUGUI scoreMessage;
@@ -21,6 +23,15 @@ public class GameManager : MonoBehaviour
     private bool isGameFinished = false;
 
     public float totalTime;
+
+    public GameObject reco1;
+    public GameObject reco2;
+    public GameObject reco3;
+    public GameObject reco4;
+    public AudioClip audioClip1;
+    public AudioClip audioClip2;
+    public AudioClip audioClip3;
+    public AudioClip audioClip4;
 
     void Start()
     {
@@ -34,12 +45,14 @@ public class GameManager : MonoBehaviour
 
         if (!isGameFinished)
         {
-            totalTime = elapsedTime;
+            totalTime = (int)elapsedTime;
             Debug.Log(totalTime);
         } 
         else
         {
-
+            Debug.Log(universalScore);
+            UpdateScoreText();
+            isGameFinished = false;
         }
         
     }
@@ -85,25 +98,33 @@ public class GameManager : MonoBehaviour
         {
             scoreText.text = universalScore.ToString();
 
-            if (universalScore <= 45)
+            if (universalScore <= 250)
             {
                 img[0].gameObject.SetActive(true);
                 scoreMessage.text = "Failed!";
+                reco1.SetActive(true);
+                AudioSource.PlayClipAtPoint(audioClip1, transform.position);
             }
-            else if (universalScore <= 65)
+            else if (universalScore <= 500)
             {
                 img[1].gameObject.SetActive(true);
                 scoreMessage.text = "Good!";
+                reco2.SetActive(true);
+                AudioSource.PlayClipAtPoint(audioClip2, transform.position);
             }
-            else if (universalScore <= 85)
+            else if (universalScore <= 1000)
             {
                 img[2].gameObject.SetActive(true);
                 scoreMessage.text = "Great!";
+                reco3.SetActive(true);
+                AudioSource.PlayClipAtPoint(audioClip3, transform.position);
             }
-            else if (universalScore >= 95)
+            else if (universalScore >= 1500)
             {
                 img[3].gameObject.SetActive(true);
                 scoreMessage.text = "Excellent!";
+                reco4.SetActive(true);
+                AudioSource.PlayClipAtPoint(audioClip4, transform.position);
             }
         }
     }
@@ -120,32 +141,29 @@ public class GameManager : MonoBehaviour
         isGameFinished = true;
     }
 
-    public void MultiplyScore(float timeElapsed)
+    public void MultiplyScore()
     {
-        // Convert time elapsed to seconds
-        float secondsElapsed = Mathf.FloorToInt(timeElapsed);
-
-        if (secondsElapsed <= 120)
+        if (totalTime <= 120)
         {
             universalScore = universalScore * 4;
         } 
-        else if (secondsElapsed > 120 && secondsElapsed < 240)
+        else if (totalTime > 120 && totalTime < 240)
         {
             universalScore = (float)(universalScore * 3.5);
         }
-        else if (secondsElapsed > 240 && secondsElapsed < 360)
+        else if (totalTime > 240 && totalTime < 360)
         {
             universalScore = universalScore * 3;
         }
-        else if (secondsElapsed > 360 && secondsElapsed < 480)
+        else if (totalTime > 360 && totalTime < 480)
         {
             universalScore = (float)(universalScore * 2.5);
         }
-        else if (secondsElapsed > 480 && secondsElapsed < 600)
+        else if (totalTime > 480 && totalTime < 600)
         {
             universalScore = universalScore * 2;
         }
-        else if (secondsElapsed > 600 && secondsElapsed < 720)
+        else if (totalTime > 600 && totalTime < 720)
         {
             universalScore = (float)(universalScore * 1.5);
         }

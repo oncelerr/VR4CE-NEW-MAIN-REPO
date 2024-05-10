@@ -116,6 +116,8 @@ TagManager:
   - NO_molecule3
   - NH3_molecule3
   - O2_molecule9
+  - socket
+  - huwaw
   layers:
   - Default
   - TransparentFX

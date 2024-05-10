@@ -7,15 +7,13 @@ using UnityEngine.Playables;
 public class TriggerZone : MonoBehaviour
 {
     public string targetTag;
-    public List<GameObject> canvas;
-    public PlayableDirector timeline;
-    public bool isToggled = false;
+    public GameObject text;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag(targetTag))
         {
-            if (!isToggled)
+            /*if (!isToggled)
             {
                 foreach (GameObject obj in canvas)
                 {
@@ -32,7 +30,15 @@ public class TriggerZone : MonoBehaviour
                 }
                 isToggled = false;
                 timeline.Resume();
-            }
+            }*/
+
+            text.SetActive(true);
+        }
+    }
+    private void OnTriggerExit(Collider other){
+        if (other.gameObject.CompareTag(targetTag))
+        {
+            text.SetActive(false);
         }
     }
 }
