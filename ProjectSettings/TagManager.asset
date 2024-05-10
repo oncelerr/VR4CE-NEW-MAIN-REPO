@@ -116,6 +116,16 @@ TagManager:
   - NO_molecule3
   - NH3_molecule3
   - O2_molecule9
+  - tube6
+  - tube4
+  - Zinc
+  - Magnesium
+  - tube3
+  - Copper
+  - tube1
+  - tube2
+  - tube5
+  - PlayerBody
   layers:
   - Default
   - TransparentFX
