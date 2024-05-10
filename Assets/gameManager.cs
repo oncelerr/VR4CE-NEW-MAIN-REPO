@@ -35,7 +35,6 @@ public class GameManager : MonoBehaviour
         if (!isGameFinished)
         {
             totalTime = elapsedTime;
-            Debug.Log(totalTime);
         } 
         else
         {
