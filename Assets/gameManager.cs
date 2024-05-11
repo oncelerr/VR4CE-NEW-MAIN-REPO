@@ -74,7 +74,6 @@ public class GameManager : MonoBehaviour
     {
         universalScore = 100 + universalScore;
         scoreText1.SetText(universalScore.ToString());
-        UpdateScoreText(); // Update the UI text
     }
 
     public void MinusUniversalScore()
@@ -82,7 +81,6 @@ public class GameManager : MonoBehaviour
         universalScore = universalScore - scoring;
         scoreText1.SetText(universalScore.ToString());
         Debug.Log(universalScore);
-        UpdateScoreText(); // Update the UI text
     }
 
     public float GetUniversalScore()
