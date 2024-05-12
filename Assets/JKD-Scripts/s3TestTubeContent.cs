@@ -34,6 +34,7 @@ public class s3TestTubeContent : MonoBehaviour
 
     private void Update()
     {
+        // Debug.Log("Ferrous in tube: "+s3testtubeAmount);
         CheckFerrousTransferStatus();
         // Debug.Log("Test tube chosen is: "+whichtestubeisHolding);
         if (success)

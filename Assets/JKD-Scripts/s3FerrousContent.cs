@@ -52,10 +52,10 @@ public class s3FerrousContent : MonoBehaviour
                 ferrousSulfateAmount -= 0.01f;
             }
         }
-        else
-        {
-            ferrousSulfateAmount -= 0.01f;
-        }
+        // else
+        // {
+        //     ferrousSulfateAmount -= 0.01f;
+        // }
     }
     private void UpdateFerrousContent() 
     {

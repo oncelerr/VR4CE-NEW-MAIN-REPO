@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PPE : MonoBehaviour
 {
+    public GameObject[] PPEChecklist;
     public GameObject Labcoat;
     public GameObject Right_hand;
     public GameObject Right_glove;
@@ -18,10 +19,11 @@ public class PPE : MonoBehaviour
     private bool rightGReady = false;
     private bool leftGReady = false;
     public static bool coatReady = false;
-    
+    public static int PPEclist;
 
     private void Start() 
     {
+        PPEclist = 0;
         gogglesReady = false;
         rightGReady = false;
         leftGReady = false;
@@ -34,6 +36,14 @@ public class PPE : MonoBehaviour
 
     private void Update() 
     {
+        PPEChecklist[PPEclist].SetActive(true);
+        if (PPEclist == 0)
+        {
+            for (int i = 0; i < PPEChecklist.Length; i++)
+            {
+                PPEChecklist[i].SetActive(false);
+            }
+        }
         if(gogglesReady && rightGReady && leftGReady && coatReady && !nextstationReady)
         {
             // Debug.Log("PEE READY");
@@ -47,10 +57,12 @@ public class PPE : MonoBehaviour
         rightGReady = true;
         rendererRG.material = glovesMat;
         Right_glove.SetActive(false);
+        PPEclist = 2;
     }
 
     public void WearLeftGlove()
     {
+        PPEclist = 2;
         leftGReady = true;
         rendererLG.material = glovesMat;
         Left_glove.SetActive(false);

@@ -12,6 +12,7 @@ public class Sim2Player : MonoBehaviour
         {
             PPE.coatReady = true;
             _PPE.Labcoat.SetActive(false);
+            PPE.PPEclist = 1;
         }
 
         // Wear Goggles
@@ -19,6 +20,7 @@ public class Sim2Player : MonoBehaviour
         {
             PPE.gogglesReady = true;
             _PPE.Goggles.SetActive(false);
+            PPE.PPEclist = 3;
         }
     }
     

@@ -73,7 +73,7 @@ public class GameMngr : MonoBehaviour
     private bool lab2ReachTable2;
     private bool mainlab2ReachTable2;
     private bool mainlabReachTable;
-
+    private bool step7active = false;
 
     // 
     public static bool S2SpilledChemPowder;
@@ -99,6 +99,7 @@ public class GameMngr : MonoBehaviour
     private void Start() 
     {   
         // Reset Variables
+        step7active = false;
         ppe_ready = false;
         alreadyReachLastStep = false;
         lab1ReachTable = false;
@@ -154,11 +155,29 @@ public class GameMngr : MonoBehaviour
     private void Update() 
     {
         // Update steps checklist
-        s1StepChecks[Mathf.CeilToInt(S1currentsteps)].SetActive(true);
-        s2StepChecks[Mathf.CeilToInt(S2currentsteps)].SetActive(true);
-        s3StepChecks[Mathf.CeilToInt(S3currentsteps)].SetActive(true);
-        s4StepChecks[Mathf.CeilToInt(S4currentsteps)].SetActive(true);
-        s5StepChecks[Mathf.CeilToInt(S5currentsteps)].SetActive(true);
+        switch (CurrentLevelIndex)
+        {
+            case 1:
+                s1StepChecks[Mathf.CeilToInt(S1currentsteps)].SetActive(true);
+                break;
+            case 2:
+                s2StepChecks[Mathf.CeilToInt(S2currentsteps)].SetActive(true);
+                break;
+            case 3:
+                s3StepChecks[Mathf.CeilToInt(S3currentsteps)].SetActive(true);
+                break;
+            case 4:
+                s4StepChecks[Mathf.CeilToInt(S4currentsteps)].SetActive(true);
+                break;
+            case 5:
+                s5StepChecks[Mathf.CeilToInt(S5currentsteps)].SetActive(true);
+                break;
+            default:
+                break;
+        }
+        
+        
+        
 
         //PPE check all sublevels
         if(ppe_ready && !ppeRoomDone) 
