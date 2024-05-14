@@ -15,7 +15,7 @@ public class S3ValveHose : MonoBehaviour
     private bool alreadySetValve2;
     private bool alreadySetValve3;
     public static bool S3ValveTurnedON;
-    public static bool s3ValveAmount;
+    public static float s3ValveAmount;
 
     private void Start() 
     {

@@ -60,7 +60,7 @@ public class BubbleGenerator : MonoBehaviour
             if (GameMngr.S1currentsteps == 4f)
             {
                 GameMngr.S1currentsteps = 5f;
-                if(ValveHose.s1ValveAmount == 0) 
+                if(ValveHose.s1ValveAmount != 0) 
                 {
                     _ScoreMngr.Deductions("ForgotValve");
                 }

@@ -5,6 +5,7 @@ using DG.Tweening;
 
 public class s3TestTubeContent : MonoBehaviour
 {
+    public ScoreMngr _ScoreMngr;
     public AudioMngr _AudioMngr;
     public Timer _Timer;
     public GameObject[] testtubeObj;
@@ -21,6 +22,8 @@ public class s3TestTubeContent : MonoBehaviour
     private bool s3React2Done = false;
     private bool s3React3Done = false;
     private int S3ChemTransition = 1;
+
+    private bool forgotvalePlayed = false;
 
 
     private void OnEnable()
@@ -127,6 +130,17 @@ public class s3TestTubeContent : MonoBehaviour
                     });
                     sequence.Play();
                     Debug.Log("S3 React2 done");
+                }
+
+                // Check if already close valve
+                if(Timer.CUcurrentTime == 10 && s3React2Done) 
+                {
+                    _Timer.StartCountUpTimer4(0, 20f);
+                }
+                if(Timer.CUcurrentTime4 == 20 && !forgotvalePlayed && S3ValveHose.s3ValveAmount != 0) 
+                {
+                    forgotvalePlayed = true;
+                    _ScoreMngr.Deductions("ForgotValve");
                 }
             }
         }
