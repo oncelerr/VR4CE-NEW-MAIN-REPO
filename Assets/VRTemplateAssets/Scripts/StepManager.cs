@@ -1,3 +1,4 @@
+using DG.Tweening.Core.Easing;
 using System;
 using System.Collections.Generic;
 using TMPro;
@@ -5,11 +6,9 @@ using UnityEngine;
 
 namespace Unity.VRTemplate
 {
-    /// <summary>
-    /// Controls the steps in the in coaching card.
-    /// </summary>
     public class StepManager : MonoBehaviour
     {
+
         [Serializable]
         class Step
         {
@@ -35,5 +34,6 @@ namespace Unity.VRTemplate
             m_StepList[m_CurrentStepIndex].stepObject.SetActive(true);
             m_StepButtonTextField.text = m_StepList[m_CurrentStepIndex].buttonText;
         }
+
     }
 }

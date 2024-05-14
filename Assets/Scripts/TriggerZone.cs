@@ -7,39 +7,26 @@ using UnityEngine.Playables;
 public class TriggerZone : MonoBehaviour
 {
     public string targetTag;
-    public GameObject text;
+    public bool isToggled = false;
+    public PlayableDirector timeline;
+    public Canvas canvas;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag(targetTag))
         {
-            /*if (!isToggled)
+            if (!isToggled)
             {
-                foreach (GameObject obj in canvas)
-                {
-                    obj.SetActive(true);
-                }
+                canvas.gameObject.SetActive(true);
                 isToggled = true;
                 timeline.Pause();
             }
             else
             {
-                foreach (GameObject obj in canvas)
-                {
-                    obj.SetActive(false);
-                }
+                canvas.gameObject.SetActive(false);
                 isToggled = false;
                 timeline.Resume();
-            }*/
-
-            text.SetActive(true);
-        }
-    }
-    private void OnTriggerExit(Collider other){
-        if (other.gameObject.CompareTag(targetTag))
-        {
-            text.SetActive(false);
+            }
         }
     }
 }
-

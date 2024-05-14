@@ -32,8 +32,6 @@ public class triggerZoneGloves : MonoBehaviour
             stepOnePlayed = otherScript.steps[1].hasPlayed;
         }
 
-        Debug.Log(other.gameObject.tag);
-
         if (other.gameObject.CompareTag(targetTag) && !done)
         {
             OnEnterEvent.Invoke(other.gameObject);

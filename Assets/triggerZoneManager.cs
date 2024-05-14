@@ -18,6 +18,8 @@ public class triggerZoneManager : MonoBehaviour
 
     private bool isMoving = false;
     private float duration = 0.5f;
+    private int questionNumber = 1;
+    private bool isBalanced = false;
 
     public void firstQuestion()
     {
@@ -43,10 +45,7 @@ public class triggerZoneManager : MonoBehaviour
         {
             StartCoroutine(MoveObjectSmoothly(sphere1, sphere1.transform.position, new Vector3(3.25300002f, 1.384f, -5.216f)));
             StartCoroutine(MoveObjectSmoothly(sphere2, sphere2.transform.position, new Vector3(2.753f, 1.384f, -5.216f)));
-            playStepsScript.PlayStepIndex(10);
-            rightPlateTriggerScript.rightPlateWeight = 0;
-            leftPlateTriggerScript.leftPlateWeight = 0;
-            gamemanager.IncrementUniversalScore();
+            isBalanced = true;
         }
 
         Debug.Log(rightPlateTriggerScript.rightPlateWeight);
@@ -76,11 +75,7 @@ public class triggerZoneManager : MonoBehaviour
         {
             StartCoroutine(MoveObjectSmoothly(sphere1, sphere1.transform.position, new Vector3(3.25300002f, 1.384f, -5.216f)));
             StartCoroutine(MoveObjectSmoothly(sphere2, sphere2.transform.position, new Vector3(2.753f, 1.384f, -5.216f)));
-            playStepsScript.PlayStepIndex(11);
-
-            rightPlateTriggerScript.rightPlateWeight = 0;
-            leftPlateTriggerScript.leftPlateWeight = 0;
-            gamemanager.IncrementUniversalScore();
+            isBalanced = true;
         }
 
         Debug.Log(rightPlateTriggerScript.rightPlateWeight);
@@ -111,11 +106,7 @@ public class triggerZoneManager : MonoBehaviour
         {
             StartCoroutine(MoveObjectSmoothly(sphere1, sphere1.transform.position, new Vector3(3.25300002f, 1.384f, -5.216f)));
             StartCoroutine(MoveObjectSmoothly(sphere2, sphere2.transform.position, new Vector3(2.753f, 1.384f, -5.216f)));
-            playStepsScript.PlayStepIndex(12);
-
-            rightPlateTriggerScript.rightPlateWeight = 0;
-            leftPlateTriggerScript.leftPlateWeight = 0;
-            gamemanager.IncrementUniversalScore();
+            isBalanced = true;
         }
 
         Debug.Log(rightPlateTriggerScript.rightPlateWeight);
@@ -136,23 +127,17 @@ public class triggerZoneManager : MonoBehaviour
         {
             StartCoroutine(MoveObjectSmoothly(sphere1, sphere1.transform.position, new Vector3(3.25300002f, 1.331f, -5.216f)));
             StartCoroutine(MoveObjectSmoothly(sphere2, sphere2.transform.position, new Vector3(2.753f, 1.427f, -5.216f)));
-            AudioSource.PlayClipAtPoint(audioClip, transform.position);
         }
         if (rightPlateTriggerScript.rightPlateWeight > leftPlateTriggerScript.leftPlateWeight)
         {
             StartCoroutine(MoveObjectSmoothly(sphere1, sphere1.transform.position, new Vector3(3.25300002f, 1.427f, -5.216f)));
             StartCoroutine(MoveObjectSmoothly(sphere2, sphere2.transform.position, new Vector3(2.753f, 1.331f, -5.216f)));
-            AudioSource.PlayClipAtPoint(audioClip1, transform.position);
         }
         if (rightPlateTriggerScript.rightPlateWeight == 36 && leftPlateTriggerScript.leftPlateWeight == 36)
         {
             StartCoroutine(MoveObjectSmoothly(sphere1, sphere1.transform.position, new Vector3(3.25300002f, 1.384f, -5.216f)));
             StartCoroutine(MoveObjectSmoothly(sphere2, sphere2.transform.position, new Vector3(2.753f, 1.384f, -5.216f)));
-            playStepsScript.PlayStepIndex(13);
-
-            rightPlateTriggerScript.rightPlateWeight = 0;
-            leftPlateTriggerScript.leftPlateWeight = 0;
-            gamemanager.IncrementUniversalScore();
+            isBalanced = true;
         }
 
         Debug.Log(rightPlateTriggerScript.rightPlateWeight);
@@ -172,23 +157,17 @@ public class triggerZoneManager : MonoBehaviour
         {
             StartCoroutine(MoveObjectSmoothly(sphere1, sphere1.transform.position, new Vector3(3.25300002f, 1.331f, -5.216f)));
             StartCoroutine(MoveObjectSmoothly(sphere2, sphere2.transform.position, new Vector3(2.753f, 1.427f, -5.216f)));
-            AudioSource.PlayClipAtPoint(audioClip, transform.position);
         }
         if (rightPlateTriggerScript.rightPlateWeight > leftPlateTriggerScript.leftPlateWeight)
         {
             StartCoroutine(MoveObjectSmoothly(sphere1, sphere1.transform.position, new Vector3(3.25300002f, 1.427f, -5.216f)));
             StartCoroutine(MoveObjectSmoothly(sphere2, sphere2.transform.position, new Vector3(2.753f, 1.331f, -5.216f)));
-            AudioSource.PlayClipAtPoint(audioClip1, transform.position);
         }
         if (rightPlateTriggerScript.rightPlateWeight == 23 && leftPlateTriggerScript.leftPlateWeight == 23)
         {
             StartCoroutine(MoveObjectSmoothly(sphere1, sphere1.transform.position, new Vector3(3.25300002f, 1.384f, -5.216f)));
             StartCoroutine(MoveObjectSmoothly(sphere2, sphere2.transform.position, new Vector3(2.753f, 1.384f, -5.216f)));
-            playStepsScript.PlayStepIndex(14);
-
-            rightPlateTriggerScript.rightPlateWeight = 0;
-            leftPlateTriggerScript.leftPlateWeight = 0;
-            gamemanager.IncrementUniversalScore();
+            isBalanced = true;
         }
 
         Debug.Log(rightPlateTriggerScript.rightPlateWeight);
@@ -208,23 +187,17 @@ public class triggerZoneManager : MonoBehaviour
         {
             StartCoroutine(MoveObjectSmoothly(sphere1, sphere1.transform.position, new Vector3(3.25300002f, 1.331f, -5.216f)));
             StartCoroutine(MoveObjectSmoothly(sphere2, sphere2.transform.position, new Vector3(2.753f, 1.427f, -5.216f)));
-            AudioSource.PlayClipAtPoint(audioClip, transform.position);
         }
         if (rightPlateTriggerScript.rightPlateWeight > leftPlateTriggerScript.leftPlateWeight)
         {
             StartCoroutine(MoveObjectSmoothly(sphere1, sphere1.transform.position, new Vector3(3.25300002f, 1.427f, -5.216f)));
             StartCoroutine(MoveObjectSmoothly(sphere2, sphere2.transform.position, new Vector3(2.753f, 1.331f, -5.216f)));
-            AudioSource.PlayClipAtPoint(audioClip1, transform.position);
         }
         if (rightPlateTriggerScript.rightPlateWeight == 28 && leftPlateTriggerScript.leftPlateWeight == 28)
         {
             StartCoroutine(MoveObjectSmoothly(sphere1, sphere1.transform.position, new Vector3(3.25300002f, 1.384f, -5.216f)));
             StartCoroutine(MoveObjectSmoothly(sphere2, sphere2.transform.position, new Vector3(2.753f, 1.384f, -5.216f)));
-            playStepsScript.PlayStepIndex(15);
-
-            rightPlateTriggerScript.rightPlateWeight = 0;
-            leftPlateTriggerScript.leftPlateWeight = 0;
-            gamemanager.IncrementUniversalScore();
+            isBalanced = true;
         }
 
         Debug.Log(rightPlateTriggerScript.rightPlateWeight);
@@ -244,23 +217,17 @@ public class triggerZoneManager : MonoBehaviour
         {
             StartCoroutine(MoveObjectSmoothly(sphere1, sphere1.transform.position, new Vector3(3.25300002f, 1.331f, -5.216f)));
             StartCoroutine(MoveObjectSmoothly(sphere2, sphere2.transform.position, new Vector3(2.753f, 1.427f, -5.216f)));
-            AudioSource.PlayClipAtPoint(audioClip, transform.position);
         }
         if (rightPlateTriggerScript.rightPlateWeight > leftPlateTriggerScript.leftPlateWeight)
         {
             StartCoroutine(MoveObjectSmoothly(sphere1, sphere1.transform.position, new Vector3(3.25300002f, 1.427f, -5.216f)));
             StartCoroutine(MoveObjectSmoothly(sphere2, sphere2.transform.position, new Vector3(2.753f, 1.331f, -5.216f)));
-            AudioSource.PlayClipAtPoint(audioClip1, transform.position);
         }
         if (rightPlateTriggerScript.rightPlateWeight == 58 && leftPlateTriggerScript.leftPlateWeight == 58)
         {
             StartCoroutine(MoveObjectSmoothly(sphere1, sphere1.transform.position, new Vector3(3.25300002f, 1.384f, -5.216f)));
             StartCoroutine(MoveObjectSmoothly(sphere2, sphere2.transform.position, new Vector3(2.753f, 1.384f, -5.216f)));
-            playStepsScript.PlayStepIndex(16);
-
-            rightPlateTriggerScript.rightPlateWeight = 0;
-            leftPlateTriggerScript.leftPlateWeight = 0;
-            gamemanager.IncrementUniversalScore();
+            isBalanced = true;
         }
 
         Debug.Log(rightPlateTriggerScript.rightPlateWeight);
@@ -280,23 +247,17 @@ public class triggerZoneManager : MonoBehaviour
         {
             StartCoroutine(MoveObjectSmoothly(sphere1, sphere1.transform.position, new Vector3(3.25300002f, 1.331f, -5.216f)));
             StartCoroutine(MoveObjectSmoothly(sphere2, sphere2.transform.position, new Vector3(2.753f, 1.427f, -5.216f)));
-            AudioSource.PlayClipAtPoint(audioClip, transform.position);
         }
         if (rightPlateTriggerScript.rightPlateWeight > leftPlateTriggerScript.leftPlateWeight)
         {
             StartCoroutine(MoveObjectSmoothly(sphere1, sphere1.transform.position, new Vector3(3.25300002f, 1.427f, -5.216f)));
             StartCoroutine(MoveObjectSmoothly(sphere2, sphere2.transform.position, new Vector3(2.753f, 1.331f, -5.216f)));
-            AudioSource.PlayClipAtPoint(audioClip1, transform.position);
         }
         if (rightPlateTriggerScript.rightPlateWeight == 35 && leftPlateTriggerScript.leftPlateWeight == 35)
         {
             StartCoroutine(MoveObjectSmoothly(sphere1, sphere1.transform.position, new Vector3(3.25300002f, 1.384f, -5.216f)));
             StartCoroutine(MoveObjectSmoothly(sphere2, sphere2.transform.position, new Vector3(2.753f, 1.384f, -5.216f)));
-            playStepsScript.PlayStepIndex(17);
-
-            rightPlateTriggerScript.rightPlateWeight = 0;
-            leftPlateTriggerScript.leftPlateWeight = 0;
-            gamemanager.IncrementUniversalScore();
+            isBalanced = true;
         }
 
         Debug.Log(rightPlateTriggerScript.rightPlateWeight);
@@ -316,28 +277,88 @@ public class triggerZoneManager : MonoBehaviour
         {
             StartCoroutine(MoveObjectSmoothly(sphere1, sphere1.transform.position, new Vector3(3.25300002f, 1.331f, -5.216f)));
             StartCoroutine(MoveObjectSmoothly(sphere2, sphere2.transform.position, new Vector3(2.753f, 1.427f, -5.216f)));
-            AudioSource.PlayClipAtPoint(audioClip, transform.position);
         }
         if (rightPlateTriggerScript.rightPlateWeight > leftPlateTriggerScript.leftPlateWeight)
         {
             StartCoroutine(MoveObjectSmoothly(sphere1, sphere1.transform.position, new Vector3(3.25300002f, 1.427f, -5.216f)));
             StartCoroutine(MoveObjectSmoothly(sphere2, sphere2.transform.position, new Vector3(2.753f, 1.331f, -5.216f)));
-            AudioSource.PlayClipAtPoint(audioClip1, transform.position);
         }
         if (rightPlateTriggerScript.rightPlateWeight == 52 && leftPlateTriggerScript.leftPlateWeight == 52)
         {
             StartCoroutine(MoveObjectSmoothly(sphere1, sphere1.transform.position, new Vector3(3.25300002f, 1.384f, -5.216f)));
             StartCoroutine(MoveObjectSmoothly(sphere2, sphere2.transform.position, new Vector3(2.753f, 1.384f, -5.216f)));
-            playStepsScript.PlayStepIndex(18);
-
-            rightPlateTriggerScript.rightPlateWeight = 0;
-            leftPlateTriggerScript.leftPlateWeight = 0;
-            gamemanager.IncrementUniversalScore();
+            isBalanced = true;
         }
 
         Debug.Log(rightPlateTriggerScript.rightPlateWeight);
         Debug.Log(leftPlateTriggerScript.leftPlateWeight);
     }
+
+    public void check()
+    {
+        Debug.Log("Pressed");
+        if (isBalanced)
+        {
+            Debug.Log("Balanced");
+            rightPlateTriggerScript.rightPlateWeight = 0;
+            leftPlateTriggerScript.leftPlateWeight = 0;
+            switch (questionNumber)
+            {
+                case 1:
+                    playStepsScript.PlayStepIndex(10);
+                    gamemanager.IncrementUniversalScore();
+                    break;
+                case 2:
+                    playStepsScript.PlayStepIndex(11);
+                    gamemanager.IncrementUniversalScore();
+                    break;
+                case 3:
+                    playStepsScript.PlayStepIndex(12);
+                    gamemanager.IncrementUniversalScore();
+                    break;
+                case 4:
+                    playStepsScript.PlayStepIndex(13);
+                    gamemanager.IncrementUniversalScore();
+                    break;
+                case 5:
+                    playStepsScript.PlayStepIndex(14);
+                    gamemanager.IncrementUniversalScore();
+                    break;
+                case 6:
+                    playStepsScript.PlayStepIndex(15);
+                    gamemanager.IncrementUniversalScore();
+                    break;
+                case 7:
+                    playStepsScript.PlayStepIndex(16);
+                    gamemanager.IncrementUniversalScore();
+                    break;
+                case 8:
+                    playStepsScript.PlayStepIndex(17);
+                    gamemanager.IncrementUniversalScore();
+                    break;
+                case 9:
+                    playStepsScript.PlayStepIndex(18);
+                    gamemanager.IncrementUniversalScore();
+                    break;
+            }
+            questionNumber++;
+            isBalanced = false;
+        }
+        else
+        {
+            if(rightPlateTriggerScript.rightPlateWeight < leftPlateTriggerScript.leftPlateWeight)
+            {
+                AudioSource.PlayClipAtPoint(audioClip, transform.position);
+                gamemanager.MinusUniversalScore();
+            }
+            if(rightPlateTriggerScript.rightPlateWeight > leftPlateTriggerScript.leftPlateWeight)
+            {
+                AudioSource.PlayClipAtPoint(audioClip1, transform.position);
+                gamemanager.MinusUniversalScore();
+            }
+        }
+    }
+
     private IEnumerator MoveObjectSmoothly(GameObject obj, Vector3 startPosition, Vector3 targetPosition)
     {
         isMoving = true;

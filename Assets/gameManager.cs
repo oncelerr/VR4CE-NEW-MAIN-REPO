@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public int scoring;
     public List<Image> img;
 
-    public float universalScore = 100;
+    public static float universalScore = 0;
     public TextMeshProUGUI scoreText; // Reference to the UI text to display the score
     public TextMeshProUGUI scoreText1;
     public TextMeshProUGUI scoreMessage;
@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
     public AudioClip audioClip2;
     public AudioClip audioClip3;
     public AudioClip audioClip4;
+    public GameObject button1;
+    public GameObject button2;
 
     void Start()
     {
@@ -46,7 +48,6 @@ public class GameManager : MonoBehaviour
         if (!isGameFinished)
         {
             totalTime = (int)elapsedTime;
-            Debug.Log(totalTime);
             totalTime = elapsedTime;
         } 
         else
@@ -72,15 +73,31 @@ public class GameManager : MonoBehaviour
 
     public void IncrementUniversalScore()
     {
-        universalScore = 100 + universalScore;
-        scoreText1.SetText(universalScore.ToString());
+        universalScore = 10 + universalScore;
+        if (universalScore >= 0)
+        {
+            scoreText1.SetText(universalScore.ToString());
+        }
+        else
+        {
+            scoreText1.SetText("0");
+        }
     }
+
 
     public void MinusUniversalScore()
     {
         universalScore = universalScore - scoring;
-        scoreText1.SetText(universalScore.ToString());
-        Debug.Log(universalScore);
+        if (universalScore >= 0)
+        {
+            scoreText1.SetText(universalScore.ToString());
+            Debug.Log(universalScore);
+        }
+        else
+        {
+            scoreText1.SetText("0");
+            Debug.Log(universalScore);
+        }
     }
 
     public float GetUniversalScore()
@@ -95,35 +112,49 @@ public class GameManager : MonoBehaviour
 
         if (scoreText != null)
         {
-            scoreText.text = universalScore.ToString();
+            
 
-            if (universalScore <= 250)
+            if (universalScore <= 25)
             {
                 img[0].gameObject.SetActive(true);
+                scoreText.text = universalScore.ToString();
                 scoreMessage.text = "Failed!";
+                button1.SetActive(true);
                 reco1.SetActive(true);
-                AudioSource.PlayClipAtPoint(audioClip1, transform.position);
+                AudioSource.PlayClipAtPoint(audioClip1, new Vector3(3.01301718f, 0.743999481f, -5.20596886f));
             }
-            else if (universalScore <= 500)
+            else if (universalScore <= 75)
             {
                 img[1].gameObject.SetActive(true);
+                scoreText.text = universalScore.ToString();
                 scoreMessage.text = "Good!";
+                PlayerPrefs.SetInt("IsMassRDone", 2);
+                PlayerPrefs.Save();
+                button2.SetActive(true);
                 reco2.SetActive(true);
-                AudioSource.PlayClipAtPoint(audioClip2, transform.position);
+                AudioSource.PlayClipAtPoint(audioClip2, new Vector3(3.01301718f, 0.743999481f, -5.20596886f));
             }
-            else if (universalScore <= 1000)
+            else if (universalScore <= 150)
             {
                 img[2].gameObject.SetActive(true);
+                scoreText.text = universalScore.ToString();
                 scoreMessage.text = "Great!";
+                PlayerPrefs.SetInt("IsMassRDone", 2);
+                PlayerPrefs.Save();
+                button2.SetActive(true);
                 reco3.SetActive(true);
-                AudioSource.PlayClipAtPoint(audioClip3, transform.position);
+                AudioSource.PlayClipAtPoint(audioClip3, new Vector3(3.01301718f, 0.743999481f, -5.20596886f));
             }
-            else if (universalScore >= 1500)
+            else if (universalScore >= 250)
             {
                 img[3].gameObject.SetActive(true);
+                scoreText.text = universalScore.ToString();
                 scoreMessage.text = "Excellent!";
+                PlayerPrefs.SetInt("IsMassRDone", 2);
+                PlayerPrefs.Save();
+                button2.SetActive(true);
                 reco4.SetActive(true);
-                AudioSource.PlayClipAtPoint(audioClip4, transform.position);
+                AudioSource.PlayClipAtPoint(audioClip4, new Vector3(3.01301718f, 0.743999481f, -5.20596886f));
             }
         }
     }
