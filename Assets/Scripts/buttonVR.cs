@@ -62,7 +62,7 @@ public class ButtonVR : MonoBehaviour
         if (cartridge != null)
         {
             string sceneName = cartridge.sceneName;
-            SceneManager.LoadScene(sceneName);
+            sceneTransitionManager.GoToSceneAsync(int.Parse(sceneName)); // Change this line
             Debug.Log(sceneName);
         }
     }
