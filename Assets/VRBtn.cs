@@ -36,6 +36,9 @@ public class VRBtn : MonoBehaviour
             presser = other.gameObject;
             isPressed = true;
 
+            PlayerPrefs.SetInt("isAgree", 4);
+            PlayerPrefs.Save();
+
             // Activate the assigned object if exists
             if (objectToActivate != null)
             {
