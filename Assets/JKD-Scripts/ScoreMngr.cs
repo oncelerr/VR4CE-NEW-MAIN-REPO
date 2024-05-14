@@ -7,6 +7,7 @@ using TMPro;
 
 public class ScoreMngr : MonoBehaviour
 {
+    public HandsMnger _HandsMnger;
     public AudioMngr _AudioMngr;
     public GameObject ScoreMenuObj;
     public GameObject[] Stars;
@@ -110,7 +111,14 @@ public class ScoreMngr : MonoBehaviour
     }
     public void CheckScore()
     {
-        ScoreMultiplier();
+        if(TotalScore < 0) 
+        {
+            // 
+        }
+        else
+        {
+            ScoreMultiplier();
+        }
         ScoreMenuObj.SetActive(true);
 
         // Revised Scoring system as of May 13, 2024
@@ -230,6 +238,7 @@ public class ScoreMngr : MonoBehaviour
 
     public void GameOver()
     {
+        _HandsMnger.DisableEnableHandsInteraction(false);
         ScoreMenuObj.SetActive(true);
         Score.text = TotalScore.ToString("F0"); // Set the totalscore to score text mesh
         Performance.text = "GAME OVER!";
