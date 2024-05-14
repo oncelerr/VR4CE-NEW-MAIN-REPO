@@ -230,6 +230,7 @@ public class ScoreMngr : MonoBehaviour
 
     public void GameOver()
     {
+        ScoreMenuObj.SetActive(true);
         Score.text = TotalScore.ToString("F0"); // Set the totalscore to score text mesh
         Performance.text = "GAME OVER!";
         NextBtnText.text = "TRY AGAIN!";
