@@ -172,7 +172,7 @@ public class ScoreMngr : MonoBehaviour
         // If current level is 5 change button will be different
         if(GameMngr.CurrentLevelIndex == 5)
         {
-            if(TotalScore <= 99.9f) // 0 star - Failed 0 - 99
+            if(TotalScore <= 25.9f) // 
             {
                 Score.text = TotalScore.ToString("F0"); // Set the totalscore to score text mesh
                 Performance.text = "FAILED!";
@@ -185,7 +185,7 @@ public class ScoreMngr : MonoBehaviour
                 Stars[3].SetActive(false);
                 _AudioMngr.PlayPerformance(_AudioMngr.verdict[0]); // O star
             }
-            else if(TotalScore >= 100 && TotalScore < 499.9) // 1 star - points 100 - 499
+            else if(TotalScore >= 26f && TotalScore < 75.9) // 
             {
                 Score.text = TotalScore.ToString("F0"); // Set the totalscore to score text mesh
                 Performance.text = "GOOD!";
@@ -198,7 +198,7 @@ public class ScoreMngr : MonoBehaviour
                 Stars[3].SetActive(false);
                 _AudioMngr.PlayPerformance(_AudioMngr.verdict[1]); // 1 star
             }
-            else if(TotalScore >= 500 && TotalScore < 1499.9) // 2 stars - points 500 - 1499
+            else if(TotalScore >= 76f && TotalScore < 150.9f) // 
             {
                 Score.text = TotalScore.ToString("F0"); // Set the totalscore to score text mesh
                 Performance.text = "GREAT!";
@@ -211,7 +211,7 @@ public class ScoreMngr : MonoBehaviour
                 Stars[3].SetActive(false);
                 _AudioMngr.PlayPerformance(_AudioMngr.verdict[2]); // 2 star
             }
-            else if(TotalScore >= 1500) // 3 stars - points 1500 - 2000
+            else if(TotalScore >= 151) // 
             {
                 Score.text = TotalScore.ToString("F0"); // Set the totalscore to score text mesh
                 Performance.text = "EXCELLENT!";

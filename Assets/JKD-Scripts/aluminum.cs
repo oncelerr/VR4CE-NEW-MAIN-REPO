@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class aluminum : MonoBehaviour
 {
+    [SerializeField] ScoreMngr _ScoreMngr;
+    [SerializeField] AudioMngr _AudioMngr;
     ParticleSystem aluminumPour;
     private Material material;
     public GameObject _aluminumContentObj;
@@ -14,7 +17,7 @@ public class aluminum : MonoBehaviour
     public static float AluminumAmount = 0.25f;
 
     void Start()
-    {
+    { 
         aluminumPour = GetComponent<ParticleSystem>();
         firsAlDrop = false;
     }
@@ -121,6 +124,11 @@ public class aluminum : MonoBehaviour
             mixingBeakerContent.aluminumTransferSuccess = false;
             Debug.Log("Aluminum powder wasted.");
             GameMngr.S2SpilledChemPowder = true; // trigger if the player spilled a powder
+            Sequence sequence = DOTween.Sequence();
+            sequence.AppendCallback(() => _ScoreMngr.Deductions("SpilledChem"));
+            sequence.AppendInterval(_AudioMngr.DeductionClips[1].length); // Delay
+            sequence.AppendCallback(() => _ScoreMngr.GameOver());
+            sequence.Play();
         } 
     }
 }

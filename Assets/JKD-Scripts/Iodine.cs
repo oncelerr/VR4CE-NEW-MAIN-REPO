@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Iodine : MonoBehaviour
 {
+    [SerializeField] ScoreMngr _ScoreMngr;
+    [SerializeField] AudioMngr _AudioMngr;
     ParticleSystem iodinePour;
     private Material material;
     public GameObject _iodineContentObj;
@@ -97,7 +100,7 @@ public class Iodine : MonoBehaviour
     {
         if(mixingBeakerContent.iodineValue >= 0.25f && !success) 
         {
-            // Transfer Success
+            // Transfer Success 
             success = true;
             GameMngr.S2currentsteps = 1;
             mixingBeakerContent.iodineTransferSuccess = true;
@@ -110,6 +113,12 @@ public class Iodine : MonoBehaviour
             Debug.Log("Iodine powder wasted.");
             GameMngr.S2SpilledChemPowder = true; // trigger if the player spilled a powder
             mixingBeakerContent.iodineTransferSuccess = false;
+
+            Sequence sequence = DOTween.Sequence();
+            sequence.AppendCallback(() => _ScoreMngr.Deductions("SpilledChem"));
+            sequence.AppendInterval(_AudioMngr.DeductionClips[1].length); // Delay
+            sequence.AppendCallback(() => _ScoreMngr.GameOver());
+            sequence.Play();
         }
     }
 }

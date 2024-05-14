@@ -101,6 +101,7 @@ TagManager:
   - lighter
   - table
   - dupedWater
+  - floor
   layers:
   - Default
   - TransparentFX

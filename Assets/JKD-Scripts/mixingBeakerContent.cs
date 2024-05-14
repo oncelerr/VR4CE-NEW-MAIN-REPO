@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class mixingBeakerContent : MonoBehaviour
 {
+    [SerializeField] ScoreMngr _ScoreMngr;
+    [SerializeField] AudioMngr _AudioMngr;
     public ParticleSystem mixingBeakerContPour;
     public GameObject mixingBeakerContentObj;
     public GameObject aluminumContent;
@@ -17,6 +20,7 @@ public class mixingBeakerContent : MonoBehaviour
     // Variable for checking if the mixing beaker is spilling
     public static bool isMixingBeakerCurrentlySpilling;
 
+    private bool mixingbeakercontWasted = false;
     private void Start() 
     {
         iodineTransferSuccess = false;
@@ -27,18 +31,46 @@ public class mixingBeakerContent : MonoBehaviour
     {
         FillBeaker(iodineValue, mixingBeakerContentObj, mixingBeaker.isItHoldingIodineBeaker);
         FillBeaker(aluminumValue, aluminumContent, mixingBeaker.isItHoldingAluminumBeaker);
-
+        
+        if(!mixingbeakercontWasted && iodineTransferSuccess && aluminumTransferSuccess)
+        {
+            mixingbeakercontWasted = true;
+            Sequence sequence = DOTween.Sequence();
+            sequence.AppendCallback(() => _ScoreMngr.Deductions("SpilledChem"));
+            sequence.AppendInterval(_AudioMngr.DeductionClips[1].length); // Delay
+            sequence.AppendCallback(() => _ScoreMngr.GameOver());
+            sequence.Play();
+        }
         //This check if the player spills the content of the mixing beaker
         float angle = Vector3.Angle(Vector3.down, transform.forward);
         if (angle <= -60f && (GameMngr.S2currentsteps == 1 || GameMngr.S2currentsteps == 2 || GameMngr.S2currentsteps == 3))
-        {
-            mixingBeakerContPour.Play();
-            isMixingBeakerCurrentlySpilling = true;
+        { 
+            if(aluminumValue != 0 || iodineValue != 0) 
+            {
+                mixingBeakerContPour.Play();
+                isMixingBeakerCurrentlySpilling = true;
+            }
+            
         }
         else
         {
             mixingBeakerContPour.Stop();
             isMixingBeakerCurrentlySpilling = false;
+        }
+
+    }
+
+    private void OnParticleCollision(GameObject other)
+    {
+        if(aluminumValue > 0 && (iodineTransferSuccess || aluminumTransferSuccess)) 
+        {
+            aluminumValue -= 0.01f;
+            _ScoreMngr.Deductions("SpilledChem");
+        }
+        if(aluminumValue <= 0 && iodineValue > 0) 
+        {
+            iodineValue -= 0.01f;
+            _ScoreMngr.Deductions("SpilledChem");
         }
     }
 
