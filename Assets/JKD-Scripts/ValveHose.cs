@@ -14,6 +14,7 @@ public class ValveHose : MonoBehaviour
     public XRKnob knob;
     public Transform rotationGuide;
     public static bool isValveCorrect;
+    public static float s1ValveAmount;
     private bool valveAlreadySet;
     private bool holdingTheValve;
     private bool alreadyCheckifClose;
@@ -40,6 +41,7 @@ public class ValveHose : MonoBehaviour
             rotationGuide.localEulerAngles = new Vector3(90f, targetRotation, 0f);
             // Invoke("ValveControl", .7f);
             ValveControl();
+            s1ValveAmount = knob.value;
         }
     }
 
@@ -64,7 +66,7 @@ public class ValveHose : MonoBehaviour
             isValveCorrect = false;
         }
 
-        // Check if the valve is close
+        // Check if the valve is close 
         if(holdingTheValve && valveAlreadySet && !alreadyCheckifClose)
         {
             if(knob.value == 0f)

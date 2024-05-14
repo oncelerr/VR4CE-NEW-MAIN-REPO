@@ -14,6 +14,7 @@ public class Timer : MonoBehaviour
     public static float CUcurrentTime;
     public static float CUcurrentTime2;
     public static float CUcurrentTime3;
+    public static float CUcurrentTime4;
     private bool isPaused;
 
     public float countDuration = 1f; // Duration for each count
@@ -137,6 +138,24 @@ public class Timer : MonoBehaviour
         while (CUcurrentTime3 < endTime)
         {
             CUcurrentTime3 += updateInterval;
+            // CountUpTimerMesh.text = CUcurrentTime2.ToString("F0");
+            yield return new WaitForSeconds(updateInterval);
+        }
+    }
+
+    // Timer 4
+    public void StartCountUpTimer4(float startTime, float endTime)
+    {
+        CUcurrentTime4 = startTime;
+        Coroutine timerCoroutine = StartCoroutine(UpdateUpTimer4(endTime));
+    }
+
+    private IEnumerator UpdateUpTimer4(float endTime)
+    {
+        float updateInterval = 1f;
+        while (CUcurrentTime4 < endTime)
+        {
+            CUcurrentTime4 += updateInterval;
             // CountUpTimerMesh.text = CUcurrentTime2.ToString("F0");
             yield return new WaitForSeconds(updateInterval);
         }

@@ -15,6 +15,7 @@ public class S3ValveHose : MonoBehaviour
     private bool alreadySetValve2;
     private bool alreadySetValve3;
     public static bool S3ValveTurnedON;
+    public static bool s3ValveAmount;
 
     private void Start() 
     {
@@ -26,6 +27,7 @@ public class S3ValveHose : MonoBehaviour
     }
     void Update()
     {
+        s3ValveAmount = knob.value;
         // 
         if(knob.value > 0.20f && knob.value < 0.30f && !alreadySetValve && GameMngr.S3currentsteps == 3)
         {

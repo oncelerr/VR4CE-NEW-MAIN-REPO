@@ -312,6 +312,10 @@ public class GameMngr : MonoBehaviour
             _DataMngr.SaveMyData(); // saving the progress
             _SceneLoader.LoadScene(0); // this will load the main menu 
         }
+        if(ScoreMngr.TotalScore < 0f)
+        {
+            ResetLvl(CurrentLevelIndex);
+        }
     }
     
     public void ResetLvl(int level)

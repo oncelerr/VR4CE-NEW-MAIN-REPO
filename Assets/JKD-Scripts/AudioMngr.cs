@@ -30,12 +30,9 @@ public class AudioMngr : MonoBehaviour
     public AudioClip[] vrBotVoice4;
     public AudioClip[] vrBotVoice5;
     public AudioClip[] verdict;
-    public AudioClip[] verdict2;
-    public AudioClip[] verdict3;
-    public AudioClip[] verdict4;
-    public AudioClip[] verdict5;
     public AudioClip vrBotNice;
     public AudioClip forgetToCloseValve;
+    public AudioClip GameOverClip;
 
     // Chem reactions
     public AudioClip[] vrBotReactions; //S2
@@ -43,6 +40,8 @@ public class AudioMngr : MonoBehaviour
     public AudioClip[] vrBotReactions4; //S4
     public AudioClip[] vrBotReactions5; //S5
     
+    // Deductions
+    public AudioClip[] DeductionClips; 
 
 
     // This method is for playing VRBot`s voice over
@@ -171,5 +170,16 @@ public class AudioMngr : MonoBehaviour
     {
         sfxSource.clip = lighter2OFFFX;
         sfxSource.Play();
+    }
+
+    public void GameOverFx()
+    {
+        subtitleSource.clip = GameOverClip;
+        subtitleSource.Play();
+    }
+    public void PlayDeduction(AudioClip audio)
+    {
+        subtitleSource.clip = audio;
+        subtitleSource.Play();
     }
 }

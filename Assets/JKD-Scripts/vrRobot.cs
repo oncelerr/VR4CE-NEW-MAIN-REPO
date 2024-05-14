@@ -97,12 +97,15 @@ public class vrRobot : MonoBehaviour
         p1sequence.AppendCallback(() => PlayVRbotScript(6)); // s6      
         p1sequence.AppendInterval(_AudioMngr.vrBotVoice[6].length); // Delay
         p1sequence.AppendCallback(() => PlayVRbotScript(7)); // s7      
+        p1sequence.AppendInterval(_AudioMngr.vrBotVoice[7].length); // Delay
+        p1sequence.AppendCallback(() => _subtitlePanel.SetActive(false)); // Panel off
         p1sequence.Play(); 
     }
 
     public void p2()
     {
         Sequence p2sequence = DOTween.Sequence();
+        p2sequence.AppendCallback(() => _subtitlePanel.SetActive(true)); // Panel on
         p2sequence.AppendCallback(() => PlayVRbotScript(8)); // s8
         p2sequence.AppendInterval(_AudioMngr.vrBotVoice[8].length); // Delay
         p2sequence.AppendCallback(() => _subtitlePanel.SetActive(false)); // Subtitle panel will be set inactive
@@ -120,6 +123,7 @@ public class vrRobot : MonoBehaviour
         p21sequence.AppendCallback(() => _subtitlePanel.SetActive(true)); // Subtitle panel will be set active
         p21sequence.AppendCallback(() => PlayVRbotScript(9)); // s9
         p21sequence.AppendInterval(_AudioMngr.vrBotVoice[9].length); // Delay
+        p21sequence.AppendCallback(() => _subtitlePanel.SetActive(false)); // Subtitle panel will be set inactive
         p21sequence.AppendCallback(() => _Checkpoint.ShowCheckpoint(Checkpoint._CheckpointIndexSub1));
         p21sequence.Pause(); 
 
@@ -146,7 +150,9 @@ public class vrRobot : MonoBehaviour
         p3sequence.AppendInterval(_AudioMngr.vrBotVoice[12].length); // Delay
         p3sequence.AppendCallback(() => PlayVRbotScript(13)); // s13
         p3sequence.AppendInterval(_AudioMngr.vrBotVoice[13].length); // Delay
+        p3sequence.AppendCallback(() => _subtitlePanel.SetActive(false)); // Panel off
         p3sequence.AppendCallback(() => _HandsMnger.DisableEnableHandsInteraction(true)); // Enable hands interaction 
+        p3sequence.AppendCallback(() => _ScoreMngr.StartScoreTimer()); // Start score timer 
         p3sequence.Play(); 
     }
 
@@ -182,6 +188,8 @@ public class vrRobot : MonoBehaviour
         p4sequence.AppendCallback(() => PlayVRbotScript2(6)); // s6      
         p4sequence.AppendInterval(_AudioMngr.vrBotVoice2[6].length); // Delay
         p4sequence.AppendCallback(() => PlayVRbotScript2(7)); // s7      
+        p4sequence.AppendInterval(_AudioMngr.vrBotVoice2[7].length); // Delay
+        p4sequence.AppendCallback(() => _subtitlePanel.SetActive(false)); // Panel off
         p4sequence.Play(); 
 
     }
@@ -189,6 +197,7 @@ public class vrRobot : MonoBehaviour
     public void p5()
     {
         Sequence p5sequence = DOTween.Sequence();
+        p5sequence.AppendCallback(() => _subtitlePanel.SetActive(true)); // Panel on
         p5sequence.AppendCallback(() => PlayVRbotScript2(8)); // s8
         p5sequence.AppendInterval(_AudioMngr.vrBotVoice2[8].length); // Delay
         p5sequence.AppendCallback(() => _subtitlePanel.SetActive(false)); // Subtitle panel will be set inactive
@@ -235,7 +244,9 @@ public class vrRobot : MonoBehaviour
         p6sequence.AppendInterval(_AudioMngr.vrBotVoice2[12].length); // Delay
         p6sequence.AppendCallback(() => PlayVRbotScript2(13)); // s13s
         p6sequence.AppendInterval(_AudioMngr.vrBotVoice2[13].length); // Delay
+        p6sequence.AppendCallback(() => _subtitlePanel.SetActive(false)); // Panel off
         p6sequence.AppendCallback(() => _HandsMnger.DisableEnableHandsInteraction(true)); // Enable hands interaction 
+        p6sequence.AppendCallback(() => _ScoreMngr.StartScoreTimer()); // Start score timer 
         p6sequence.Play(); 
     }
     
@@ -273,6 +284,8 @@ public class vrRobot : MonoBehaviour
         p7sequence.AppendCallback(() => PlayVRbotScript3(6)); // s6      
         p7sequence.AppendInterval(_AudioMngr.vrBotVoice3[6].length); // Delay
         p7sequence.AppendCallback(() => PlayVRbotScript3(7)); // s7      
+        p7sequence.AppendInterval(_AudioMngr.vrBotVoice3[7].length); // Delay
+        p7sequence.AppendCallback(() => _subtitlePanel.SetActive(false)); // Panel off
         p7sequence.Play(); 
 
     }
@@ -298,6 +311,7 @@ public class vrRobot : MonoBehaviour
         p81sequence.AppendCallback(() => _subtitlePanel.SetActive(true)); // Subtitle panel will be set active
         p81sequence.AppendCallback(() => PlayVRbotScript3(9)); // s9
         p81sequence.AppendInterval(_AudioMngr.vrBotVoice3[9].length); // Delay
+        p81sequence.AppendCallback(() => _subtitlePanel.SetActive(false)); // Subtitle panel will be set inactive
         p81sequence.AppendCallback(() => _Checkpoint.ShowCheckpoint(Checkpoint._CheckpointIndexSub3));  // Show next path
         p81sequence.Pause(); 
     }
@@ -324,7 +338,9 @@ public class vrRobot : MonoBehaviour
         p9sequence.AppendInterval(_AudioMngr.vrBotVoice3[12].length); // Delay
         p9sequence.AppendCallback(() => PlayVRbotScript3(13)); // s13
         p9sequence.AppendInterval(_AudioMngr.vrBotVoice3[13].length); // Delay
+        p9sequence.AppendCallback(() => _subtitlePanel.SetActive(false)); // Panel off
         p9sequence.AppendCallback(() => _HandsMnger.DisableEnableHandsInteraction(true)); // Enable hands interaction 
+        p9sequence.AppendCallback(() => _ScoreMngr.StartScoreTimer()); // Start score timer 
         p9sequence.Play(); 
 
     }
@@ -362,7 +378,9 @@ public class vrRobot : MonoBehaviour
         p10sequence.AppendInterval(_AudioMngr.vrBotVoice4[5].length); // Delay
         p10sequence.AppendCallback(() => PlayVRbotScript4(6)); // s6      
         p10sequence.AppendInterval(_AudioMngr.vrBotVoice4[6].length); // Delay
-        p10sequence.AppendCallback(() => PlayVRbotScript4(7)); // s7      
+        p10sequence.AppendCallback(() => PlayVRbotScript4(7)); // s7     
+        p10sequence.AppendInterval(_AudioMngr.vrBotVoice4[7].length); // Delay
+        p10sequence.AppendCallback(() => _subtitlePanel.SetActive(false)); // Panel off
         p10sequence.Play(); 
 
     }
@@ -399,6 +417,7 @@ public class vrRobot : MonoBehaviour
         p111sequence.AppendCallback(() => RotateVRbot(-57.58f, .2f)); // VRBot will face the player
         p111sequence.AppendCallback(() => HoverVRbot(true)); //Hover ON
         p111sequence.AppendCallback(() => _GameMngr._doorTrigger2.enabled = true); // Lab 2 door will be enabled
+        p111sequence.AppendCallback(() => _subtitlePanel.SetActive(false)); // Panel off
         p111sequence.AppendCallback(() => _Checkpoint.ShowCheckpoint(Checkpoint._CheckpointIndexSub4));  // Show next path 
         p111sequence.Pause(); 
     }
@@ -418,7 +437,9 @@ public class vrRobot : MonoBehaviour
         p12sequence.AppendInterval(_AudioMngr.vrBotVoice4[12].length); // Delay
         p12sequence.AppendCallback(() => PlayVRbotScript4(13)); // s13
         p12sequence.AppendInterval(_AudioMngr.vrBotVoice4[13].length); // Delay
+        p12sequence.AppendCallback(() => _subtitlePanel.SetActive(false)); // Panel off
         p12sequence.AppendCallback(() => _HandsMnger.DisableEnableHandsInteraction(true)); // Enable hands interaction 
+        p12sequence.AppendCallback(() => _ScoreMngr.StartScoreTimer()); // Start score timer 
         p12sequence.Play(); 
 
     }
@@ -456,7 +477,9 @@ public class vrRobot : MonoBehaviour
         p13sequence.AppendInterval(_AudioMngr.vrBotVoice5[5].length); // Delay
         p13sequence.AppendCallback(() => PlayVRbotScript5(6)); // s6      
         p13sequence.AppendInterval(_AudioMngr.vrBotVoice5[6].length); // Delay
-        p13sequence.AppendCallback(() => PlayVRbotScript5(7)); // s7      
+        p13sequence.AppendCallback(() => PlayVRbotScript5(7)); // s7   
+        p13sequence.AppendInterval(_AudioMngr.vrBotVoice5[7].length); // Delay
+        p13sequence.AppendCallback(() => _subtitlePanel.SetActive(false)); // Subtitle panel will be set active
         p13sequence.Play(); 
 
     }
@@ -482,6 +505,7 @@ public class vrRobot : MonoBehaviour
         p141sequence.AppendCallback(() => _subtitlePanel.SetActive(true)); // Subtitle panel will be set active
         p141sequence.AppendCallback(() => PlayVRbotScript5(9)); // s9
         p141sequence.AppendInterval(_AudioMngr.vrBotVoice5[9].length); // Delay
+        p141sequence.AppendCallback(() => _subtitlePanel.SetActive(false)); // Subtitle panel will be set inactive
         p141sequence.AppendCallback(() => _Checkpoint.ShowCheckpoint(Checkpoint._CheckpointIndexSub5));  // Show next path
         p141sequence.Pause(); 
     }
@@ -508,7 +532,9 @@ public class vrRobot : MonoBehaviour
         p15sequence.AppendInterval(_AudioMngr.vrBotVoice5[12].length); // Delay
         p15sequence.AppendCallback(() => PlayVRbotScript5(13)); // s13
         p15sequence.AppendInterval(_AudioMngr.vrBotVoice5[13].length); // Delay
+        p15sequence.AppendCallback(() => _subtitlePanel.SetActive(false)); // Panel off
         p15sequence.AppendCallback(() => _HandsMnger.DisableEnableHandsInteraction(true)); // Enable hands interaction 
+        p15sequence.AppendCallback(() => _ScoreMngr.StartScoreTimer()); // Start score timer 
         p15sequence.Play(); 
     }
     
@@ -599,8 +625,10 @@ public class vrRobot : MonoBehaviour
     {
         currentStepExecuted = true;
         Sequence step = DOTween.Sequence();
+        step.AppendCallback(() => _subtitlePanel.SetActive(true)); // Panel on
         step.AppendCallback(() => PlayVRbotScript(Scriptt)); //
         step.AppendInterval(_AudioMngr.vrBotVoice[Scriptt].length); // 
+        step.AppendCallback(() => _subtitlePanel.SetActive(false)); // Panel off
         step.Play(); 
         UIMngr.currentProgress += 14f;
 
@@ -610,8 +638,10 @@ public class vrRobot : MonoBehaviour
     {
         currentStepExecuted2 = true; // Change this; After the first step, you need to copy this and make it false to enable the next step.
         Sequence step = DOTween.Sequence();
+        step.AppendCallback(() => _subtitlePanel.SetActive(true)); // Panel on
         step.AppendCallback(() => PlayVRbotScript2(Scriptt)); // Change this
         step.AppendInterval(_AudioMngr.vrBotVoice2[Scriptt].length); // Change this
+        step.AppendCallback(() => _subtitlePanel.SetActive(false)); // Panel off
         step.Play(); 
         UIMngr.currentProgress2 += 16.66f; // Change this
     }
@@ -620,8 +650,10 @@ public class vrRobot : MonoBehaviour
     {
         currentStepExecuted3 = true; // Change this; After the first step, you need to copy this and make it false to enable the next step.
         Sequence step = DOTween.Sequence();
+        step.AppendCallback(() => _subtitlePanel.SetActive(true)); // Panel on
         step.AppendCallback(() => PlayVRbotScript3(Scriptt)); // Change this
         step.AppendInterval(_AudioMngr.vrBotVoice3[Scriptt].length); // Change this
+        step.AppendCallback(() => _subtitlePanel.SetActive(false)); // Panel off
         step.Play(); 
         UIMngr.currentProgress3 += 16.66f; // Change this
     }
@@ -630,8 +662,10 @@ public class vrRobot : MonoBehaviour
     {
         currentStepExecuted4 = true; // Change this; After the first step, you need to copy this and make it false to enable the next step.
         Sequence step = DOTween.Sequence();
+        step.AppendCallback(() => _subtitlePanel.SetActive(true)); // Panel on
         step.AppendCallback(() => PlayVRbotScript4(Scriptt)); // Change this
         step.AppendInterval(_AudioMngr.vrBotVoice4[Scriptt].length); // Change this
+        step.AppendCallback(() => _subtitlePanel.SetActive(false)); // Panel off
         step.Play(); 
         UIMngr.currentProgress4 += 14f; // Change this
     }
@@ -640,8 +674,10 @@ public class vrRobot : MonoBehaviour
     {
         currentStepExecuted5 = true; // Change this; After the first step, you need to copy this and make it false to enable the next step.
         Sequence step = DOTween.Sequence();
+        step.AppendCallback(() => _subtitlePanel.SetActive(true)); // Panel on
         step.AppendCallback(() => PlayVRbotScript5(Scriptt)); // Change this
         step.AppendInterval(_AudioMngr.vrBotVoice5[Scriptt].length); // Change this
+        step.AppendCallback(() => _subtitlePanel.SetActive(false)); // Panel off
         step.Play(); 
         UIMngr.currentProgress5 += 19.8f; // Change this
     }
@@ -653,35 +689,42 @@ public class vrRobot : MonoBehaviour
             if(GameMngr.S1currentsteps == 1f && !currentStepExecuted) //Step1
             {
                 PlayScritStep(14); 
+                ScoreMngr.TotalScore += 10f;
             }  
 
             if(GameMngr.S1currentsteps == 2f && !currentStepExecuted) //Step2
             {
                 PlayScritStep(15); 
+                ScoreMngr.TotalScore += 10f;
             } 
 
             if(GameMngr.S1currentsteps == 3f && !currentStepExecuted) //Step3
             {
                 PlayScritStep(16); 
+                ScoreMngr.TotalScore += 10f;
             } 
 
             if(GameMngr.S1currentsteps == 4f && !currentStepExecuted) //Step4
             {
                 PlayScritStep(17); 
+                ScoreMngr.TotalScore += 10f;
             } 
 
             if(GameMngr.S1currentsteps == 5f && !currentStepExecuted) //Step5
             {
                 PlayScritStep(18); 
+                ScoreMngr.TotalScore += 10f;
             } 
 
             if(GameMngr.S1currentsteps == 6f && !currentStepExecuted) //Step6
             {
+                _ScoreMngr.StoptScoreTimer(); // Stop Timer
+                _HandsMnger.DisableEnableHandsInteraction(false); // Disable hands interaction
                 GameMngr.S1currentsteps = 7f;
                 currentStepExecuted = true;
                 GameMngr.alreadyReachLastStep = true;
                 UIMngr.currentProgress += 16f;
-                ScoreMngr.TotalScore = UIMngr.currentProgress;
+                ScoreMngr.TotalScore += 10f;
                 Sequence step = DOTween.Sequence();
                 step.AppendCallback(() => PlayVRbotScript(19)); // s19
                 step.AppendInterval(_AudioMngr.vrBotVoice[19].length); // Delay
@@ -700,35 +743,42 @@ public class vrRobot : MonoBehaviour
             if(GameMngr.S2currentsteps == 1f && !currentStepExecuted2) //Step1
             {
                 PlayScritStep2(14);
+                ScoreMngr.TotalScore += 10f;
             }
 
             if(GameMngr.S2currentsteps == 2f && !currentStepExecuted2) //Step2
             {
                 PlayScritStep2(15); 
+                ScoreMngr.TotalScore += 10f;
             } 
 
             if(GameMngr.S2currentsteps == 3f && !currentStepExecuted2) //Step3
             {
                 PlayScritStep2(16);
+                ScoreMngr.TotalScore += 10f;
             } 
 
             if(GameMngr.S2currentsteps == 4f && !currentStepExecuted2) //Step4
             {
                 PlayScritStep2(17);
+                ScoreMngr.TotalScore += 10f;
             }
 
             if(GameMngr.S2currentsteps == 5f && !currentStepExecuted2) //Step5
             {
                 PlayScritStep2(18);
+                ScoreMngr.TotalScore += 10f;
             }
 
             if(GameMngr.S2currentsteps == 6f && !currentStepExecuted2) //Step6
             {
+                _ScoreMngr.StoptScoreTimer(); // Stop Timer
+                _HandsMnger.DisableEnableHandsInteraction(false); // Disable hands interaction
                 GameMngr.S2currentsteps = 7f; // Change this
                 currentStepExecuted2 = true;  // Change this
                 GameMngr.alreadyReachLastStep = true;
                 UIMngr.currentProgress2 += 16.66f;
-                ScoreMngr.TotalScore = UIMngr.currentProgress2;
+                ScoreMngr.TotalScore += 10f;
                 Sequence step = DOTween.Sequence();
                 step.AppendCallback(() => PlayVRbotScript2(19)); // s19
                 step.AppendInterval(_AudioMngr.vrBotVoice2[19].length); // Delay
@@ -753,39 +803,47 @@ public class vrRobot : MonoBehaviour
             if(GameMngr.S3currentsteps == 1f && !currentStepExecuted3) //Step1
             {
                 PlayScritStep3(14);
+                ScoreMngr.TotalScore += 10f;
             }
 
             if(GameMngr.S3currentsteps == 2f && !currentStepExecuted3) //Step2
             {
                 PlayScritStep3(15); 
+                ScoreMngr.TotalScore += 10f;
             } 
 
             if(GameMngr.S3currentsteps == 3f && !currentStepExecuted3) //Step3
             {
                 PlayScritStep3(16);
+                ScoreMngr.TotalScore += 10f;
             } 
 
             if(GameMngr.S3currentsteps == 4f && !currentStepExecuted3) //Step4
             {
                 PlayScritStep3(17);
+                ScoreMngr.TotalScore += 10f;
             }
 
             if(GameMngr.S3currentsteps == 5f && !currentStepExecuted3) //Step5
             {
                 PlayScritStep3(18);
+                ScoreMngr.TotalScore += 10f;
             } 
 
             if(GameMngr.S3currentsteps == 6f && !currentStepExecuted3) //Step5
             {
                 PlayScritStep3(19);
+                ScoreMngr.TotalScore += 10f;
             } 
             if(GameMngr.S3currentsteps == 7f && !currentStepExecuted3) //Step6
             {
+                _ScoreMngr.StoptScoreTimer(); // Stop Timer
+                _HandsMnger.DisableEnableHandsInteraction(false); // Disable hands interaction
                 GameMngr.S3currentsteps = 8f; // Change this
                 currentStepExecuted3 = true;  // Change this
                 GameMngr.alreadyReachLastStep = true;
                 UIMngr.currentProgress3 += 16.66f; //Change this
-                ScoreMngr.TotalScore = UIMngr.currentProgress3;  //Change this
+                ScoreMngr.TotalScore += 10f;
                 Sequence step = DOTween.Sequence();
                 step.AppendCallback(() => PlayVRbotScript3(20)); // s19
                 step.AppendInterval(_AudioMngr.vrBotVoice3[20].length); // Delay
@@ -810,39 +868,53 @@ public class vrRobot : MonoBehaviour
             if(GameMngr.S4currentsteps == 1f && !currentStepExecuted4) //Step1
             {
                 PlayScritStep4(14);
+                ScoreMngr.TotalScore += 10f;
+
             }
 
             if(GameMngr.S4currentsteps == 2f && !currentStepExecuted4) //Step2
             {
                 PlayScritStep4(15); 
+                ScoreMngr.TotalScore += 10f;
+
             } 
 
             if(GameMngr.S4currentsteps == 3f && !currentStepExecuted4) //Step3
             {
                 PlayScritStep4(16);
+                ScoreMngr.TotalScore += 10f;
+
             } 
 
             if(GameMngr.S4currentsteps == 4f && !currentStepExecuted4) //Step4
             {
                 PlayScritStep4(17);
+                ScoreMngr.TotalScore += 10f;
+
             }
 
             if(GameMngr.S4currentsteps == 5f && !currentStepExecuted4) //Step5
             {
                 PlayScritStep4(18);
+                ScoreMngr.TotalScore += 10f;
+
             } 
 
             if(GameMngr.S4currentsteps == 6f && !currentStepExecuted4) //Step5
             {
                 PlayScritStep4(19);
+                ScoreMngr.TotalScore += 10f;
+
             } 
             if(GameMngr.S4currentsteps == 7f && !currentStepExecuted4) //Step6
             {
+                _ScoreMngr.StoptScoreTimer(); // Stop Timer
+                _HandsMnger.DisableEnableHandsInteraction(false); // Disable hands interaction
                 GameMngr.S4currentsteps = 8f; // Change this
                 currentStepExecuted4 = true;  // Change this
                 GameMngr.alreadyReachLastStep = true;
                 UIMngr.currentProgress4 += 16f; //Change this
-                ScoreMngr.TotalScore = UIMngr.currentProgress4;  //Change this
+                ScoreMngr.TotalScore += 10f;
                 Sequence step = DOTween.Sequence();
                 step.AppendCallback(() => PlayVRbotScript4(20)); // s20
                 step.AppendInterval(_AudioMngr.vrBotVoice4[20].length); // Delay
@@ -877,30 +949,36 @@ public class vrRobot : MonoBehaviour
             if(GameMngr.S5currentsteps == 1f && !currentStepExecuted5) //Step1
             {
                 PlayScritStep5(14);
+                ScoreMngr.TotalScore += 10f;
             }
 
             if(GameMngr.S5currentsteps == 2f && !currentStepExecuted5) //Step2
             {
                 PlayScritStep5(15); 
+                ScoreMngr.TotalScore += 10f;
             } 
 
             if(GameMngr.S5currentsteps == 3f && !currentStepExecuted5) //Step3
             {
                 PlayScritStep5(16);
+                ScoreMngr.TotalScore += 10f;
             } 
 
             if(GameMngr.S5currentsteps == 4f && !currentStepExecuted5) //Step4
             {
                 PlayScritStep5(17);
+                ScoreMngr.TotalScore += 10f;
             }
 
             if(GameMngr.S5currentsteps == 5f && !currentStepExecuted5) //Step5
             {
+                _ScoreMngr.StoptScoreTimer(); // Stop Timer
+                _HandsMnger.DisableEnableHandsInteraction(false); // Disable hands interaction
                 GameMngr.S5currentsteps = 6f; // Change this
                 currentStepExecuted5 = true;  // Change this
                 GameMngr.alreadyReachLastStep = true;
                 UIMngr.currentProgress5 += 19.8f; //Change this
-                ScoreMngr.TotalScore = UIMngr.currentProgress5;  //Change this
+                ScoreMngr.TotalScore += 10f;
                 Sequence step = DOTween.Sequence();
                 step.AppendCallback(() => PlayVRbotScript5(18)); // s19
                 step.AppendInterval(_AudioMngr.vrBotVoice5[18].length); // Delay
