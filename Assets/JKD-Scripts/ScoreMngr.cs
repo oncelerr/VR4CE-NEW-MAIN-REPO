@@ -78,8 +78,9 @@ public class ScoreMngr : MonoBehaviour
         // ScoreBoardTransform.LookAt(PlayerTransform, Vector3.up);
 
         // Check if game is over
-        if(TotalScore < 0f) 
+        if(TotalScore < 0f && !GameOverAlreadyPlayed) 
         {
+            GameOverAlreadyPlayed = true;
             GameOver();
         }
 

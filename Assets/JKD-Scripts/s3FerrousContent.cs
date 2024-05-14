@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class s3FerrousContent : MonoBehaviour
 {
+    [SerializeField] ScoreMngr _ScoreMngr;
     public GameObject _FerrousContentObj;
     public ParticleSystem ferrousSulfatePour;
     // ferroues content value
@@ -14,6 +15,8 @@ public class s3FerrousContent : MonoBehaviour
     private Material material;
     private bool isHoldingFerrousjar = false;
     private bool alreadyCheckTransferState = false;
+
+    private bool wastedPlayed =false;
 
     void Start()
     {
@@ -52,10 +55,15 @@ public class s3FerrousContent : MonoBehaviour
                 ferrousSulfateAmount -= 0.01f;
             }
         }
-        // else
-        // {
-        //     ferrousSulfateAmount -= 0.01f;
-        // }
+        if (other.CompareTag("table"))
+        {
+            if(!wastedPlayed)
+            {
+                wastedPlayed = true;
+                _ScoreMngr.Deductions("SpilledChem");
+            }
+            ferrousSulfateAmount -= 0.01f;
+        }
     }
     private void UpdateFerrousContent() 
     {

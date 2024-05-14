@@ -102,6 +102,7 @@ TagManager:
   - table
   - dupedWater
   - floor
+  - beaker
   layers:
   - Default
   - TransparentFX

@@ -5,6 +5,7 @@ using DG.Tweening;
 
 public class lighterAnimation : MonoBehaviour
 {
+    [SerializeField] ScoreMngr _ScoreMngr;
     [SerializeField] AudioMngr _AudioMngr;
     [SerializeField] BubbleGenerator _BubbleGenerator;
     [SerializeField] ParticleSystem lighterFire;
@@ -16,7 +17,12 @@ public class lighterAnimation : MonoBehaviour
     public static bool isLItHoldingLighter = false;
     public ParticleSystem fireInRHand;
 
+    private bool ValveReminder = false;
 
+    private void Start()
+    {
+        ValveReminder = false;
+    }
 
     private void OnTriggerEnter(Collider other) 
     {
@@ -53,7 +59,12 @@ public class lighterAnimation : MonoBehaviour
     public void OpenLid()
     {
         lightLid.transform.localEulerAngles = new Vector3(0, 180f, 180f);
-
+        if(ValveHose.s1ValveAmount != 0 && !ValveReminder) 
+        {
+            ValveReminder = true;
+            Debug.Log("Forget to close the valve.");
+            _ScoreMngr.Deductions("ForgotValve");
+        }
         Sequence mySequence = DOTween.Sequence();
         mySequence.AppendInterval(.3f);
         mySequence.Append(lightLid.transform.DORotateQuaternion(openLidRotation, speed).SetEase(Ease.Linear));

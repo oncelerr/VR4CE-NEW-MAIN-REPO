@@ -719,7 +719,6 @@ public class vrRobot : MonoBehaviour
             if(GameMngr.S1currentsteps == 6f && !currentStepExecuted) //Step6
             {
                 _ScoreMngr.StoptScoreTimer(); // Stop Timer
-                _HandsMnger.DisableEnableHandsInteraction(false); // Disable hands interaction
                 GameMngr.S1currentsteps = 7f;
                 currentStepExecuted = true;
                 GameMngr.alreadyReachLastStep = true;
@@ -731,6 +730,7 @@ public class vrRobot : MonoBehaviour
                 step.AppendCallback(() => PlayVRbotScript(20)); // s20
                 step.AppendInterval(_AudioMngr.vrBotVoice[20].length); // Delay
                 step.AppendCallback(() => _ScoreMngr.CheckScore()); // verdict
+                step.AppendCallback(() => _HandsMnger.DisableEnableHandsInteraction(false)); // Disable hands interaction
                 step.Play(); 
             } 
         }
@@ -773,7 +773,6 @@ public class vrRobot : MonoBehaviour
             if(GameMngr.S2currentsteps == 6f && !currentStepExecuted2) //Step6
             {
                 _ScoreMngr.StoptScoreTimer(); // Stop Timer
-                _HandsMnger.DisableEnableHandsInteraction(false); // Disable hands interaction
                 GameMngr.S2currentsteps = 7f; // Change this
                 currentStepExecuted2 = true;  // Change this
                 GameMngr.alreadyReachLastStep = true;
@@ -785,6 +784,7 @@ public class vrRobot : MonoBehaviour
                 step.AppendCallback(() => PlayVRbotScript2(20)); // s20
                 step.AppendInterval(_AudioMngr.vrBotVoice2[20].length); // Delay
                 step.AppendCallback(() => _ScoreMngr.CheckScore()); // verdict
+                step.AppendCallback(() => _HandsMnger.DisableEnableHandsInteraction(false)); // Disable hands interaction
                 step.Play(); 
             }
             // if(GameMngr.S2SpilledChemPowder && !alreadyPlayedSpilledFunction)
@@ -838,7 +838,6 @@ public class vrRobot : MonoBehaviour
             if(GameMngr.S3currentsteps == 7f && !currentStepExecuted3) //Step6
             {
                 _ScoreMngr.StoptScoreTimer(); // Stop Timer
-                _HandsMnger.DisableEnableHandsInteraction(false); // Disable hands interaction
                 GameMngr.S3currentsteps = 8f; // Change this
                 currentStepExecuted3 = true;  // Change this
                 GameMngr.alreadyReachLastStep = true;
@@ -850,6 +849,7 @@ public class vrRobot : MonoBehaviour
                 step.AppendCallback(() => PlayVRbotScript3(21)); // s20
                 step.AppendInterval(_AudioMngr.vrBotVoice3[21].length); // Delay
                 step.AppendCallback(() => _ScoreMngr.CheckScore()); // verdict
+                step.AppendCallback(() => _HandsMnger.DisableEnableHandsInteraction(false)); // Disable hands interaction
                 step.Play(); 
             }
             // if(GameMngr.S2SpilledChemPowder && !alreadyPlayedSpilledFunction)
@@ -909,7 +909,6 @@ public class vrRobot : MonoBehaviour
             if(GameMngr.S4currentsteps == 7f && !currentStepExecuted4) //Step6
             {
                 _ScoreMngr.StoptScoreTimer(); // Stop Timer
-                _HandsMnger.DisableEnableHandsInteraction(false); // Disable hands interaction
                 GameMngr.S4currentsteps = 8f; // Change this
                 currentStepExecuted4 = true;  // Change this
                 GameMngr.alreadyReachLastStep = true;
@@ -931,6 +930,7 @@ public class vrRobot : MonoBehaviour
                 step.AppendCallback(() => _AudioMngr.PlayVRBotChemReactions(_AudioMngr.vrBotReactions4[5])); // reactions 
                 step.AppendInterval(_AudioMngr.vrBotReactions4[5].length); // Delay
                 step.AppendCallback(() => _ScoreMngr.CheckScore()); // verdict
+                step.AppendCallback(() => _HandsMnger.DisableEnableHandsInteraction(false)); // Disable hands interaction
                 step.Play(); 
             }
             // if(GameMngr.S2SpilledChemPowder && !alreadyPlayedSpilledFunction)
@@ -973,7 +973,6 @@ public class vrRobot : MonoBehaviour
             if(GameMngr.S5currentsteps == 5f && !currentStepExecuted5) //Step5
             {
                 _ScoreMngr.StoptScoreTimer(); // Stop Timer
-                _HandsMnger.DisableEnableHandsInteraction(false); // Disable hands interaction
                 GameMngr.S5currentsteps = 6f; // Change this
                 currentStepExecuted5 = true;  // Change this
                 GameMngr.alreadyReachLastStep = true;
@@ -985,6 +984,7 @@ public class vrRobot : MonoBehaviour
                 step.AppendCallback(() => PlayVRbotScript5(19)); // s20
                 step.AppendInterval(_AudioMngr.vrBotVoice5[19].length); // Delay
                 step.AppendCallback(() => _ScoreMngr.CheckScore()); // verdict
+                step.AppendCallback(() => _HandsMnger.DisableEnableHandsInteraction(false)); // Disable hands interaction
                 step.Play(); 
             }
             // if(GameMngr.S2SpilledChemPowder && !alreadyPlayedSpilledFunction)

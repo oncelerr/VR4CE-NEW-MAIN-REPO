@@ -16,6 +16,12 @@ public class BubbleGenerator : MonoBehaviour
     public static int WhichHandhavetheBubbles = 0;  //1 for left, 2 for right
     // bool static   = false;
 
+    private bool waterSoapDropped = false;
+
+    private void Start()
+    {
+        waterSoapDropped = false;
+    }
     private void OnTriggerEnter(Collider other) 
     {
         // Values checking
@@ -24,6 +30,15 @@ public class BubbleGenerator : MonoBehaviour
         Debug.Log("Value of alreadyTakeBubbleinAnyHands = "+alreadyTakeBubbleinAnyHands);
         Debug.Log("Value of HandsMnger.HodingHoseNozzle = "+HandsMnger.HodingHoseNozzle);
 
+
+        if(other.gameObject.CompareTag("floor"))
+        {
+            if(!waterSoapDropped) 
+            {
+                waterSoapDropped = true;
+                _ScoreMngr.Deductions("SpilledChem");
+            }
+        }
 
         if(other.gameObject.CompareTag("hoseNozzle") && !alreadyStartedBubble)
         {
@@ -60,10 +75,6 @@ public class BubbleGenerator : MonoBehaviour
             if (GameMngr.S1currentsteps == 4f)
             {
                 GameMngr.S1currentsteps = 5f;
-                if(ValveHose.s1ValveAmount != 0) 
-                {
-                    _ScoreMngr.Deductions("ForgotValve");
-                }
                 vrRobot.currentStepExecuted = false;
             }
             Debug.Log("Already have bubbles in Right hand");

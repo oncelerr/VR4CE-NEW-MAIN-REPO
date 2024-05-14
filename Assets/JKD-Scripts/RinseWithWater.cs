@@ -6,6 +6,9 @@ public class RinseWithWater : MonoBehaviour
 {
     public static bool alreadyRinseWWater = false;
 
+
+
+
     private void OnTriggerEnter(Collider other) 
     {
         if(other.gameObject.CompareTag("Human"))
