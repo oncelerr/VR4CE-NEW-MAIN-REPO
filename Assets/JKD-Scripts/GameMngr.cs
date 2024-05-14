@@ -87,7 +87,8 @@ public class GameMngr : MonoBehaviour
     private int s3Currtstep = 0;
     private int s4Currtstep = 1;
     private int s5Currtstep = 1;
-    //
+
+
     public static bool S2SpilledChemPowder;
 
 
@@ -403,14 +404,23 @@ public class GameMngr : MonoBehaviour
         }
         if(CurrentLevelIndex == 3) 
         {
-            if(step == (int)S3currentsteps + 1) 
+            Debug.Log("Input "+step);
+            Debug.Log("Compare to "+(int)S3currentsteps);
+            if(step == (int)S3currentsteps && s3TestTubeContent.testtubeHoldingByHuman) 
             {
-                S3currentsteps++;
-                s3nextstep = step;
+                // 
+            }
+            else if(step == 1)
+            {
+                // 
+            }
+            else if(step == 2f)
+            {
+                // 
             }
             else
             {
-                // _ScoreMngr.Deductions("SkipProcess");
+                _ScoreMngr.Deductions("SkipProcess");
             }
         }
         if(CurrentLevelIndex == 4) 
@@ -438,5 +448,4 @@ public class GameMngr : MonoBehaviour
             }
         }
     }
-
 }

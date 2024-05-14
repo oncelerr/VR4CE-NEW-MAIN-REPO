@@ -157,7 +157,7 @@ public class s3TestTubeContent : MonoBehaviour
                 if (!step1Triggered)
                 {
                     step1Triggered = true;
-                    GameMngr.S3currentsteps = 1;
+                    GameMngr.S3currentsteps = 1; 
                     vrRobot.currentStepExecuted3 = false;
                 }
                 Debug.Log("Player chose test tube " + whichtestubeisHolding);
