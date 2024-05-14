@@ -75,9 +75,20 @@ public class GameMngr : MonoBehaviour
     private bool mainlabReachTable;
     private bool step7active = false;
 
-    // 
-    public static bool S2SpilledChemPowder;
 
+    public static int s1nextstep = 0;
+    public static int s2nextstep = 0;
+    public static int s3nextstep = 0;
+    public static int s4nextstep = 0;
+    public static int s5nextstep = 0;
+
+    private int s1Currtstep = 1;
+    private int s2Currtstep = 1;
+    private int s3Currtstep = 0;
+    private int s4Currtstep = 1;
+    private int s5Currtstep = 1;
+    //
+    public static bool S2SpilledChemPowder;
 
 
     private void Awake() 
@@ -364,5 +375,68 @@ public class GameMngr : MonoBehaviour
         }
     }
 
+    public void SelectNextstep(float step)
+    {
+        // Debug.Log("currentlevel1 is "+S1currentsteps);
+        // Debug.Log("currentlevel2 is "+S2currentsteps);
+        // Debug.Log("currentlevel4 is "+S4currentsteps);
+        // Debug.Log("currentlevel5 is "+S5currentsteps);
+        if(CurrentLevelIndex == 1) 
+        {
+            if(step == (S1currentsteps+1)) 
+            {
+                // 
+            }
+            else
+            {
+                // _ScoreMngr.Deductions("SkipProcess");
+            }
+        }
+        if(CurrentLevelIndex == 2) 
+        {
+            if(step == (S2currentsteps+1)) 
+            {
+                // 
+            }
+            else
+            {
+                // _ScoreMngr.Deductions("SkipProcess");
+            }
+        }
+        if(CurrentLevelIndex == 3) 
+        {
+            if(step == S3currentsteps) 
+            {
+                
+            }
+            else
+            {
+                // _ScoreMngr.Deductions("SkipProcess");
+            }
+        }
+        if(CurrentLevelIndex == 4) 
+        {
+            // Debug.Log("currentlevel3 is "+S3currentsteps);
+            if(step == S4currentsteps+1) 
+            {
+                // 
+            }
+            else
+            {
+                // _ScoreMngr.Deductions("SkipProcess");
+            }
+        }
+        if(CurrentLevelIndex == 5) 
+        {
+            if(step == (S5currentsteps+1)) 
+            {
+                // 
+            }
+            else
+            {
+                _ScoreMngr.Deductions("SkipProcess");
+            }
+        }
+    }
 
 }

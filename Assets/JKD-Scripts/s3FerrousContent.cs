@@ -57,11 +57,11 @@ public class s3FerrousContent : MonoBehaviour
         }
         if (other.CompareTag("table"))
         {
-            if(!wastedPlayed)
-            {
-                wastedPlayed = true;
+            // if(!wastedPlayed)
+            // {
+                // wastedPlayed = true;
                 _ScoreMngr.Deductions("SpilledChem");
-            }
+            // }
             ferrousSulfateAmount -= 0.01f;
         }
     }

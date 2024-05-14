@@ -37,8 +37,12 @@ public class ScoreMngr : MonoBehaviour
     public static float STcurrentTime;
 
     private Coroutine ScoretimerCoroutine;
-    private bool GameOverAlreadyPlayed;
+    public static bool GameOverAlreadyPlayed;
 
+    private void Awake() 
+    {
+        GameOverAlreadyPlayed = false;
+    }
     private void Start() 
     {
         // Initialize static variables
@@ -238,6 +242,8 @@ public class ScoreMngr : MonoBehaviour
 
     public void GameOver()
     {
+        Debug.Log("GAME OVER");
+        DOTween.PauseAll();
         _HandsMnger.DisableEnableHandsInteraction(false);
         ScoreMenuObj.SetActive(true);
         Score.text = TotalScore.ToString("F0"); // Set the totalscore to score text mesh
@@ -250,6 +256,7 @@ public class ScoreMngr : MonoBehaviour
         Stars[2].SetActive(false);
         Stars[3].SetActive(false);
         _AudioMngr.GameOverFx(); // Game Over
+        // DOTween.PlayAll();
     }
 
     // Multiply total score by time finished the experiment
@@ -307,12 +314,12 @@ public class ScoreMngr : MonoBehaviour
     private IEnumerator UpdateScoreTimer()
     {
         float updateInterval = 1f;
-        while (true)
+        while (true) 
         {
             STcurrentTime += updateInterval;
             int minutes = Mathf.FloorToInt(STcurrentTime / 60f);
             int seconds = Mathf.FloorToInt(STcurrentTime % 60f);
-            Debug.Log("Score Timer: " + STcurrentTime);
+            // Debug.Log("Score Timer: " + STcurrentTime);
             if(GameMngr.CurrentLevelIndex == 1) 
             {
                 ScoreTimerMesh.text = minutes.ToString("00") + ":" + seconds.ToString("00");

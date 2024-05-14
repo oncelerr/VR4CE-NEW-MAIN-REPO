@@ -11,6 +11,9 @@ public class SceneLoader : MonoBehaviour
 
     public void RestartScene()
     {
+        // Reinitialize variables
+        ScoreMngr.GameOverAlreadyPlayed = false;
+
         // Get the index of the currently active scene
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         // Reload the scene by its index

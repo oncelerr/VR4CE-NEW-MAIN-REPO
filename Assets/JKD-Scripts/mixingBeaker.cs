@@ -8,7 +8,6 @@ public class mixingBeaker : MonoBehaviour
     [SerializeField] mixingBeakerContent _mixingBeakerContent;
     [SerializeField] AudioMngr _AudioMngr;
 
-
     // Particle FX
     public ParticleSystem SmokeWhite;
     public ParticleSystem SmokeBlack;
