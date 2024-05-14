@@ -32849,6 +32849,12 @@ MonoBehaviour:
   chemR: {fileID: 1182466469}
   isTutorialDone: 0
   isMassRDone: 0
+  isChemRDone: 0
+  isAgree: 0
+  startBTN: {fileID: 451623320}
+  agreeBTN: {fileID: 1337767635}
+  cartridges: {fileID: 1854012159}
+  termsAndConditions: {fileID: 1353873065}
 --- !u!4 &1823742249
 Transform:
   m_ObjectHideFlags: 0
