@@ -375,7 +375,7 @@ public class GameMngr : MonoBehaviour
         }
     }
 
-    public void SelectNextstep(float step)
+    public void SelectNextstep(int step)
     {
         // Debug.Log("currentlevel1 is "+S1currentsteps);
         // Debug.Log("currentlevel2 is "+S2currentsteps);
@@ -405,7 +405,7 @@ public class GameMngr : MonoBehaviour
         }
         if(CurrentLevelIndex == 3) 
         {
-            if(step == S3currentsteps) 
+            if(step == (int)S3currentsteps) 
             {
                 
             }
