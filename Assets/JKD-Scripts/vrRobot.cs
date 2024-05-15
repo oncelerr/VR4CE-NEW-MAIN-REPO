@@ -342,7 +342,6 @@ public class vrRobot : MonoBehaviour
         p9sequence.AppendCallback(() => _HandsMnger.DisableEnableHandsInteraction(true)); // Enable hands interaction 
         p9sequence.AppendCallback(() => _ScoreMngr.StartScoreTimer()); // Start score timer 
         p9sequence.Play(); 
-
     }
     
 

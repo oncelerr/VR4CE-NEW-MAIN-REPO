@@ -250,7 +250,6 @@ public class ScoreMngr : MonoBehaviour
 
     public void GameOver()
     {
-        DOTween.KillAll();
         _vrRobot._subtitlePanel.SetActive(false);
         Debug.Log("GAME OVER");
         DOTween.PauseAll();
