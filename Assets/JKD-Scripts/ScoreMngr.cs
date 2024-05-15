@@ -440,18 +440,23 @@ public class ScoreMngr : MonoBehaviour
             {
                 case 1:
                     s1MistakesList[0].SetActive(true);
+                    s1MistakesList[8].SetActive(true);
                     break;
                 case 2:
                     s2MistakesList[0].SetActive(true);
+                    s2MistakesList[8].SetActive(true);
                     break;
                 case 3:
                     s3MistakesList[0].SetActive(true);
+                    s3MistakesList[8].SetActive(true);
                     break;
                 case 4:
                     s4MistakesList[0].SetActive(true);
+                    s4MistakesList[8].SetActive(true);
                     break;
                 case 5:
                     s5MistakesList[0].SetActive(true);
+                    s5MistakesList[8].SetActive(true);
                     break;
                 default:
                     break;
