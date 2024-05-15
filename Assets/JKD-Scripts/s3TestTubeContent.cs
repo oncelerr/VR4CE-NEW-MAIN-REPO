@@ -137,8 +137,9 @@ public class s3TestTubeContent : MonoBehaviour
                 {
                     _Timer.StartCountUpTimer4(0, 20f);
                 }
-                if(Timer.CUcurrentTime4 == 20 && !forgotvalePlayed && S3ValveHose.s3ValveAmount != 0) 
+                if(Timer.CUcurrentTime4 == 10 && !forgotvalePlayed && S3ValveHose.s3ValveAmount != 0) 
                 {
+                    Debug.Log("Forget Valve Deduction Ocurred.");
                     forgotvalePlayed = true;
                     _ScoreMngr.Deductions("ForgotValve");
                 }

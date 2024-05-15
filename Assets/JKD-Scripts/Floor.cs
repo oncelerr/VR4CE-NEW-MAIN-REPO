@@ -10,10 +10,17 @@ public class Floor : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) 
     {
+        // List of objects to deduct
         if(other.gameObject.CompareTag("beaker"))
         {
             Debug.Log("Beaker or test tube dropped");
             _ScoreMngr.Deductions("DropBeakerTube");
         }
+        if(other.gameObject.CompareTag("testtube"))
+        {
+            Debug.Log("Beaker or test tube dropped");
+            _ScoreMngr.Deductions("DropBeakerTube");
+        }
+
     }
 }

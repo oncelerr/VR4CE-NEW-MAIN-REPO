@@ -11,7 +11,7 @@ public class vrRobot : MonoBehaviour
     [SerializeField] GameMngr _GameMngr;
     [SerializeField] Checkpoint _Checkpoint;
     [SerializeField] GameObject[] _BoardContent;
-    [SerializeField] GameObject _subtitlePanel;
+    [SerializeField] public GameObject _subtitlePanel;
     [SerializeField] public GameObject[] _subtitles;
     [SerializeField] public GameObject[] _subtitles2;
     [SerializeField] public GameObject[] _subtitles3;
@@ -630,7 +630,7 @@ public class vrRobot : MonoBehaviour
         step.AppendInterval(_AudioMngr.vrBotVoice[Scriptt].length); // 
         step.AppendCallback(() => _subtitlePanel.SetActive(false)); // Panel off
         step.Play(); 
-        UIMngr.currentProgress += 14f;
+        UIMngr.currentProgress += 16f;
 
     }
 
@@ -643,7 +643,7 @@ public class vrRobot : MonoBehaviour
         step.AppendInterval(_AudioMngr.vrBotVoice2[Scriptt].length); // Change this
         step.AppendCallback(() => _subtitlePanel.SetActive(false)); // Panel off
         step.Play(); 
-        UIMngr.currentProgress2 += 16.66f; // Change this
+        UIMngr.currentProgress2 += 16f; // Change this
     }
 
     public void PlayScritStep3(int Scriptt) // Change this
@@ -655,7 +655,7 @@ public class vrRobot : MonoBehaviour
         step.AppendInterval(_AudioMngr.vrBotVoice3[Scriptt].length); // Change this
         step.AppendCallback(() => _subtitlePanel.SetActive(false)); // Panel off
         step.Play(); 
-        UIMngr.currentProgress3 += 16.66f; // Change this
+        UIMngr.currentProgress3 += 14f; // Change this
     }
 
     public void PlayScritStep4(int Scriptt) // Change this
@@ -679,7 +679,7 @@ public class vrRobot : MonoBehaviour
         step.AppendInterval(_AudioMngr.vrBotVoice5[Scriptt].length); // Change this
         step.AppendCallback(() => _subtitlePanel.SetActive(false)); // Panel off
         step.Play(); 
-        UIMngr.currentProgress5 += 19.8f; // Change this
+        UIMngr.currentProgress5 += 20f; // Change this
     }
     
     public void Sub1ExperimentSteps()
@@ -722,7 +722,7 @@ public class vrRobot : MonoBehaviour
                 GameMngr.S1currentsteps = 7f;
                 currentStepExecuted = true;
                 GameMngr.alreadyReachLastStep = true;
-                UIMngr.currentProgress += 16f;
+                UIMngr.currentProgress += 20f;
                 ScoreMngr.TotalScore += 10f;
                 Sequence step = DOTween.Sequence();
                 step.AppendCallback(() => PlayVRbotScript(19)); // s19
@@ -776,7 +776,7 @@ public class vrRobot : MonoBehaviour
                 GameMngr.S2currentsteps = 7f; // Change this
                 currentStepExecuted2 = true;  // Change this
                 GameMngr.alreadyReachLastStep = true;
-                UIMngr.currentProgress2 += 16.66f;
+                UIMngr.currentProgress2 += 20f;
                 ScoreMngr.TotalScore += 10f;
                 Sequence step = DOTween.Sequence();
                 step.AppendCallback(() => PlayVRbotScript2(19)); // s19
@@ -841,7 +841,7 @@ public class vrRobot : MonoBehaviour
                 GameMngr.S3currentsteps = 8f; // Change this
                 currentStepExecuted3 = true;  // Change this
                 GameMngr.alreadyReachLastStep = true;
-                UIMngr.currentProgress3 += 16.66f; //Change this
+                UIMngr.currentProgress3 += 30f; //Change this
                 ScoreMngr.TotalScore += 10f;
                 Sequence step = DOTween.Sequence();
                 step.AppendCallback(() => PlayVRbotScript3(20)); // s19
@@ -912,7 +912,7 @@ public class vrRobot : MonoBehaviour
                 GameMngr.S4currentsteps = 8f; // Change this
                 currentStepExecuted4 = true;  // Change this
                 GameMngr.alreadyReachLastStep = true;
-                UIMngr.currentProgress4 += 16f; //Change this
+                UIMngr.currentProgress4 += 30f; //Change this
                 ScoreMngr.TotalScore += 10f;
                 Sequence step = DOTween.Sequence();
                 step.AppendCallback(() => PlayVRbotScript4(20)); // s20
@@ -976,7 +976,7 @@ public class vrRobot : MonoBehaviour
                 GameMngr.S5currentsteps = 6f; // Change this
                 currentStepExecuted5 = true;  // Change this
                 GameMngr.alreadyReachLastStep = true;
-                UIMngr.currentProgress5 += 19.8f; //Change this
+                UIMngr.currentProgress5 += 20f; //Change this
                 ScoreMngr.TotalScore += 10f;
                 Sequence step = DOTween.Sequence();
                 step.AppendCallback(() => PlayVRbotScript5(18)); // s19

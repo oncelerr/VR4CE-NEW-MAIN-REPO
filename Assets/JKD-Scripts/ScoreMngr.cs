@@ -7,10 +7,17 @@ using TMPro;
 
 public class ScoreMngr : MonoBehaviour
 {
+    public vrRobot _vrRobot;
     public HandsMnger _HandsMnger;
     public AudioMngr _AudioMngr;
     public GameObject ScoreMenuObj;
     public GameObject[] Stars;
+    public GameObject[] ExperimentLabelsObj;
+    public GameObject[] s1MistakesList;
+    public GameObject[] s2MistakesList;
+    public GameObject[] s3MistakesList;
+    public GameObject[] s4MistakesList;
+    public GameObject[] s5MistakesList;
     public TextMeshProUGUI Score;
     public TextMeshProUGUI Points;
     public TextMeshProUGUI Points2;
@@ -38,6 +45,7 @@ public class ScoreMngr : MonoBehaviour
 
     private Coroutine ScoretimerCoroutine;
     public static bool GameOverAlreadyPlayed;
+
 
     private void Awake() 
     {
@@ -242,6 +250,8 @@ public class ScoreMngr : MonoBehaviour
 
     public void GameOver()
     {
+        DOTween.KillAll();
+        _vrRobot._subtitlePanel.SetActive(false);
         Debug.Log("GAME OVER");
         DOTween.PauseAll();
         _HandsMnger.DisableEnableHandsInteraction(false);
@@ -256,6 +266,7 @@ public class ScoreMngr : MonoBehaviour
         Stars[2].SetActive(false);
         Stars[3].SetActive(false);
         _AudioMngr.GameOverFx(); // Game Over
+        MistakesReview();
         // DOTween.PlayAll();
     }
 
@@ -348,38 +359,103 @@ public class ScoreMngr : MonoBehaviour
     {
         if(deductions == "ForgotValve")
         {
+            s1MistakesList[1].SetActive(true);
+            s2MistakesList[1].SetActive(true);
+            s3MistakesList[1].SetActive(true);
+            s4MistakesList[1].SetActive(true);
+            s5MistakesList[1].SetActive(true);
             TotalScore = TotalScore - 15f;
             _AudioMngr.PlayDeduction(_AudioMngr.DeductionClips[0]); 
         }
         if(deductions == "SpilledChem")
         {
+            s1MistakesList[2].SetActive(true);
+            s2MistakesList[2].SetActive(true);
+            s3MistakesList[2].SetActive(true);
+            s4MistakesList[2].SetActive(true);
+            s5MistakesList[2].SetActive(true);
             TotalScore = TotalScore - 5f;
             _AudioMngr.PlayDeduction(_AudioMngr.DeductionClips[1]); 
         }
         if(deductions == "DropBeakerTube")
         {
+            s1MistakesList[3].SetActive(true);
+            s2MistakesList[3].SetActive(true);
+            s3MistakesList[3].SetActive(true);
+            s4MistakesList[3].SetActive(true);
+            s5MistakesList[3].SetActive(true);
             TotalScore = TotalScore - 50f;
             _AudioMngr.PlayDeduction(_AudioMngr.DeductionClips[2]); 
         }
         if(deductions == "WrongBeakerTube")
         {
+            s1MistakesList[4].SetActive(true);
+            s2MistakesList[4].SetActive(true);
+            s3MistakesList[4].SetActive(true);
+            s4MistakesList[4].SetActive(true);
+            s5MistakesList[4].SetActive(true);
             TotalScore = TotalScore - 30f;
             _AudioMngr.PlayDeduction(_AudioMngr.DeductionClips[3]); 
         }
         if(deductions == "ChemNotYetDone")
         {
+            s1MistakesList[5].SetActive(true);
+            s2MistakesList[5].SetActive(true);
+            s3MistakesList[5].SetActive(true);
+            s4MistakesList[5].SetActive(true);
+            s5MistakesList[5].SetActive(true);
             TotalScore = TotalScore - 10f;
             _AudioMngr.PlayDeduction(_AudioMngr.DeductionClips[4]); 
         }
         if(deductions == "SkipProcess")
         {
+            s1MistakesList[6].SetActive(true);
+            s2MistakesList[6].SetActive(true);
+            s3MistakesList[6].SetActive(true);
+            s4MistakesList[6].SetActive(true);
+            s5MistakesList[6].SetActive(true);
             TotalScore = TotalScore - 20f;
             _AudioMngr.PlayDeduction(_AudioMngr.DeductionClips[5]); 
         }
         if(deductions == "PlaysLighter")
         {
+            s1MistakesList[7].SetActive(true);
+            s2MistakesList[7].SetActive(true);
+            s3MistakesList[7].SetActive(true);
+            s4MistakesList[7].SetActive(true);
+            s5MistakesList[7].SetActive(true);
             TotalScore = TotalScore - 20f;
             _AudioMngr.PlayDeduction(_AudioMngr.DeductionClips[6]); 
+        }
+    }
+
+    private void MistakesReview()
+    {
+
+        for (int i = 0; i < ExperimentLabelsObj.Length; i++)
+        {
+            ExperimentLabelsObj[i].SetActive(false);
+
+            switch (GameMngr.CurrentLevelIndex)
+            {
+                case 1:
+                    s1MistakesList[0].SetActive(true);
+                    break;
+                case 2:
+                    s2MistakesList[0].SetActive(true);
+                    break;
+                case 3:
+                    s3MistakesList[0].SetActive(true);
+                    break;
+                case 4:
+                    s4MistakesList[0].SetActive(true);
+                    break;
+                case 5:
+                    s5MistakesList[0].SetActive(true);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
