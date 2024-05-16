@@ -59,14 +59,14 @@ public class aluminum : MonoBehaviour
                 AluminumAmount -= 0.01f;
             }
         }
-        if(other.CompareTag("table"))
-        {
-            if(!s2Chemwasted)
-            {
-                s2Chemwasted = true;
-                _ScoreMngr.Deductions("SpilledChem");
-            }
-        }
+        // if(other.CompareTag("table"))
+        // {
+        //     if(!s2Chemwasted)
+        //     {
+        //         s2Chemwasted = true;
+        //         _ScoreMngr.Deductions("SpilledChem");
+        //     }
+        // }
         else if (AluminumAmount > 0)
         {
             AluminumAmount -= 0.01f;
@@ -128,13 +128,13 @@ public class aluminum : MonoBehaviour
             mixingBeakerContent.aluminumTransferSuccess = true;
             Debug.Log("Aluminum transfer success");
         }
-        else if (mixingBeakerContent.aluminumValue < 0.30f && !wasted)
-        {
-            // Aluminum powder wasted
-            wasted = true;
-            mixingBeakerContent.aluminumTransferSuccess = false;
-            Debug.Log("Aluminum powder wasted.");
-            GameMngr.S2SpilledChemPowder = true; // trigger if the player spilled a powder
-        } 
+        // else if (mixingBeakerContent.aluminumValue < 0.30f && !wasted)
+        // {
+        //     // Aluminum powder wasted
+        //     wasted = true;
+        //     mixingBeakerContent.aluminumTransferSuccess = false;
+        //     Debug.Log("Aluminum powder wasted.");
+        //     GameMngr.S2SpilledChemPowder = true; // trigger if the player spilled a powder
+        // } 
     }
 }

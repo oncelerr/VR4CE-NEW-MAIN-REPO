@@ -106,19 +106,15 @@ public class Iodine : MonoBehaviour
             mixingBeakerContent.iodineTransferSuccess = true;
             Debug.Log("Iodine transfer success");
         }
-        else if(mixingBeakerContent.iodineValue < 0.22f && !wasted)
-        {
-            // Iodine liquid wasted
-            wasted = true;
-            Debug.Log("Iodine powder wasted.");
-            GameMngr.S2SpilledChemPowder = true; // trigger if the player spilled a powder
-            mixingBeakerContent.iodineTransferSuccess = false;
+        // else if(mixingBeakerContent.iodineValue < 0.22f && !wasted)
+        // {
+        //     // Iodine liquid wasted
+        //     wasted = true;
+        //     Debug.Log("Iodine powder wasted.");
+        //     GameMngr.S2SpilledChemPowder = true; // trigger if the player spilled a powder
+        //     mixingBeakerContent.iodineTransferSuccess = false;
 
-            Sequence sequence = DOTween.Sequence();
-            sequence.AppendCallback(() => _ScoreMngr.Deductions("SpilledChem"));
-            sequence.AppendInterval(_AudioMngr.DeductionClips[1].length); // Delay
-            sequence.AppendCallback(() => _ScoreMngr.GameOver());
-            sequence.Play();
-        }
+
+        // }
     }
 }
