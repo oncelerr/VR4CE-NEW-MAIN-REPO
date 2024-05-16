@@ -13,6 +13,7 @@ public class s3TestTubeHolder : MonoBehaviour
     private void Start() 
     {
         _testtubeSnapperDone = false;
+        testtubeholderIndex = 0;
     }
     
     public void TestTubeSetUp(bool state) 

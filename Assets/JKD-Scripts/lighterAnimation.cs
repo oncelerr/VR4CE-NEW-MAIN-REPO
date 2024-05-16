@@ -59,7 +59,7 @@ public class lighterAnimation : MonoBehaviour
     public void OpenLid()
     {
         lightLid.transform.localEulerAngles = new Vector3(0, 180f, 180f);
-        if(ValveHose.s1ValveAmount != 0 && !ValveReminder) 
+        if(s1ValveHose.s1ValveAmount != 0 && !ValveReminder) 
         {
             ValveReminder = true;
             Debug.Log("Forget to close the valve.");

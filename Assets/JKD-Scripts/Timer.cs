@@ -23,6 +23,21 @@ public class Timer : MonoBehaviour
     private bool countingUp = true;
     public static bool isRunningLoop = false;
     
+    private void Start() 
+    {
+        // Reset Variables
+        isRunningLoop = false;
+        countingUp = true;
+        LoopCount = 7;
+        timer = 0f;
+        countDuration = 1f;
+
+        CDcurrentTime = 0f;
+        CUcurrentTime = 0f;
+        CUcurrentTime2 = 0f;
+        CUcurrentTime3 = 0f;
+        CUcurrentTime4 = 0f;
+    }
 
     private void Update() 
     {

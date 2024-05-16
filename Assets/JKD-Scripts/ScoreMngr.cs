@@ -7,6 +7,7 @@ using TMPro;
 
 public class ScoreMngr : MonoBehaviour
 {
+    public GameObject confettiFX;
     public vrRobot _vrRobot;
     public HandsMnger _HandsMnger;
     public AudioMngr _AudioMngr;
@@ -44,6 +45,7 @@ public class ScoreMngr : MonoBehaviour
     public static float STcurrentTime;
 
     private Coroutine ScoretimerCoroutine;
+    private bool violationOccured;
     public static bool GameOverAlreadyPlayed;
 
 
@@ -53,7 +55,8 @@ public class ScoreMngr : MonoBehaviour
     }
     private void Start() 
     {
-        // Initialize static variables
+        // Initialize/reset variables
+        violationOccured = false;
         TotalScore = 0f;
         STcurrentTime = 0f;
         GameOverAlreadyPlayed = false;
@@ -123,6 +126,7 @@ public class ScoreMngr : MonoBehaviour
     }
     public void CheckScore()
     {
+        // Check if there is a score multiplier
         if(TotalScore < 0) 
         {
             // 
@@ -131,6 +135,13 @@ public class ScoreMngr : MonoBehaviour
         {
             ScoreMultiplier();
         }
+
+        // Check if any violations occured
+        if(violationOccured)
+        {
+            MistakesReview();
+        }
+
         ScoreMenuObj.SetActive(true);
 
         // Revised Scoring system as of May 13, 2024
@@ -250,6 +261,13 @@ public class ScoreMngr : MonoBehaviour
 
     public void GameOver()
     {
+        for (int i = 0; i < _AudioMngr.vrBotVoice3.Length; i++)
+        {
+            _AudioMngr.StopSubtitleVoiceOver(_AudioMngr.vrBotVoice3[i]);
+        }
+        _AudioMngr.TimerFX(false);
+        _AudioMngr.musicSource.volume = -10f;
+        confettiFX.SetActive(false);
         _vrRobot._subtitlePanel.SetActive(false);
         Debug.Log("GAME OVER");
         DOTween.PauseAll();
@@ -265,8 +283,9 @@ public class ScoreMngr : MonoBehaviour
         Stars[2].SetActive(false);
         Stars[3].SetActive(false);
         _AudioMngr.GameOverFx(); // Game Over
+        _AudioMngr.GameOverNegativeSound();  // Game Over negative sound
         MistakesReview();
-        // DOTween.PlayAll();
+        TotalScore = 0f;
     }
 
     // Multiply total score by time finished the experiment
@@ -310,6 +329,9 @@ public class ScoreMngr : MonoBehaviour
             StopCoroutine(ScoretimerCoroutine);
         }
         ScoretimerCoroutine = StartCoroutine(UpdateScoreTimer());
+        _AudioMngr.TimerFX(true);
+        // _AudioMngr.PlayBGMusic(_AudioMngr.bgMusic[1],false);
+        // _AudioMngr.PlayBGMusic(_AudioMngr.bgMusic[2],true);
     }
 
     public void StoptScoreTimer()
@@ -317,6 +339,7 @@ public class ScoreMngr : MonoBehaviour
         if (ScoretimerCoroutine != null)
         {
             StopCoroutine(ScoretimerCoroutine);
+            _AudioMngr.TimerFX(false);
             ScoretimerCoroutine = null;
         }
     }
@@ -356,6 +379,7 @@ public class ScoreMngr : MonoBehaviour
 
     public void Deductions(string deductions)
     {
+        violationOccured = true;
         if(deductions == "ForgotValve")
         {
             s1MistakesList[1].SetActive(true);
@@ -364,7 +388,17 @@ public class ScoreMngr : MonoBehaviour
             s4MistakesList[1].SetActive(true);
             s5MistakesList[1].SetActive(true);
             TotalScore = TotalScore - 15f;
-            _AudioMngr.PlayDeduction(_AudioMngr.DeductionClips[0]); 
+            if(TotalScore < 0)
+            {
+                Sequence sequence = DOTween.Sequence();
+                sequence.AppendInterval(1.5f); // Delay
+                sequence.AppendCallback(() => _AudioMngr.PlayDeduction(_AudioMngr.DeductionClips[0])); //Play deduction audio
+                sequence.Play();
+            }
+            else
+            {
+                _AudioMngr.PlayDeduction(_AudioMngr.DeductionClips[0]);
+            }
         }
         if(deductions == "SpilledChem")
         {
@@ -373,8 +407,19 @@ public class ScoreMngr : MonoBehaviour
             s3MistakesList[2].SetActive(true);
             s4MistakesList[2].SetActive(true);
             s5MistakesList[2].SetActive(true);
-            TotalScore = TotalScore - 5f;
-            _AudioMngr.PlayDeduction(_AudioMngr.DeductionClips[1]); 
+            TotalScore = TotalScore - 30f;
+            if(TotalScore < 0)
+            {
+                Sequence sequence = DOTween.Sequence();
+                // sequence.AppendInterval(.5f); // Delay
+                sequence.AppendCallback(() => _AudioMngr.PlayDeduction(_AudioMngr.DeductionClips[1])); //Play deduction audio
+                sequence.Play();
+                Debug.Log("Spilled chem occured.");
+            }
+            else
+            {
+                _AudioMngr.PlayDeduction(_AudioMngr.DeductionClips[1]);
+            }
         }
         if(deductions == "DropBeakerTube")
         {
@@ -414,7 +459,19 @@ public class ScoreMngr : MonoBehaviour
             s4MistakesList[6].SetActive(true);
             s5MistakesList[6].SetActive(true);
             TotalScore = TotalScore - 20f;
-            _AudioMngr.PlayDeduction(_AudioMngr.DeductionClips[5]); 
+            if(TotalScore < 0)
+            {
+                Sequence sequence = DOTween.Sequence();
+                sequence.AppendInterval(.5f); // Delay
+                sequence.AppendCallback(() => _AudioMngr.PlayDeduction(_AudioMngr.DeductionClips[5])); //Play deduction audio
+                sequence.Play();
+                // _AudioMngr.PlayDeduction(_AudioMngr.DeductionClips[5]);
+                Debug.Log("Skip process played");
+            }
+            else
+            {
+                _AudioMngr.PlayDeduction(_AudioMngr.DeductionClips[5]);
+            }
         }
         if(deductions == "PlaysLighter")
         {

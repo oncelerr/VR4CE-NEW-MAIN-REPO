@@ -9,6 +9,9 @@ public class AudioMngr : MonoBehaviour
     public AudioSource musicSource;
     public AudioSource sfxSource; 
     public AudioSource subtitleSource; 
+    public AudioSource deductionSource; 
+    public AudioSource gameOverSource; 
+    public AudioSource timerSource; 
 
     [Header("BG Music")]
     public AudioClip[] bgMusic;
@@ -22,6 +25,12 @@ public class AudioMngr : MonoBehaviour
     public AudioClip closeDoorFX;
     public AudioClip checkpointFX;
     public AudioClip collectedPointsFX;
+    public AudioClip gameoverNegativeSound;
+    public AudioClip timerfx;
+    public AudioClip wearCoatfx;
+    public AudioClip wearGogglesfx;
+    public AudioClip wearGlovesfx;
+
 
     [Header("VRBot Voice Over")]
     public AudioClip[] vrBotVoice;
@@ -55,7 +64,7 @@ public class AudioMngr : MonoBehaviour
     {
         subtitleSource.clip = audio;
         subtitleSource.Stop();
-        Debug.Log("Voice is stopped");
+        // Debug.Log("Voice is stopped");
     }
 
     // Background Music
@@ -174,12 +183,47 @@ public class AudioMngr : MonoBehaviour
 
     public void GameOverFx()
     {
-        subtitleSource.clip = GameOverClip;
-        subtitleSource.Play();
+        gameOverSource.clip = GameOverClip;
+        gameOverSource.Play();
     }
     public void PlayDeduction(AudioClip audio)
     {
-        subtitleSource.clip = audio;
-        subtitleSource.Play();
+        deductionSource.clip = audio;
+        deductionSource.Play();
+    }
+
+    public void GameOverNegativeSound()
+    {
+        sfxSource.clip = gameoverNegativeSound;
+        sfxSource.Play();
+    }
+
+    public void TimerFX(bool Play)
+    {
+        if (Play)
+        {
+            timerSource.clip = timerfx;
+            timerSource.Play();
+        }
+        else
+        {
+            timerSource.clip = timerfx;
+            timerSource.Stop();
+        }
+    }
+    public void WearCoatFX()
+    {
+        sfxSource.clip = wearCoatfx;
+        sfxSource.Play();
+    }
+    public void WearGlovesFX()
+    {
+        sfxSource.clip = wearGlovesfx;
+        sfxSource.Play();
+    }
+    public void WearGogglesFX()
+    {
+        sfxSource.clip = wearGogglesfx;
+        sfxSource.Play();
     }
 }

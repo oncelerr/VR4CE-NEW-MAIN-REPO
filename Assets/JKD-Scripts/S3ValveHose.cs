@@ -34,14 +34,18 @@ public class S3ValveHose : MonoBehaviour
             alreadySetValve = true;
             S3ValveTurnedON = true;
             GameMngr.S3currentsteps = 4;
+            GameMngr.s3Currtstep++;
+            GameMngr.S3valveStep++;
             vrRobot.currentStepExecuted3 = false;
             Debug.Log("Valve turned ON!");
+            Debug.Log("s3 current step is: "+GameMngr.S3currentsteps);
         }
 
         if(knob.value > 0.70f && !alreadySetValve2  && GameMngr.S3currentsteps == 5)
         {
             alreadySetValve2 = true;
             S3ValveTurnedON = true;
+            Debug.Log("s3 current step is: "+GameMngr.S3currentsteps);
             // Get the current main module of the particle system
             var mainModule = _S3Burner.s3BurnerFire.main;
 
@@ -50,6 +54,8 @@ public class S3ValveHose : MonoBehaviour
             
             Debug.Log("Valve 2 set ON!");
             _Timer.StartCountUpTimer(0f,10f);
+            GameMngr.s3Currtstep++;
+            GameMngr.S3valveStep++;
             _WhiteSmoke[s3TestTubeHolder.testtubeholderIndex].Play();
         }
 

@@ -21,6 +21,20 @@ public class Floor : MonoBehaviour
             Debug.Log("Beaker or test tube dropped");
             _ScoreMngr.Deductions("DropBeakerTube");
         }
-
+        if(other.gameObject.CompareTag("mixingBeaker"))
+        {
+            Debug.Log("Beaker or test tube dropped");
+            _ScoreMngr.Deductions("DropBeakerTube");
+        }
+        if(other.gameObject.CompareTag("iodineBeaker"))
+        {
+            Debug.Log("Beaker or test tube dropped");
+            _ScoreMngr.Deductions("DropBeakerTube");
+        }
+        if(other.gameObject.CompareTag("aluminumBeaker"))
+        {
+            Debug.Log("Beaker or test tube dropped");
+            _ScoreMngr.Deductions("DropBeakerTube");
+        }
     }
 }

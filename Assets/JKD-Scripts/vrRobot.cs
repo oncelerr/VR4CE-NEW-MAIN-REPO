@@ -5,6 +5,7 @@ using DG.Tweening;
 
 public class vrRobot : MonoBehaviour
 {
+    [SerializeField] Timer _Timer;
     [SerializeField] HandsMnger _HandsMnger;
     [SerializeField] ScoreMngr _ScoreMngr;
     [SerializeField] AudioMngr _AudioMngr;
@@ -29,6 +30,9 @@ public class vrRobot : MonoBehaviour
     public static bool currentStepExecuted3 = false;
     public static bool currentStepExecuted4 = false;
     public static bool currentStepExecuted5 = false;
+
+    private bool forgotvalePlayed = false;
+
     Sequence hoverSequence;
 
     //Misc variables
@@ -50,6 +54,7 @@ public class vrRobot : MonoBehaviour
         currScript = 0;
         prevScript = 0;
         alreadyPlayedSpilledFunction = false;
+        forgotvalePlayed = false;
     }
     
     private void Update() 
@@ -65,6 +70,15 @@ public class vrRobot : MonoBehaviour
         // Steps for level 5
         Sub5ExperimentSteps();
         
+
+        // Check if already close valve in s3
+        
+        if(Timer.CUcurrentTime4 == 15f && !forgotvalePlayed && S3ValveHose.s3ValveAmount != 0f) 
+        {
+            forgotvalePlayed = true;
+            Debug.Log("Forget Valve Deduction Ocurred.");
+            _ScoreMngr.Deductions("ForgotValve");
+        }
     }
     
     
@@ -136,7 +150,7 @@ public class vrRobot : MonoBehaviour
         p3sequence.AppendCallback(() => HoverVRbot(false)); //Hover OFF 
         p3sequence.AppendCallback(() => RotateVRbot(34.1f, .3f));   //VRBot will face to the 3rd position
         p3sequence.AppendInterval(.5f);  // Delay of .5s
-        p3sequence.Append(transform.DOMove(position[3], 1.5f));  //VRBot will move to the 3rd position
+        p3sequence.Append(transform.DOMove(position[3], .5f));  //VRBot will move to the 3rd position
         p3sequence.AppendCallback(() => RotateVRbot(120f, .3f));   //VRBot will face the player
         p3sequence.AppendInterval(.5f);  // Delay of .5s
         p3sequence.AppendCallback(() => HoverVRbot(true));  // Hover ON
@@ -292,7 +306,7 @@ public class vrRobot : MonoBehaviour
     
     public void p8()
     {
-        Sequence p8sequence = DOTween.Sequence();
+        Sequence p8sequence = DOTween.Sequence().SetId("p8");
         p8sequence.AppendCallback(() => PlayVRbotScript3(8)); // s8
         p8sequence.AppendInterval(_AudioMngr.vrBotVoice3[8].length); // Delay
         p8sequence.AppendCallback(() => _subtitlePanel.SetActive(false)); // Subtitle panel will be set inactive
@@ -318,13 +332,13 @@ public class vrRobot : MonoBehaviour
 
     public void p9()
     {
-        Sequence p9sequence = DOTween.Sequence();
+        Sequence p9sequence = DOTween.Sequence().SetId("p9");
         p9sequence.AppendCallback(() => _subtitlePanel.SetActive(false)); // Subtitle panel will be set inactive
         p9sequence.AppendCallback(() => HoverVRbot(false)); //Hover OFF 
         p9sequence.AppendCallback(() => RotateVRbot(90f, .3f));   //VRBot will face to the 3rd position
         p9sequence.AppendInterval(.5f);  // Delay of .5s
         p9sequence.Append(transform.DOMove(position[8], 1f));  //VRBot will move to the 8th position
-        p9sequence.Append(transform.DOMove(position[9], 1f));  //VRBot will move to the 9th position
+        p9sequence.Append(transform.DOMove(position[9], .5f));  //VRBot will move to the 9th position
         p9sequence.AppendCallback(() => RotateVRbot(-6.4f, .3f));   //VRBot will face the player
         p9sequence.AppendInterval(.5f);  // Delay of .5s
         p9sequence.AppendCallback(() => HoverVRbot(true));  // Hover ON
@@ -833,6 +847,8 @@ public class vrRobot : MonoBehaviour
             {
                 PlayScritStep3(19);
                 ScoreMngr.TotalScore += 10f;
+                _Timer.StartCountUpTimer4(0, 15f);
+                Debug.Log("Timer 4 started.");
             } 
             if(GameMngr.S3currentsteps == 7f && !currentStepExecuted3) //Step6
             {

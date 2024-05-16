@@ -82,15 +82,16 @@ public class GameMngr : MonoBehaviour
     public static int s4nextstep = 0;
     public static int s5nextstep = 0;
 
-    private int s1Currtstep = 1;
+    public static int s1Currtstep = 1;
     private int s2Currtstep = 1;
-    private int s3Currtstep = 0;
+    public static int s3Currtstep = 1;
     private int s4Currtstep = 1;
     private int s5Currtstep = 1;
 
 
     public static bool S2SpilledChemPowder;
-
+    public static int S3valveStep = 1;
+    public static int S1hoseStep = 1;
 
     private void Awake() 
     {
@@ -111,6 +112,8 @@ public class GameMngr : MonoBehaviour
     private void Start() 
     {   
         // Reset Variables
+        S1hoseStep = 1;
+        S3valveStep = 1;
         step7active = false;
         ppe_ready = false;
         alreadyReachLastStep = false;
@@ -123,6 +126,17 @@ public class GameMngr : MonoBehaviour
         mainlab2ReachTable2 = false;
         S2SpilledChemPowder = false;
         mainlabReachTable = false;
+        S1currentsteps = 0;
+        S2currentsteps = 0;
+        S3currentsteps = 0;
+        S4currentsteps = 0;
+        S5currentsteps = 0;
+
+        s1Currtstep = 1;
+        s2Currtstep = 1;
+        s3Currtstep = 1;
+        s4Currtstep = 1;
+        s5Currtstep = 1;
 
         // Reference the updated level from the database to static variable
         _DataMngr.LoadMyData();
@@ -199,7 +213,7 @@ public class GameMngr : MonoBehaviour
                 ppeRoomDone = true;
                 _doorTrigger.enabled = true;
                 _doorAnimation.OpenDoor();
-                DOTween.Pause("p1"); // Pause scripts 1-7 if player is already ppe ready
+                DOTween.Kill("p1"); // Pause scripts 1-7 if player is already ppe ready
                 _vrRobot.p2(); 
             }
             else if(_DataMngr.player.LevelIndex == 2)
@@ -207,7 +221,7 @@ public class GameMngr : MonoBehaviour
                 ppeRoomDone = true;
                 _doorTrigger.enabled = true;
                 _doorAnimation.OpenDoor();
-                DOTween.Pause("p4"); // Pause scripts 1-7 if player is already ppe ready
+                DOTween.Kill("p4"); // Pause scripts 1-7 if player is already ppe ready
                 _vrRobot.p5();
             }
             else if(_DataMngr.player.LevelIndex == 3)
@@ -215,7 +229,7 @@ public class GameMngr : MonoBehaviour
                 ppeRoomDone = true;
                 _doorTrigger.enabled = true;
                 _doorAnimation.OpenDoor();
-                DOTween.Pause("p7"); // Pause scripts 1-7 if player is already ppe ready
+                DOTween.Kill("p7"); // Pause scripts 1-7 if player is already ppe ready
                 _vrRobot.p8();
             }
             else if(_DataMngr.player.LevelIndex == 4)
@@ -223,7 +237,7 @@ public class GameMngr : MonoBehaviour
                 ppeRoomDone = true;
                 _doorTrigger.enabled = true;
                 _doorAnimation.OpenDoor();
-                DOTween.Pause("p10"); // Pause scripts 1-7 if player is already ppe ready
+                DOTween.Kill("p10"); // Pause scripts 1-7 if player is already ppe ready
                 _vrRobot.p11();
             }
             else if(_DataMngr.player.LevelIndex == 5)
@@ -231,7 +245,7 @@ public class GameMngr : MonoBehaviour
                 ppeRoomDone = true;
                 _doorTrigger.enabled = true;
                 _doorAnimation.OpenDoor();
-                DOTween.Pause("p13"); // Pause scripts 1-7 if player is already ppe ready
+                DOTween.Kill("p13"); // Pause scripts 1-7 if player is already ppe ready
                 _vrRobot.p14();
             }
         }
@@ -289,44 +303,47 @@ public class GameMngr : MonoBehaviour
 
     public void ProceedToNextLevel()
     {
-        if(CurrentLevelIndex == 1) // if current level is 1, load level 2
-        {
-            _ScoreMngr.ScoreMenuObj.SetActive(false);
-            _DataMngr.player.LevelIndex = 2; // this change every succeeding level
-            _DataMngr.SaveMyData(); // saving the progress
-            _SceneLoader.LoadScene(3);  //NOTE: this is constant, because we are using the same scene. THis will change if the player reach level 5 because he/she will be redirect to main menu.
-        }
-        if(CurrentLevelIndex == 2) // if current level is 2, load level 3
-        {
-            _ScoreMngr.ScoreMenuObj.SetActive(false);
-            _DataMngr.player.LevelIndex = 3;  // this change every succeeding level
-            _DataMngr.SaveMyData(); // saving the progress
-            _SceneLoader.LoadScene(3); //NOTE: this is constant
-        }
-        if(CurrentLevelIndex == 3) // if current level is 3, load level 4
-        {
-            _ScoreMngr.ScoreMenuObj.SetActive(false);
-            _DataMngr.player.LevelIndex = 4;  // this change every succeeding level
-            _DataMngr.SaveMyData(); // saving the progress
-            _SceneLoader.LoadScene(3); //NOTE: this is constant
-        }
-        if(CurrentLevelIndex == 4) // if current level is 4, load level 5
-        {
-            _ScoreMngr.ScoreMenuObj.SetActive(false);
-            _DataMngr.player.LevelIndex = 5;  // this change every succeeding level
-            _DataMngr.SaveMyData(); // saving the progress
-            _SceneLoader.LoadScene(3); //NOTE: this is constant
-        }
-        if(CurrentLevelIndex == 5) // if current level is 5, load Main menu
-        {
-            _ScoreMngr.ScoreMenuObj.SetActive(false);
-            _DataMngr.player.LevelIndex = 5;  // Change this if you have save load system, if you want the player to select which level he/she will play
-            _DataMngr.SaveMyData(); // saving the progress
-            _SceneLoader.LoadScene(0); // this will load the main menu 
-        }
-        if(ScoreMngr.TotalScore < 0f)
+        if(ScoreMngr.TotalScore <= 25.9f) 
         {
             ResetLvl(CurrentLevelIndex);
+        }
+        else
+        {
+            if(CurrentLevelIndex == 1) // if current level is 1, load level 2
+            {
+                _ScoreMngr.ScoreMenuObj.SetActive(false);
+                _DataMngr.player.LevelIndex = 2; // this change every succeeding level
+                _DataMngr.SaveMyData(); // saving the progress
+                _SceneLoader.LoadScene(3);  //NOTE: this is constant, because we are using the same scene. THis will change if the player reach level 5 because he/she will be redirect to main menu.
+            }
+            if(CurrentLevelIndex == 2) // if current level is 2, load level 3
+            {
+                _ScoreMngr.ScoreMenuObj.SetActive(false);
+                _DataMngr.player.LevelIndex = 3;  // this change every succeeding level
+                _DataMngr.SaveMyData(); // saving the progress
+                _SceneLoader.LoadScene(3); //NOTE: this is constant
+            }
+            if(CurrentLevelIndex == 3) // if current level is 3, load level 4
+            {
+                _ScoreMngr.ScoreMenuObj.SetActive(false);
+                _DataMngr.player.LevelIndex = 4;  // this change every succeeding level
+                _DataMngr.SaveMyData(); // saving the progress
+                _SceneLoader.LoadScene(3); //NOTE: this is constant
+            }
+            if(CurrentLevelIndex == 4) // if current level is 4, load level 5
+            {
+                _ScoreMngr.ScoreMenuObj.SetActive(false);
+                _DataMngr.player.LevelIndex = 5;  // this change every succeeding level
+                _DataMngr.SaveMyData(); // saving the progress
+                _SceneLoader.LoadScene(3); //NOTE: this is constant
+            }
+            if(CurrentLevelIndex == 5) // if current level is 5, load Main menu
+            {
+                _ScoreMngr.ScoreMenuObj.SetActive(false);
+                _DataMngr.player.LevelIndex = 5;  // Change this if you have save load system, if you want the player to select which level he/she will play
+                _DataMngr.SaveMyData(); // saving the progress
+                _SceneLoader.LoadScene(0); // this will load the main menu 
+            }
         }
     }
     
@@ -380,45 +397,74 @@ public class GameMngr : MonoBehaviour
     {
         if(CurrentLevelIndex == 1) 
         {
-            if(step == (S1currentsteps + 1)) 
+            Debug.Log("Input "+step);
+            Debug.Log("Compare to "+s1Currtstep);
+
+            if(step == s1Currtstep && S1hoseStep == 1) //1,2
             {
-                S1currentsteps++;
-                s1nextstep = step;
+                s1Currtstep++;
             }
-            else
+            else if(step == S1hoseStep) //1 safe snapper
             {
-                // _ScoreMngr.Deductions("SkipProcess");
+                // 
+            }
+            else if(step == s1Currtstep)//2, 4
+            {
+                // 
+            }
+            else if(step == 2 && s1Currtstep == 5)//2, 4
+            {
+                s1Currtstep++;
+            }
+            else // deduction
+            {
+                _ScoreMngr.Deductions("SkipProcess");
             }
         }
         if(CurrentLevelIndex == 2) 
         {
-            if(step == (S2currentsteps + 1)) 
+            Debug.Log("Input "+step);
+            Debug.Log("Compare to "+s2Currtstep);
+            if(step == s2Currtstep)//1,2,3,4
             {
-                S2currentsteps++;
-                s2nextstep = step;
+                s2Currtstep++;
             }
-            else
+            else // deduction
             {
-                // _ScoreMngr.Deductions("SkipProcess");
+                _ScoreMngr.Deductions("SkipProcess");
             }
         }
         if(CurrentLevelIndex == 3) 
         {
             Debug.Log("Input "+step);
-            Debug.Log("Compare to "+(int)S3currentsteps);
-            if(step == (int)S3currentsteps && s3TestTubeContent.testtubeHoldingByHuman) 
+            Debug.Log("Compare to "+s3Currtstep);
+            
+            if(step == s3Currtstep && s3TestTubeContent.testtubeHoldingByHuman) // 1
+            {
+                s3Currtstep++;
+                Debug.Log("Step 1 added 1 for next step(2)");
+            }
+            else if(step == 1 && S3valveStep == 1)
+            {
+                //default
+            }
+            else if(step == s3Currtstep && step != 4) //2,3,5
+            {
+                s3Currtstep++;
+            }
+            else if(step == 4 && S3valveStep == 1) //4
             {
                 // 
             }
-            else if(step == 1)
+            else if(step == 4 && S3valveStep == 2) //6
             {
                 // 
             }
-            else if(step == 2f)
+            else if(step == 4 && S3valveStep == 3) //7
             {
                 // 
             }
-            else
+            else // deduction
             {
                 _ScoreMngr.Deductions("SkipProcess");
             }

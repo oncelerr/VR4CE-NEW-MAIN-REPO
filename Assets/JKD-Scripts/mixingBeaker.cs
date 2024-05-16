@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class mixingBeaker : MonoBehaviour
 {
+    [SerializeField] ScoreMngr _ScoreMngr;
+    public CapsuleCollider SetAsideTrigger;
     // Scripts
     [SerializeField] mixingBeakerContent _mixingBeakerContent;
     [SerializeField] AudioMngr _AudioMngr;
@@ -77,6 +79,14 @@ public class mixingBeaker : MonoBehaviour
         {
             isItHoldingIodineBeaker = false;
         }
+    }
+
+    private void OnTriggerEnter(Collider other) 
+    {
+        if(other.gameObject.CompareTag("Human"))
+        {
+            _ScoreMngr.Deductions("ChemNotYetDone");
+        }   
     }
 
     public void HoldingAluminumBeaker(bool AluminumBeaker)
@@ -193,6 +203,7 @@ public class mixingBeaker : MonoBehaviour
                 SmokeOrangePurpleWhite.Stop();
                 S2Fire.Stop();
                 Debug.Log("White smoke started");
+                SetAsideTrigger.enabled = true;
                 _AudioMngr.PlayVRBotS2Reactions(_AudioMngr.vrBotReactions[0]);  // hmm look at that smoke
             }
             else if(ReactionTime >= 10.1f && ReactionTime <=14f && !Phase3Done) // 3rd Phase
@@ -277,6 +288,7 @@ public class mixingBeaker : MonoBehaviour
                 Debug.Log("All particle fx stopped");
                 GameMngr.S2currentsteps = 6;
                 vrRobot.currentStepExecuted2 = false;
+                SetAsideTrigger.enabled = false;
             }
         }
     }
