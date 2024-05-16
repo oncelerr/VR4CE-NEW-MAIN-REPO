@@ -19,6 +19,13 @@ public class BubbleGenerator : MonoBehaviour
 
     private void Start()
     {
+        // reset variables
+        WhichHandhavetheBubbles = 0; 
+        alreadyTakeBubbleinAnyHands = false;
+        holdingHose = false;
+        alreadyStartedBubble = false;
+        InsimSpeed = 1f;
+        OutsimSpeed = 0.1f;
     }
     private void OnTriggerEnter(Collider other) 
     {
