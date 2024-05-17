@@ -85,13 +85,17 @@ public class GameMngr : MonoBehaviour
     public static int s1Currtstep = 1;
     private int s2Currtstep = 1;
     public static int s3Currtstep = 1;
-    private int s4Currtstep = 1;
-    private int s5Currtstep = 1;
+    public static int s4Currtstep = 1;
+    public static int s5Currtstep = 1;
 
 
     public static bool S2SpilledChemPowder;
     public static int S3valveStep = 1;
     public static int S1hoseStep = 1;
+    public static int whichMetal = 1;
+    public static int s5tubestep = 1;
+    private bool s5standby = true;
+
 
     private void Awake() 
     {
@@ -112,6 +116,8 @@ public class GameMngr : MonoBehaviour
     private void Start() 
     {   
         // Reset Variables
+        s5standby = true;
+        whichMetal = 1;
         S1hoseStep = 1;
         S3valveStep = 1;
         step7active = false;
@@ -471,27 +477,87 @@ public class GameMngr : MonoBehaviour
         }
         if(CurrentLevelIndex == 4) 
         {
-            if(step == (S4currentsteps + 1)) 
+            Debug.Log("Input "+step);
+            Debug.Log("Compare to "+s4Currtstep);
+            
+            if(step == s4Currtstep) // 1, copper sulfate -- 2, silver nitrate, 3, hydro, 4, lead, 5, magnes, 6, hyrdro
             {
-                S4currentsteps++;
-                s4nextstep = step;
+                // s4Currtstep++;
             }
-            else
+
+            else // deduction
             {
-                // _ScoreMngr.Deductions("SkipProcess");
+                _ScoreMngr.Deductions("WrongBeakerTube");
             }
         }
         if(CurrentLevelIndex == 5) 
         {
-            if(step == (S5currentsteps + 1)) 
+            Debug.Log("Input "+step);
+            Debug.Log("Compare to "+s5Currtstep);
+            
+            if(step == s5Currtstep && s5TestTubeContent.S5testtubeHoldingByHuman && s5tubestep == 1) // 1, 
             {
-                S5currentsteps++;
-                s5nextstep = step;
+                s5Currtstep = 2;
+                s5tubestep = 2;
+                Debug.Log("Holding by player and s5Currtstep = "+s5Currtstep);
             }
-            else
+            else if(step == 1 && s5Currtstep == 2) // 1, 
             {
-                // _ScoreMngr.Deductions("SkipProcess");
+                s5Currtstep = 3;
+                Debug.Log("This should be 3 but s5Currtstep = "+s5Currtstep);
             }
+            else if(step == 3) // 3 ,4
+            {
+                s5Currtstep = 4;
+                Debug.Log("This should be 4 but s5Currtstep = "+s5Currtstep);
+            }
+            else if(step == 4) // 3 ,4
+            {
+                s5Currtstep = 5;
+                Debug.Log("This should be 5 but s5Currtstep = "+s5Currtstep);
+            }
+            else if(step == 1) // 1, 
+            {
+                // s5standby = false;
+                Debug.Log("This is stand standby, s5Currtstep = "+s5Currtstep);
+            }
+           
+            else // deduction   
+            {
+                _ScoreMngr.Deductions("SkipProcess");
+            }
+        }
+    }
+
+    public void SelectMetal(int metal)
+    {
+        if(metal == 1 && metal == s4Currtstep )//1, magnesium
+        {
+            // whichMetal++;
+        }
+        else if(metal == 3 && whichMetal == s4Currtstep )//3, copper
+        {
+            // whichMetal++;//3
+        }
+        else if(metal == 3 && whichMetal == s4Currtstep )//3, copper
+        {
+            // whichMetal++;//4
+        }
+        else if(metal == 2 && whichMetal == s4Currtstep )//2, zinc
+        {
+            // whichMetal++;//5
+        }
+        else if(metal == 2 && whichMetal == s4Currtstep )//2, zinc
+        {
+            // whichMetal++;//6
+        }
+        else if(metal == 2 && whichMetal == s4Currtstep )//2, zinc
+        {
+            // 
+        }
+        else // deduction
+        {
+            _ScoreMngr.Deductions("SkipProcess");
         }
     }
 }

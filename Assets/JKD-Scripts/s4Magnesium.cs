@@ -21,6 +21,10 @@ public class s4Magnesium : MonoBehaviour
 
     private void Start() 
     {
+        // reset variables
+        alreadyPlayedMgParticlesUP = false;
+        timerStartedForMGtoDissolve = false;
+        WhichMagnesium = 1;
         alreadyPlayedMgParticlesUP = false;
         Magnesium1 = false;
         Magnesium2 = false;

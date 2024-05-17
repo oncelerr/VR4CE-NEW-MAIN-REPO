@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class s5PotassiumCarbonateContent : MonoBehaviour
 {
-    public GameObject _PotassiumCarbonateContentObj;
+    [SerializeField] ScoreMngr _ScoreMngr;
+    public GameObject _PotassiumCarbonateContentObj; 
     public ParticleSystem _PotassiumCarbonatePour;
     public Vector3 _35DegreeSideParticle;
     public Vector3 _155DegreeSideParticle;
@@ -17,10 +18,18 @@ public class s5PotassiumCarbonateContent : MonoBehaviour
     private Material material;
     private bool isHoldingPotassiumCjar = false;
     private bool alreadyCheckTransferState = false;
+    private bool s2Chemwasted = false; 
 
     void Start()
     {
+        // Get component
         _PotassiumCarbonatePour = GetComponent<ParticleSystem>();
+    
+        // reset vars
+        s2Chemwasted = false; 
+        _PotassiumCarbonateAmount = 0.30f;
+        isHoldingPotassiumCjar = false;
+        alreadyCheckTransferState = false;
     }
     void Update()
     {
@@ -60,6 +69,24 @@ public class s5PotassiumCarbonateContent : MonoBehaviour
                 // Dito iicrement niya yung value nung sa empty beaker para kunwari nafifill yung beaker
                 s5TestTubeContent.s5testtubeAmountPC += 0.01f;
                 _PotassiumCarbonateAmount -= 0.01f;
+            }
+        }
+        if (other.CompareTag("floor"))
+        {
+            Debug.Log("Particle collided with floor");
+            if(!s2Chemwasted)
+            {
+                s2Chemwasted = true;
+                _ScoreMngr.Deductions("SpilledChem");
+            }
+        }
+        if(other.CompareTag("table"))
+        {
+            Debug.Log("Particle collided with table");
+            if(!s2Chemwasted)
+            {
+                s2Chemwasted = true;
+                _ScoreMngr.Deductions("SpilledChem");
             }
         }
         // else

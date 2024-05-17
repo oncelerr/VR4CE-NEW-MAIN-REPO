@@ -10,6 +10,12 @@ public class s4TestTube5 : MonoBehaviour
     public static float _s4Tube5Amount;
     public static int _s4SubStep5 = 0;
 
+    private void Start() 
+    {
+        // reset vars
+        _s4Tube5Amount = 0f;
+        _s4SubStep5 = 0;
+    }
 
     private void OnTriggerEnter(Collider other) 
     {

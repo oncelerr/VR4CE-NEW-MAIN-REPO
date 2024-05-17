@@ -4,17 +4,25 @@ using UnityEngine;
 
 public class s4CopperSulfate : MonoBehaviour
 {
+    [SerializeField] ScoreMngr _ScoreMngr;
     ParticleSystem _CopperSulfatePour;
     private Material material;
     public GameObject _CopperSulfateCont;
     private bool success = false;
     private bool wasted = false;
     public static float _CopperSulfateAmount = 0.4f;
-
+    private bool s2Chemwasted = false;
 
     void Start()
     {
+        // Get component
         _CopperSulfatePour = GetComponent<ParticleSystem>();
+
+        // reset variables
+        _CopperSulfateAmount = 0.4f;
+        success = false;
+        wasted = false;
+        s2Chemwasted = false;
     }
 
     void Update()
@@ -40,6 +48,24 @@ public class s4CopperSulfate : MonoBehaviour
                 // will increment the fill value of the container
                 s4TestTube1._s4Tube1Amount += 0.01f;
                 _CopperSulfateAmount -= 0.01f;
+            }
+        }
+        if (other.CompareTag("floor"))
+        {
+            Debug.Log("Particle collided with floor");
+            if(!s2Chemwasted)
+            {
+                s2Chemwasted = true;
+                _ScoreMngr.Deductions("SpilledChem");
+            }
+        }
+        if(other.CompareTag("table"))
+        {
+            Debug.Log("Particle collided with table");
+            if(!s2Chemwasted)
+            {
+                s2Chemwasted = true;
+                _ScoreMngr.Deductions("SpilledChem");
             }
         }
         // else if(_CopperSulfateAmount > 0) // This check if the player spilled the liquid

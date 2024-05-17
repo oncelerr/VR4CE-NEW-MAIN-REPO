@@ -11,6 +11,8 @@ public class HandsMnger : MonoBehaviour
 
     private void Start() 
     {
+        // reset vars
+        HodingHoseNozzle = false;
         isUsingRightHand = false;
     }
 

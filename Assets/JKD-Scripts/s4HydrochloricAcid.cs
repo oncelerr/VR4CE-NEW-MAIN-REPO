@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class s4HydrochloricAcid : MonoBehaviour
 {
+    [SerializeField] ScoreMngr _ScoreMngr;
     ParticleSystem _HydrochloricAcidPour;
     private Material material;
     public GameObject _HydrochloricAcidCont;
@@ -12,11 +13,20 @@ public class s4HydrochloricAcid : MonoBehaviour
     private bool wasted = false;    
     public static float _HydrochloricAcidAmount = 0.55f;
     private int whichtesttube = 0;
-
+    private bool s2Chemwasted = false;
 
     void Start()
     {
+        // Get component
         _HydrochloricAcidPour = GetComponent<ParticleSystem>();
+
+        // reset variables
+        s2Chemwasted = false;
+        success = false;
+        success2 = false;
+        wasted = false;    
+        _HydrochloricAcidAmount = 0.55f;
+        whichtesttube = 0;
     }
 
     void Update()
@@ -68,6 +78,24 @@ public class s4HydrochloricAcid : MonoBehaviour
                 // will increment the fill value of the container
                 s4TestTube6._s4Tube6Amount += 0.01f;
                 _HydrochloricAcidAmount -= 0.01f;
+            }
+        }
+        if (other.CompareTag("floor"))
+        {
+            Debug.Log("Particle collided with floor");
+            if(!s2Chemwasted)
+            {
+                s2Chemwasted = true;
+                _ScoreMngr.Deductions("SpilledChem");
+            }
+        }
+        if(other.CompareTag("table"))
+        {
+            Debug.Log("Particle collided with table");
+            if(!s2Chemwasted)
+            {
+                s2Chemwasted = true;
+                _ScoreMngr.Deductions("SpilledChem");
             }
         }
         // else if(_HydrochloricAcidAmount > 0) // This check if the player spilled the liquid

@@ -678,6 +678,8 @@ public class vrRobot : MonoBehaviour
 
     public void PlayScritStep4(int Scriptt) // Change this
     {
+        GameMngr.whichMetal++;
+        GameMngr.s4Currtstep++;
         currentStepExecuted4 = true; // Change this; After the first step, you need to copy this and make it false to enable the next step.
         Sequence step = DOTween.Sequence();
         step.AppendCallback(() => _subtitlePanel.SetActive(true)); // Panel on
@@ -916,6 +918,8 @@ public class vrRobot : MonoBehaviour
             } 
             if(GameMngr.S4currentsteps == 7f && !currentStepExecuted4) //Step6
             {
+                GameMngr.whichMetal++;
+                GameMngr.s4Currtstep++;
                 _ScoreMngr.StoptScoreTimer(); // Stop Timer
                 GameMngr.S4currentsteps = 8f; // Change this
                 currentStepExecuted4 = true;  // Change this
@@ -989,8 +993,6 @@ public class vrRobot : MonoBehaviour
                 step.AppendCallback(() => _HandsMnger.DisableEnableHandsInteraction(false)); // Disable hands interaction
                 step.Play(); 
             }
-
         }
     }
-
 }

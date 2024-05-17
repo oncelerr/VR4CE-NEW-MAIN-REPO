@@ -4,17 +4,25 @@ using UnityEngine;
 
 public class s4LeadNitrate : MonoBehaviour
 {
+    [SerializeField] ScoreMngr _ScoreMngr;
     ParticleSystem _LeadNitratePour;
     private Material material;
     public GameObject _LeadNitrateCont;
     private bool success = false;
     private bool wasted = false;    
     public static float _LeadNitrateAmount = 0.4f;
+    private bool s2Chemwasted = false;
 
 
     void Start()
     {
         _LeadNitratePour = GetComponent<ParticleSystem>();
+
+        // reset variables
+        s2Chemwasted = false;
+        _LeadNitrateAmount = 0.4f;
+        success = false;
+        wasted = false;    
     }
 
     void Update()
@@ -40,6 +48,24 @@ public class s4LeadNitrate : MonoBehaviour
                 // will increment the fill value of the container
                 s4TestTube4._s4Tube4Amount += 0.01f;
                 _LeadNitrateAmount -= 0.01f;
+            }
+        }
+        if (other.CompareTag("floor"))
+        {
+            Debug.Log("Particle collided with floor");
+            if(!s2Chemwasted)
+            {
+                s2Chemwasted = true;
+                _ScoreMngr.Deductions("SpilledChem");
+            }
+        }
+        if(other.CompareTag("table"))
+        {
+            Debug.Log("Particle collided with table");
+            if(!s2Chemwasted)
+            {
+                s2Chemwasted = true;
+                _ScoreMngr.Deductions("SpilledChem");
             }
         }
         // else if(_SilverNitrateAmount > 0) // This check if the player spilled the liquid

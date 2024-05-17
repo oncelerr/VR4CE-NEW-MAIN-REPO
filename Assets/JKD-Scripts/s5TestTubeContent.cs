@@ -30,7 +30,7 @@ public class s5TestTubeContent : MonoBehaviour
     private int S3ChemTransition = 1;
 
 
-    private void OnEnable() 
+    private void Start() 
     {
         // Initialize variables
         step1Triggered = false;
@@ -39,6 +39,17 @@ public class s5TestTubeContent : MonoBehaviour
         s5testtubeAmount = 0f;
         s5testtubeAmountPC = 0f;
         S5whichtestubeisHolding = 0;
+        S5testtubeHoldingByHuman = false;
+        SilverNitrateTransferSuccess = false;
+        PotassiumCarbonateTransferSuccess = false;
+
+        s3React1Done = false;
+        s3React2Done = false;
+        s3React3Done = false;
+        s5React1Done = false;
+        s5React2Done = false;
+        s5React3Done = false;
+        S3ChemTransition = 1;
     }
     
     private void Update()
