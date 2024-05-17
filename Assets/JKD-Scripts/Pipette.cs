@@ -17,9 +17,12 @@ public class Pipette : MonoBehaviour
 
     private void Start() 
     {
+        isCountingDown = false; 
+        isPaused = false; 
         _isHoldingPipette = false;
         alreadyGetDropWater = false;
         alreadyDroppedWater = false;
+        _PipetteGotWater = false;
     }
     public void HoldingPipette(bool isHoldingPipette)
     {

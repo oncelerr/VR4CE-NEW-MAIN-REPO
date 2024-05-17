@@ -51,6 +51,11 @@ public class vrRobot : MonoBehaviour
     {
         // Reset Variables
         currentStepExecuted = false;
+        currentStepExecuted2 = false;
+        currentStepExecuted3 = false;
+        currentStepExecuted4 = false;
+        currentStepExecuted5 = false;
+        currentStepExecuted = false;
         currScript = 0;
         prevScript = 0;
         alreadyPlayedSpilledFunction = false;
@@ -800,12 +805,6 @@ public class vrRobot : MonoBehaviour
                 step.AppendCallback(() => _HandsMnger.DisableEnableHandsInteraction(false)); // Disable hands interaction
                 step.Play(); 
             }
-            // if(GameMngr.S2SpilledChemPowder && !alreadyPlayedSpilledFunction)
-            // {
-            //     alreadyPlayedSpilledFunction = true;
-            //     _AudioMngr.PlayVRBotS2Reactions(_AudioMngr.vrBotReactions[3]); // Oh no you`ve spilled it
-            //     _ScoreMngr.CheckScore();
-            // }
         }
     }
     
@@ -867,12 +866,6 @@ public class vrRobot : MonoBehaviour
                 step.AppendCallback(() => _HandsMnger.DisableEnableHandsInteraction(false)); // Disable hands interaction
                 step.Play(); 
             }
-            // if(GameMngr.S2SpilledChemPowder && !alreadyPlayedSpilledFunction)
-            // {
-            //     alreadyPlayedSpilledFunction = true;
-            //     _AudioMngr.PlayVRBotS2Reactions(_AudioMngr.vrBotReactions[3]); // Oh no you`ve spilled it
-            //     _ScoreMngr.CheckScore();
-            // }
         }
     }
     
@@ -948,12 +941,6 @@ public class vrRobot : MonoBehaviour
                 step.AppendCallback(() => _HandsMnger.DisableEnableHandsInteraction(false)); // Disable hands interaction
                 step.Play(); 
             }
-            // if(GameMngr.S2SpilledChemPowder && !alreadyPlayedSpilledFunction)
-            // {
-            //     alreadyPlayedSpilledFunction = true;
-            //     _AudioMngr.PlayVRBotS2Reactions(_AudioMngr.vrBotReactions[3]); // Oh no you`ve spilled it
-            //     _ScoreMngr.CheckScore();
-            // }
         }
     }
     
@@ -1002,12 +989,7 @@ public class vrRobot : MonoBehaviour
                 step.AppendCallback(() => _HandsMnger.DisableEnableHandsInteraction(false)); // Disable hands interaction
                 step.Play(); 
             }
-            // if(GameMngr.S2SpilledChemPowder && !alreadyPlayedSpilledFunction)
-            // {
-            //     alreadyPlayedSpilledFunction = true;
-            //     _AudioMngr.PlayVRBotS2Reactions(_AudioMngr.vrBotReactions[3]); // Oh no you`ve spilled it
-            //     _ScoreMngr.CheckScore();
-            // }
+
         }
     }
 

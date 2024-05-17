@@ -12,6 +12,8 @@ public class Iodine : MonoBehaviour
     public GameObject _iodineContentObj;
     private bool success = false;
     private bool wasted = false;
+    private bool s2Chemwasted = false;
+    
      
 
 
@@ -19,7 +21,12 @@ public class Iodine : MonoBehaviour
 
     void Start()
     {
+        // reset variables
+        IodineAmount = 0.25f;
         iodinePour = GetComponent<ParticleSystem>();
+        success = false;
+        wasted = false;
+        s2Chemwasted = false;
     }
 
     void Update()
@@ -46,6 +53,14 @@ public class Iodine : MonoBehaviour
                 // Dito iicrement niya yung value nung sa empty beaker para kunwari nafifill yung beaker
                 mixingBeakerContent.iodineValue += 0.01f;
                 IodineAmount -= 0.01f;
+            }
+        }
+        if(other.CompareTag("table"))
+        {
+            if(!s2Chemwasted)
+            {
+                s2Chemwasted = true;
+                _ScoreMngr.Deductions("SpilledChem");
             }
         }
         else if(IodineAmount > 0)
@@ -106,15 +121,13 @@ public class Iodine : MonoBehaviour
             mixingBeakerContent.iodineTransferSuccess = true;
             Debug.Log("Iodine transfer success");
         }
-        // else if(mixingBeakerContent.iodineValue < 0.22f && !wasted)
-        // {
-        //     // Iodine liquid wasted
-        //     wasted = true;
-        //     Debug.Log("Iodine powder wasted.");
-        //     GameMngr.S2SpilledChemPowder = true; // trigger if the player spilled a powder
-        //     mixingBeakerContent.iodineTransferSuccess = false;
-
-
-        // }
+        else if(mixingBeakerContent.iodineValue < 0.22f && !wasted)
+        {
+            // Iodine liquid wasted
+            wasted = true;
+            Debug.Log("Iodine powder wasted.");
+            GameMngr.S2SpilledChemPowder = true; // trigger if the player spilled a powder
+            mixingBeakerContent.iodineTransferSuccess = false;
+        }
     }
 }

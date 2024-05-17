@@ -20,6 +20,10 @@ public class aluminum : MonoBehaviour
 
     void Start()
     { 
+        // Reset variables
+        AluminumAmount = 0.25f;
+        success = false;
+        wasted = false;
         s2Chemwasted = false;
         aluminumPour = GetComponent<ParticleSystem>();
         firsAlDrop = false;
@@ -59,14 +63,14 @@ public class aluminum : MonoBehaviour
                 AluminumAmount -= 0.01f;
             }
         }
-        // if(other.CompareTag("table"))
-        // {
-        //     if(!s2Chemwasted)
-        //     {
-        //         s2Chemwasted = true;
-        //         _ScoreMngr.Deductions("SpilledChem");
-        //     }
-        // }
+        if(other.CompareTag("table"))
+        {
+            if(!s2Chemwasted)
+            {
+                s2Chemwasted = true;
+                _ScoreMngr.Deductions("SpilledChem");
+            }
+        }
         else if (AluminumAmount > 0)
         {
             AluminumAmount -= 0.01f;
