@@ -7,7 +7,6 @@ public class mixingBeakerContent : MonoBehaviour
 {
     [SerializeField] ScoreMngr _ScoreMngr;
     [SerializeField] AudioMngr _AudioMngr;
-    public ParticleSystem mixingBeakerContPour;
     public GameObject mixingBeakerContentObj;
     public GameObject aluminumContent;
     public static float iodineValue = 0f;
@@ -17,18 +16,12 @@ public class mixingBeakerContent : MonoBehaviour
     public static bool iodineTransferSuccess;
     public static bool aluminumTransferSuccess;
 
-    public float myangle = 60f;
-
-    // Variable for checking if the mixing beaker is spilling
-
     private bool mixingbeakercontWasted = false;
-    private bool s2Chemwasted = false;
     private void Start() 
     {
         // Reset variables
         iodineValue = 0f;
         aluminumValue = 0f;
-        s2Chemwasted = false;
         iodineTransferSuccess = false;
         aluminumTransferSuccess = false;
     }
@@ -36,31 +29,7 @@ public class mixingBeakerContent : MonoBehaviour
     {
         FillBeaker(iodineValue, mixingBeakerContentObj, mixingBeaker.isItHoldingIodineBeaker);
         FillBeaker(aluminumValue, aluminumContent, mixingBeaker.isItHoldingAluminumBeaker);
-        
-        //This check if the player spills the content of the mixing beaker
-        float angle = Vector3.Angle(Vector3.down, transform.forward);
-        if (angle <= myangle && GameMngr.S2currentsteps >= 1)
-        { 
-            mixingBeakerContPour.Play();
-        }
-        else
-        {
-            mixingBeakerContPour.Stop();
-        }
 
-    }
-    private void OnParticleCollision(GameObject other)
-    {
-        if(other.CompareTag("table"))
-        {
-            iodineValue -= 0.01f;
-            aluminumValue -= 0.01f;
-            if(!s2Chemwasted)
-            {
-                s2Chemwasted = true;
-                _ScoreMngr.Deductions("SpilledChem");
-            }
-        }
     }
 
     public void FillBeaker(float Liquid, GameObject content, bool beakerHolding)
