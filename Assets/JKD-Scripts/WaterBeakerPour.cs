@@ -6,7 +6,6 @@ public class WaterBeakerPour : MonoBehaviour
 {
     [SerializeField] ScoreMngr _ScoreMngr;
     ParticleSystem WaterPour;
-    public static bool _PipeCollidedWithWater;
     public float BeakerAngle = 151.5f;
     private bool s2Chemwasted = false;
 
@@ -15,7 +14,6 @@ public class WaterBeakerPour : MonoBehaviour
         // get the component
         WaterPour = GetComponent<ParticleSystem>();
         s2Chemwasted = false;
-        _PipeCollidedWithWater = false;
     }
 
     void Update()

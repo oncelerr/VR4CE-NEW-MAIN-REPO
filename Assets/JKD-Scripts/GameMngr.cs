@@ -497,29 +497,24 @@ public class GameMngr : MonoBehaviour
             
             if(step == s5Currtstep && s5TestTubeContent.S5testtubeHoldingByHuman && s5tubestep == 1) // 1, 
             {
-                s5Currtstep = 2;
-                s5tubestep = 2;
-                Debug.Log("Holding by player and s5Currtstep = "+s5Currtstep);
+                s5Currtstep++;
+                s5tubestep++;
+                Debug.Log("Step 1, Holding by player and s5Currtstep = "+s5Currtstep);
             }
-            else if(step == 1 && s5Currtstep == 2) // 1, 
+            else if(step == 1 && s5Currtstep == 2 && s5tubestep == 2) // 2, 
             {
-                s5Currtstep = 3;
-                Debug.Log("This should be 3 but s5Currtstep = "+s5Currtstep);
+                s5Currtstep++;
+                Debug.Log("Step 2, s5Currtstep = "+s5Currtstep);
             }
-            else if(step == 3) // 3 ,4
+            else if(step == s5Currtstep && s5tubestep == 2) // 3, 4
             {
-                s5Currtstep = 4;
-                Debug.Log("This should be 4 but s5Currtstep = "+s5Currtstep);
-            }
-            else if(step == 4) // 3 ,4
-            {
-                s5Currtstep = 5;
-                Debug.Log("This should be 5 but s5Currtstep = "+s5Currtstep);
+                s5Currtstep++;
+                Debug.Log("Step 3, s5Currtstep = "+s5Currtstep);
             }
             else if(step == 1) // 1, 
             {
                 // s5standby = false;
-                Debug.Log("This is stand standby, s5Currtstep = "+s5Currtstep);
+                Debug.Log("standby, s5Currtstep = "+s5Currtstep);
             }
            
             else // deduction   
