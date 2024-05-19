@@ -14,10 +14,17 @@ public class aluminum : MonoBehaviour
     private bool success;
     private bool wasted;
 
+    private bool s2Chemwasted;
+
     public static float AluminumAmount = 0.25f;
 
     void Start()
     { 
+        // Reset variables
+        AluminumAmount = 0.25f;
+        success = false;
+        wasted = false;
+        s2Chemwasted = false;
         aluminumPour = GetComponent<ParticleSystem>();
         firsAlDrop = false;
     }
@@ -54,6 +61,14 @@ public class aluminum : MonoBehaviour
                 // Dito iicrement niya yung value nung sa empty beaker para kunwari nafifill yung beaker
                 mixingBeakerContent.aluminumValue += 0.01f;
                 AluminumAmount -= 0.01f;
+            }
+        }
+        if(other.CompareTag("table"))
+        {
+            if(!s2Chemwasted)
+            {
+                s2Chemwasted = true;
+                _ScoreMngr.Deductions("SpilledChem");
             }
         }
         else if (AluminumAmount > 0)
@@ -117,18 +132,13 @@ public class aluminum : MonoBehaviour
             mixingBeakerContent.aluminumTransferSuccess = true;
             Debug.Log("Aluminum transfer success");
         }
-        else if (mixingBeakerContent.aluminumValue < 0.34f && !wasted)
-        {
-            // Aluminum powder wasted
-            wasted = true;
-            mixingBeakerContent.aluminumTransferSuccess = false;
-            Debug.Log("Aluminum powder wasted.");
-            GameMngr.S2SpilledChemPowder = true; // trigger if the player spilled a powder
-            Sequence sequence = DOTween.Sequence();
-            sequence.AppendCallback(() => _ScoreMngr.Deductions("SpilledChem"));
-            sequence.AppendInterval(_AudioMngr.DeductionClips[1].length); // Delay
-            sequence.AppendCallback(() => _ScoreMngr.GameOver());
-            sequence.Play();
-        } 
+        // else if (mixingBeakerContent.aluminumValue < 0.30f && !wasted)
+        // {
+        //     // Aluminum powder wasted
+        //     wasted = true;
+        //     mixingBeakerContent.aluminumTransferSuccess = false;
+        //     Debug.Log("Aluminum powder wasted.");
+        //     GameMngr.S2SpilledChemPowder = true; // trigger if the player spilled a powder
+        // } 
     }
 }

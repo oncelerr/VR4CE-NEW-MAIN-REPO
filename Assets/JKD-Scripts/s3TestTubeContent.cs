@@ -22,17 +22,23 @@ public class s3TestTubeContent : MonoBehaviour
     private bool s3React2Done = false;
     private bool s3React3Done = false;
     private int S3ChemTransition = 1;
+    private bool s3TimerReset = false;
 
-    private bool forgotvalePlayed = false;
 
 
-    private void OnEnable()
+    private void Start()
     {
+        S3ChemTransition = 1;
         // Initialize variables
+        whichtestubeisHolding = 0;
         step1Triggered = false;
         success = false;
         s3testtubeAmount = 0f;
         whichtestubeisHolding = 0;
+        testtubeHoldingByHuman = false;
+        FerrousTransferSuccess = false;
+        s3TimerReset = false;
+        s3React2Done = false;
     }
 
     private void Update()
@@ -103,21 +109,23 @@ public class s3TestTubeContent : MonoBehaviour
                 // PLay vrBot`s voice over for transition 1
                 if (Timer.CUcurrentTime == 2 && !s3React1Done)  //Transition 1
                 {
+                    s3React1Done = true;
                     _AudioMngr.PlayVRBotChemReactions(_AudioMngr.vrBotReactions3[0]);
                     Debug.Log("S3 React1 done");
                 }
 
                 // Reset the timer to 0
-                if (Timer.CUcurrentTime == 10 && !s3React1Done)
+                if (Timer.CUcurrentTime == 10 && !s3TimerReset)
                 {
-                    s3React1Done = true;
+                    s3TimerReset = true;
                     Timer.CUcurrentTime = 0;
                     S3ChemTransition = 2;
                     _Timer.StartCountUpTimer(0f, 10f);
+                    Debug.Log("Timer resetted.");
                 }
 
                 // PLay vrBot`s voice over for transition 2
-                if (Timer.CUcurrentTime == 2 && s3React1Done && !s3React2Done)  //Transition 2
+                if (Timer.CUcurrentTime == 2 && s3React1Done && !s3React2Done && s3TimerReset)  //Transition 2
                 {
                     s3React2Done = true;
                     Sequence sequence = DOTween.Sequence();
@@ -130,17 +138,6 @@ public class s3TestTubeContent : MonoBehaviour
                     });
                     sequence.Play();
                     Debug.Log("S3 React2 done");
-                }
-
-                // Check if already close valve
-                if(Timer.CUcurrentTime == 10 && s3React2Done) 
-                {
-                    _Timer.StartCountUpTimer4(0, 20f);
-                }
-                if(Timer.CUcurrentTime4 == 20 && !forgotvalePlayed && S3ValveHose.s3ValveAmount != 0) 
-                {
-                    forgotvalePlayed = true;
-                    _ScoreMngr.Deductions("ForgotValve");
                 }
             }
         }
@@ -157,7 +154,7 @@ public class s3TestTubeContent : MonoBehaviour
                 if (!step1Triggered)
                 {
                     step1Triggered = true;
-                    GameMngr.S3currentsteps = 1;
+                    GameMngr.S3currentsteps = 1; 
                     vrRobot.currentStepExecuted3 = false;
                 }
                 Debug.Log("Player chose test tube " + whichtestubeisHolding);

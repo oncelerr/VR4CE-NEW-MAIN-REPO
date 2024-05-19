@@ -7,19 +7,23 @@ public class s3FerrousContent : MonoBehaviour
     [SerializeField] ScoreMngr _ScoreMngr;
     public GameObject _FerrousContentObj;
     public ParticleSystem ferrousSulfatePour;
+
     // ferroues content value
-    public static float ferrousSulfateAmount = 0.30f;
+    public static float ferrousSulfateAmount;
     public float MyAngle;
-    // private bool success = false;
-    // private bool wasted = false;
     private Material material;
     private bool isHoldingFerrousjar = false;
     private bool alreadyCheckTransferState = false;
 
-    private bool wastedPlayed =false;
+    private bool spilledPlayed = false;
 
     void Start()
     {
+        // Reset variables
+        spilledPlayed = false;
+        isHoldingFerrousjar = false;
+        alreadyCheckTransferState = false;  
+        ferrousSulfateAmount = 0.30f;
         ferrousSulfatePour = GetComponent<ParticleSystem>();
     }
 
@@ -57,17 +61,21 @@ public class s3FerrousContent : MonoBehaviour
         }
         if (other.CompareTag("table"))
         {
-            // if(!wastedPlayed)
-            // {
-                // wastedPlayed = true;
+            if(!spilledPlayed)
+            {
+                spilledPlayed = true;
                 _ScoreMngr.Deductions("SpilledChem");
-            // }
-            ferrousSulfateAmount -= 0.01f;
+            }
+            if(ferrousSulfateAmount > 0.30f)
+            {
+                ferrousSulfateAmount -= 0.01f;
+            }   
         }
     }
     private void UpdateFerrousContent() 
     {
-        if(GameMngr.CurrentLevelIndex == 3 && isHoldingFerrousjar)
+        // if(GameMngr.CurrentLevelIndex == 3 && isHoldingFerrousjar)
+        if(GameMngr.CurrentLevelIndex == 3)
         {
             // Get the Renderer component of the GameObject
             Renderer ferrousRenderer = _FerrousContentObj.GetComponent<Renderer>();

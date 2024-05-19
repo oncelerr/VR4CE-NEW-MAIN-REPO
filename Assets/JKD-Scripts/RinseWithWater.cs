@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class RinseWithWater : MonoBehaviour
 {
+    [SerializeField] ScoreMngr _ScoreMngr;
     public static bool alreadyRinseWWater = false;
-
-
-
 
     private void OnTriggerEnter(Collider other) 
     {
@@ -23,6 +21,7 @@ public class RinseWithWater : MonoBehaviour
             {
                 vrRobot.currentStepExecuted = false;
                 GameMngr.S1currentsteps = 3f;
+
             }
             alreadyRinseWWater = true;
 

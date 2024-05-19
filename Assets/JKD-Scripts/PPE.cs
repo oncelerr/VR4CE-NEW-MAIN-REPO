@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PPE : MonoBehaviour
 {
+    public AudioMngr _AudioMngr;
     public GameObject[] PPEChecklist;
     public GameObject Labcoat;
     public GameObject Right_hand;
@@ -54,6 +55,7 @@ public class PPE : MonoBehaviour
 
     public void WearRightGlove()
     {
+        _AudioMngr.WearGlovesFX();
         rightGReady = true;
         rendererRG.material = glovesMat;
         Right_glove.SetActive(false);
@@ -62,6 +64,7 @@ public class PPE : MonoBehaviour
 
     public void WearLeftGlove()
     {
+        _AudioMngr.WearGlovesFX();
         PPEclist = 2;
         leftGReady = true;
         rendererLG.material = glovesMat;

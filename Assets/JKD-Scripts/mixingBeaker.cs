@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class mixingBeaker : MonoBehaviour
 {
+    [SerializeField] ScoreMngr _ScoreMngr;
+    [SerializeField] GameObject SplashTrigger;
     // Scripts
     [SerializeField] mixingBeakerContent _mixingBeakerContent;
     [SerializeField] AudioMngr _AudioMngr;
-
+    
     // Particle FX
     public ParticleSystem SmokeWhite;
     public ParticleSystem SmokeBlack;
@@ -193,6 +195,7 @@ public class mixingBeaker : MonoBehaviour
                 SmokeOrangePurpleWhite.Stop();
                 S2Fire.Stop();
                 Debug.Log("White smoke started");
+                SplashTrigger.SetActive(true);
                 _AudioMngr.PlayVRBotS2Reactions(_AudioMngr.vrBotReactions[0]);  // hmm look at that smoke
             }
             else if(ReactionTime >= 10.1f && ReactionTime <=14f && !Phase3Done) // 3rd Phase
@@ -277,6 +280,7 @@ public class mixingBeaker : MonoBehaviour
                 Debug.Log("All particle fx stopped");
                 GameMngr.S2currentsteps = 6;
                 vrRobot.currentStepExecuted2 = false;
+                SplashTrigger.SetActive(false);
             }
         }
     }

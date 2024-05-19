@@ -4,16 +4,6 @@ using UnityEngine;
 
 public class s2ChemReact : MonoBehaviour
 {
-
-    // private void OnTriggerStay(Collider other) 
-    // {
-    //     if(other.gameObject.CompareTag("iodineL")) 
-    //     {
-            
-    //     }
-    // }
-
-
     public string variableName = "_Fill"; // Name of the surface input variable
 
     void Start()

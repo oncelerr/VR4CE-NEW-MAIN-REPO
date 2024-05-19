@@ -5,13 +5,14 @@ using DG.Tweening;
 
 public class vrRobot : MonoBehaviour
 {
+    [SerializeField] Timer _Timer;
     [SerializeField] HandsMnger _HandsMnger;
     [SerializeField] ScoreMngr _ScoreMngr;
     [SerializeField] AudioMngr _AudioMngr;
     [SerializeField] GameMngr _GameMngr;
     [SerializeField] Checkpoint _Checkpoint;
     [SerializeField] GameObject[] _BoardContent;
-    [SerializeField] GameObject _subtitlePanel;
+    [SerializeField] public GameObject _subtitlePanel;
     [SerializeField] public GameObject[] _subtitles;
     [SerializeField] public GameObject[] _subtitles2;
     [SerializeField] public GameObject[] _subtitles3;
@@ -29,6 +30,9 @@ public class vrRobot : MonoBehaviour
     public static bool currentStepExecuted3 = false;
     public static bool currentStepExecuted4 = false;
     public static bool currentStepExecuted5 = false;
+
+    private bool forgotvalePlayed = false;
+
     Sequence hoverSequence;
 
     //Misc variables
@@ -47,9 +51,15 @@ public class vrRobot : MonoBehaviour
     {
         // Reset Variables
         currentStepExecuted = false;
+        currentStepExecuted2 = false;
+        currentStepExecuted3 = false;
+        currentStepExecuted4 = false;
+        currentStepExecuted5 = false;
+        currentStepExecuted = false;
         currScript = 0;
         prevScript = 0;
         alreadyPlayedSpilledFunction = false;
+        forgotvalePlayed = false;
     }
     
     private void Update() 
@@ -65,6 +75,15 @@ public class vrRobot : MonoBehaviour
         // Steps for level 5
         Sub5ExperimentSteps();
         
+
+        // Check if already close valve in s3
+        
+        if(Timer.CUcurrentTime4 == 15f && !forgotvalePlayed && S3ValveHose.s3ValveAmount != 0f) 
+        {
+            forgotvalePlayed = true;
+            Debug.Log("Forget Valve Deduction Ocurred.");
+            _ScoreMngr.Deductions("ForgotValve");
+        }
     }
     
     
@@ -136,7 +155,7 @@ public class vrRobot : MonoBehaviour
         p3sequence.AppendCallback(() => HoverVRbot(false)); //Hover OFF 
         p3sequence.AppendCallback(() => RotateVRbot(34.1f, .3f));   //VRBot will face to the 3rd position
         p3sequence.AppendInterval(.5f);  // Delay of .5s
-        p3sequence.Append(transform.DOMove(position[3], 1.5f));  //VRBot will move to the 3rd position
+        p3sequence.Append(transform.DOMove(position[3], .5f));  //VRBot will move to the 3rd position
         p3sequence.AppendCallback(() => RotateVRbot(120f, .3f));   //VRBot will face the player
         p3sequence.AppendInterval(.5f);  // Delay of .5s
         p3sequence.AppendCallback(() => HoverVRbot(true));  // Hover ON
@@ -292,7 +311,7 @@ public class vrRobot : MonoBehaviour
     
     public void p8()
     {
-        Sequence p8sequence = DOTween.Sequence();
+        Sequence p8sequence = DOTween.Sequence().SetId("p8");
         p8sequence.AppendCallback(() => PlayVRbotScript3(8)); // s8
         p8sequence.AppendInterval(_AudioMngr.vrBotVoice3[8].length); // Delay
         p8sequence.AppendCallback(() => _subtitlePanel.SetActive(false)); // Subtitle panel will be set inactive
@@ -318,13 +337,13 @@ public class vrRobot : MonoBehaviour
 
     public void p9()
     {
-        Sequence p9sequence = DOTween.Sequence();
+        Sequence p9sequence = DOTween.Sequence().SetId("p9");
         p9sequence.AppendCallback(() => _subtitlePanel.SetActive(false)); // Subtitle panel will be set inactive
         p9sequence.AppendCallback(() => HoverVRbot(false)); //Hover OFF 
         p9sequence.AppendCallback(() => RotateVRbot(90f, .3f));   //VRBot will face to the 3rd position
         p9sequence.AppendInterval(.5f);  // Delay of .5s
         p9sequence.Append(transform.DOMove(position[8], 1f));  //VRBot will move to the 8th position
-        p9sequence.Append(transform.DOMove(position[9], 1f));  //VRBot will move to the 9th position
+        p9sequence.Append(transform.DOMove(position[9], .5f));  //VRBot will move to the 9th position
         p9sequence.AppendCallback(() => RotateVRbot(-6.4f, .3f));   //VRBot will face the player
         p9sequence.AppendInterval(.5f);  // Delay of .5s
         p9sequence.AppendCallback(() => HoverVRbot(true));  // Hover ON
@@ -342,7 +361,6 @@ public class vrRobot : MonoBehaviour
         p9sequence.AppendCallback(() => _HandsMnger.DisableEnableHandsInteraction(true)); // Enable hands interaction 
         p9sequence.AppendCallback(() => _ScoreMngr.StartScoreTimer()); // Start score timer 
         p9sequence.Play(); 
-
     }
     
 
@@ -630,7 +648,7 @@ public class vrRobot : MonoBehaviour
         step.AppendInterval(_AudioMngr.vrBotVoice[Scriptt].length); // 
         step.AppendCallback(() => _subtitlePanel.SetActive(false)); // Panel off
         step.Play(); 
-        UIMngr.currentProgress += 14f;
+        UIMngr.currentProgress += 16f;
 
     }
 
@@ -643,7 +661,7 @@ public class vrRobot : MonoBehaviour
         step.AppendInterval(_AudioMngr.vrBotVoice2[Scriptt].length); // Change this
         step.AppendCallback(() => _subtitlePanel.SetActive(false)); // Panel off
         step.Play(); 
-        UIMngr.currentProgress2 += 16.66f; // Change this
+        UIMngr.currentProgress2 += 16f; // Change this
     }
 
     public void PlayScritStep3(int Scriptt) // Change this
@@ -655,7 +673,7 @@ public class vrRobot : MonoBehaviour
         step.AppendInterval(_AudioMngr.vrBotVoice3[Scriptt].length); // Change this
         step.AppendCallback(() => _subtitlePanel.SetActive(false)); // Panel off
         step.Play(); 
-        UIMngr.currentProgress3 += 16.66f; // Change this
+        UIMngr.currentProgress3 += 14f; // Change this
     }
 
     public void PlayScritStep4(int Scriptt) // Change this
@@ -679,7 +697,7 @@ public class vrRobot : MonoBehaviour
         step.AppendInterval(_AudioMngr.vrBotVoice5[Scriptt].length); // Change this
         step.AppendCallback(() => _subtitlePanel.SetActive(false)); // Panel off
         step.Play(); 
-        UIMngr.currentProgress5 += 19.8f; // Change this
+        UIMngr.currentProgress5 += 20f; // Change this
     }
     
     public void Sub1ExperimentSteps()
@@ -722,7 +740,7 @@ public class vrRobot : MonoBehaviour
                 GameMngr.S1currentsteps = 7f;
                 currentStepExecuted = true;
                 GameMngr.alreadyReachLastStep = true;
-                UIMngr.currentProgress += 16f;
+                UIMngr.currentProgress += 20f;
                 ScoreMngr.TotalScore += 10f;
                 Sequence step = DOTween.Sequence();
                 step.AppendCallback(() => PlayVRbotScript(19)); // s19
@@ -776,7 +794,7 @@ public class vrRobot : MonoBehaviour
                 GameMngr.S2currentsteps = 7f; // Change this
                 currentStepExecuted2 = true;  // Change this
                 GameMngr.alreadyReachLastStep = true;
-                UIMngr.currentProgress2 += 16.66f;
+                UIMngr.currentProgress2 += 20f;
                 ScoreMngr.TotalScore += 10f;
                 Sequence step = DOTween.Sequence();
                 step.AppendCallback(() => PlayVRbotScript2(19)); // s19
@@ -787,12 +805,6 @@ public class vrRobot : MonoBehaviour
                 step.AppendCallback(() => _HandsMnger.DisableEnableHandsInteraction(false)); // Disable hands interaction
                 step.Play(); 
             }
-            // if(GameMngr.S2SpilledChemPowder && !alreadyPlayedSpilledFunction)
-            // {
-            //     alreadyPlayedSpilledFunction = true;
-            //     _AudioMngr.PlayVRBotS2Reactions(_AudioMngr.vrBotReactions[3]); // Oh no you`ve spilled it
-            //     _ScoreMngr.CheckScore();
-            // }
         }
     }
     
@@ -834,6 +846,8 @@ public class vrRobot : MonoBehaviour
             {
                 PlayScritStep3(19);
                 ScoreMngr.TotalScore += 10f;
+                _Timer.StartCountUpTimer4(0, 15f);
+                Debug.Log("Timer 4 started.");
             } 
             if(GameMngr.S3currentsteps == 7f && !currentStepExecuted3) //Step6
             {
@@ -841,7 +855,7 @@ public class vrRobot : MonoBehaviour
                 GameMngr.S3currentsteps = 8f; // Change this
                 currentStepExecuted3 = true;  // Change this
                 GameMngr.alreadyReachLastStep = true;
-                UIMngr.currentProgress3 += 16.66f; //Change this
+                UIMngr.currentProgress3 += 30f; //Change this
                 ScoreMngr.TotalScore += 10f;
                 Sequence step = DOTween.Sequence();
                 step.AppendCallback(() => PlayVRbotScript3(20)); // s19
@@ -852,12 +866,6 @@ public class vrRobot : MonoBehaviour
                 step.AppendCallback(() => _HandsMnger.DisableEnableHandsInteraction(false)); // Disable hands interaction
                 step.Play(); 
             }
-            // if(GameMngr.S2SpilledChemPowder && !alreadyPlayedSpilledFunction)
-            // {
-            //     alreadyPlayedSpilledFunction = true;
-            //     _AudioMngr.PlayVRBotS2Reactions(_AudioMngr.vrBotReactions[3]); // Oh no you`ve spilled it
-            //     _ScoreMngr.CheckScore();
-            // }
         }
     }
     
@@ -912,7 +920,7 @@ public class vrRobot : MonoBehaviour
                 GameMngr.S4currentsteps = 8f; // Change this
                 currentStepExecuted4 = true;  // Change this
                 GameMngr.alreadyReachLastStep = true;
-                UIMngr.currentProgress4 += 16f; //Change this
+                UIMngr.currentProgress4 += 30f; //Change this
                 ScoreMngr.TotalScore += 10f;
                 Sequence step = DOTween.Sequence();
                 step.AppendCallback(() => PlayVRbotScript4(20)); // s20
@@ -933,12 +941,6 @@ public class vrRobot : MonoBehaviour
                 step.AppendCallback(() => _HandsMnger.DisableEnableHandsInteraction(false)); // Disable hands interaction
                 step.Play(); 
             }
-            // if(GameMngr.S2SpilledChemPowder && !alreadyPlayedSpilledFunction)
-            // {
-            //     alreadyPlayedSpilledFunction = true;
-            //     _AudioMngr.PlayVRBotS2Reactions(_AudioMngr.vrBotReactions[3]); // Oh no you`ve spilled it
-            //     _ScoreMngr.CheckScore();
-            // }
         }
     }
     
@@ -976,7 +978,7 @@ public class vrRobot : MonoBehaviour
                 GameMngr.S5currentsteps = 6f; // Change this
                 currentStepExecuted5 = true;  // Change this
                 GameMngr.alreadyReachLastStep = true;
-                UIMngr.currentProgress5 += 19.8f; //Change this
+                UIMngr.currentProgress5 += 20f; //Change this
                 ScoreMngr.TotalScore += 10f;
                 Sequence step = DOTween.Sequence();
                 step.AppendCallback(() => PlayVRbotScript5(18)); // s19
@@ -987,12 +989,7 @@ public class vrRobot : MonoBehaviour
                 step.AppendCallback(() => _HandsMnger.DisableEnableHandsInteraction(false)); // Disable hands interaction
                 step.Play(); 
             }
-            // if(GameMngr.S2SpilledChemPowder && !alreadyPlayedSpilledFunction)
-            // {
-            //     alreadyPlayedSpilledFunction = true;
-            //     _AudioMngr.PlayVRBotS2Reactions(_AudioMngr.vrBotReactions[3]); // Oh no you`ve spilled it
-            //     _ScoreMngr.CheckScore();
-            // }
+
         }
     }
 

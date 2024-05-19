@@ -14,6 +14,12 @@ public class UIMngr : MonoBehaviour
  
     private void Start() 
     {
+        currentProgress = 0f;
+        currentProgress2 = 0f;
+        currentProgress3 = 0f;
+        currentProgress4 = 0f;
+        currentProgress5 = 0f;
+        
         _progressBar[1].value = 0f;
         _progressBar[2].value = 0f;
         _progressBar[3].value = 0f;

@@ -37,6 +37,7 @@ public class ppeRoom : MonoBehaviour
                     DOTween.Play("p51");
                     break;
                 case 3:
+                    DOTween.Kill("p8");
                     DOTween.Play("p81");
                     break;
                 case 4:
