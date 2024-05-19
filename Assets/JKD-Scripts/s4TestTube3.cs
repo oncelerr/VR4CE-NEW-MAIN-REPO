@@ -10,7 +10,11 @@ public class s4TestTube3 : MonoBehaviour
     public static float _s4Tube3Amount;
     public static int _s4SubStep3 = 0;
 
-
+    private void Start() 
+    {
+        _s4Tube3Amount = 0f;
+        _s4SubStep3 = 0;
+    }
     private void OnTriggerEnter(Collider other) 
     {
         if(other.gameObject.CompareTag("Copper"))

@@ -4,17 +4,26 @@ using UnityEngine;
 
 public class s4MagnesiumSulfate : MonoBehaviour
 {
+    [SerializeField] ScoreMngr _ScoreMngr;
     ParticleSystem _MagnesiumSulfatePour;
     private Material material;
     public GameObject _MagnesiumSulfateCont;
     private bool success = false;
     private bool wasted = false;    
     public static float _MagnesiumSulfateAmount = 0.4f;
+    private bool s2Chemwasted = false;
 
 
     void Start()
     {
+        // Get component
         _MagnesiumSulfatePour = GetComponent<ParticleSystem>();
+
+        // reset variabels
+        s2Chemwasted = false;
+        _MagnesiumSulfateAmount = 0.4f;
+        success = false;
+        wasted = false;   
     }
 
     void Update()
@@ -40,6 +49,24 @@ public class s4MagnesiumSulfate : MonoBehaviour
                 // will increment the fill value of the container
                 s4TestTube5._s4Tube5Amount += 0.01f;
                 _MagnesiumSulfateAmount -= 0.01f;
+            }
+        }
+        if (other.CompareTag("floor"))
+        {
+            Debug.Log("Particle collided with floor");
+            if(!s2Chemwasted)
+            {
+                s2Chemwasted = true;
+                _ScoreMngr.Deductions("SpilledChem");
+            }
+        }
+        if(other.CompareTag("table"))
+        {
+            Debug.Log("Particle collided with table");
+            if(!s2Chemwasted)
+            {
+                s2Chemwasted = true;
+                _ScoreMngr.Deductions("SpilledChem");
             }
         }
         // else if(_SilverNitrateAmount > 0) // This check if the player spilled the liquid

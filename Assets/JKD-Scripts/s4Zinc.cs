@@ -33,6 +33,11 @@ public class s4Zinc : MonoBehaviour
 
     private void Start() 
     {
+        // reset variabels
+        alreadyPlayedBubbles = false;
+        alreadyPlayedHydroBubbles = false;
+        timerStartedForCoating = false;
+        WhichZinc = 0;
         alreadyPlayedBubbles = false;
         alreadyPlayedHydroBubbles = false;
         Zinc1isChosen = false;

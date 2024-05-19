@@ -20,12 +20,14 @@ public class aluminum : MonoBehaviour
 
     void Start()
     { 
+        // get the component
+        aluminumPour = GetComponent<ParticleSystem>();
         // Reset variables
         AluminumAmount = 0.25f;
         success = false;
         wasted = false;
         s2Chemwasted = false;
-        aluminumPour = GetComponent<ParticleSystem>();
+        
         firsAlDrop = false;
     }
 

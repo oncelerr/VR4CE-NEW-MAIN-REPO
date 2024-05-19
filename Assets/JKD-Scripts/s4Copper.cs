@@ -23,6 +23,8 @@ public class s4Copper : MonoBehaviour
 
     private void Start() 
     {
+        timerStartedForCoating = false;
+        CopperCoatedFX = false;
         alreadyPlayedBubbles = false;
         Copper1 = false;
         Copper2 = false;

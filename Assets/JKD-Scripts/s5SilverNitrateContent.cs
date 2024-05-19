@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class s5SilverNitrateContent : MonoBehaviour
 {
+    [SerializeField] ScoreMngr _ScoreMngr;
     public GameObject _SilverNitrateContentObj;
     public ParticleSystem _SilverNitratePour;
     public Vector3 _35DegreeSideParticle;
@@ -17,10 +18,15 @@ public class s5SilverNitrateContent : MonoBehaviour
     private Material material;
     private bool isHoldingSilverNjar = false;
     private bool alreadyCheckTransferState = false;
+    private bool s2Chemwasted = false;   
 
     void Start()
     {
+        s2Chemwasted = false;  
         _SilverNitratePour = GetComponent<ParticleSystem>();
+        _SilverNitrateAmount = 0.30f;
+        isHoldingSilverNjar = false;
+        alreadyCheckTransferState = false;
     }
     void Update()
     {
@@ -60,6 +66,24 @@ public class s5SilverNitrateContent : MonoBehaviour
                 // Dito iicrement niya yung value nung sa empty beaker para kunwari nafifill yung beaker
                 s5TestTubeContent.s5testtubeAmount += 0.01f;
                 _SilverNitrateAmount -= 0.01f;
+            }
+        }
+        if (other.CompareTag("floor"))
+        {
+            Debug.Log("Particle collided with floor");
+            if(!s2Chemwasted)
+            {
+                s2Chemwasted = true;
+                _ScoreMngr.Deductions("SpilledChem");
+            }
+        }
+        if(other.CompareTag("table"))
+        {
+            Debug.Log("Particle collided with table");
+            if(!s2Chemwasted)
+            {
+                s2Chemwasted = true;
+                _ScoreMngr.Deductions("SpilledChem");
             }
         }
         // else

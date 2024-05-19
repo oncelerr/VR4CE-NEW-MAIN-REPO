@@ -15,6 +15,8 @@ public class s5TestTubeHolder : MonoBehaviour
     private void Start() 
     {
         _testtubeSnapperDone = false;
+        S5testtubeholderIndex = 0;
+        testtubeholderIndexPC = 0;
     }
     
     public void TestTubeSetUp(bool state) 

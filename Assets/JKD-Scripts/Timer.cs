@@ -26,6 +26,7 @@ public class Timer : MonoBehaviour
     private void Start() 
     {
         // Reset Variables
+        isPaused = false;
         isRunningLoop = false;
         countingUp = true;
         LoopCount = 7;
