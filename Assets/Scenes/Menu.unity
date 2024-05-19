@@ -752,6 +752,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 32770731}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &32770733 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8841422738568278765, guid: b09d33c8b7830a34d89d176d138cba96,
+    type: 3}
+  m_PrefabInstance: {fileID: 32770731}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b29c9ee5eccc9a42a33231645d21941, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &34268088
 GameObject:
   m_ObjectHideFlags: 0
@@ -10167,7 +10179,6 @@ GameObject:
   - component: {fileID: 679358295}
   - component: {fileID: 679358294}
   - component: {fileID: 679358293}
-  - component: {fileID: 679358292}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -10191,56 +10202,6 @@ Transform:
   - {fileID: 550451877}
   m_Father: {fileID: 501457771}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &679358292
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 679358290}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a7709982a49d6b4197a4a82df69a118, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetTag: goggles
-  OnEnterEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PlaySteps, Assembly-CSharp
-        m_MethodName: PlayStepIndex
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  newMaterial: {fileID: 2100000, guid: 2a6c68ff3305a984da6db0ed24f792e3, type: 2}
-  audioClip: {fileID: 8300000, guid: 75ab17d47053e2d499bacdb118f85552, type: 3}
-  audioClip1: {fileID: 8300000, guid: 1f5032c008ad0994ea174ed0101cb3a3, type: 3}
-  audioClip2: {fileID: 8300000, guid: 8d3d0583573e9af45a9da6e7335f00d9, type: 3}
-  audioClip3: {fileID: 8300000, guid: 1a3b4226a148e4141a200205ac420c28, type: 3}
-  timeline: {fileID: 0}
-  origSub: {fileID: 0}
-  newSub: {fileID: 0}
-  origSub1: {fileID: 0}
-  newSub1: {fileID: 0}
 --- !u!136 &679358293
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -12887,7 +12848,7 @@ MonoBehaviour:
   newMaterial: {fileID: 2100000, guid: d05d8e4a6ca66a34f87a31814815d234, type: 2}
   originalMaterial: {fileID: 2100000, guid: c9d55b417c0e63249975289d82f14bb0, type: 2}
   socketInteractor: {fileID: 1922172610}
-  sceneTransitionManager: {fileID: 0}
+  sceneTransitionManager: {fileID: 32770733}
 --- !u!1001 &770151402
 PrefabInstance:
   m_ObjectHideFlags: 0
