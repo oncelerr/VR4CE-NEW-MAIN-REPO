@@ -348,7 +348,7 @@ public class GameMngr : MonoBehaviour
                 _ScoreMngr.ScoreMenuObj.SetActive(false);
                 _DataMngr.player.LevelIndex = 5;  // Change this if you have save load system, if you want the player to select which level he/she will play
                 _DataMngr.SaveMyData(); // saving the progress
-                _SceneLoader.LoadScene(4); // this will load the main menu 
+                _SceneLoader.LoadScene(0); // this will load the main menu 
             }
         }
     }
